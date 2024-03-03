@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <link rel="icon" type="image/x-icon" href="logo-single.ico">
+    <title>Hanja Hero - TOPIK Mock Tests</title><!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/brands.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/regular.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/solid.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/fontawesome.css' %}"><!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}"><!-- ANIMATE.CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"><!-- WHIRL (spinners)-->
+    <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}"><!-- =============== PAGE VENDOR STYLES ===============-->
+    <!-- =============== BOOTSTRAP STYLES ==========s=====-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss"><!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
+</head>
+
+<body style="background-color: #fff">
+<div class="wrapper">
+    <!-- top navbar-->
+    <header class="topnavbar-wrapper">
+        <!-- START Top Navbar-->
+        <nav class="navbar topnavbar">
+            <!-- START navbar header-->
+            <div class="navbar-header"><a class="navbar-brand" href="#/">
+                <div class="brand-logo"><img class="{% static 'img-fluid' %}" src="{% static 'img/logo.png' %}" alt="App Logo"></div>
+                <div class="brand-logo-collapsed"><img class="{% static 'img-fluid' %}" src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
+            </a></div><!-- END navbar header-->
+            <!-- START Left navbar-->
+            <ul class="navbar-nav mr-auto flex-row">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="aboutUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mock Tests Library
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
+                        <a class="dropdown-item" href="#">TOPIK I</a>
+                        <a class="dropdown-item" href="#">TOPIK II</a>
+                        <!-- Add more dropdown items as needed -->
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Practice Tests Library
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
+                        <a class="dropdown-item" href="#">TOPIK I</a>
+                        <a class="dropdown-item" href="#">TOPIK 2</a>
+                        <!-- Add more dropdown items as needed -->
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="aboutUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Forum
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- START Right Navbar-->
+            <ul class="navbar-nav flex-row">
+                <!-- START User button-->
+
+
+
+
+                <ul class="navbar-nav ml-auto">
+                    <!-- Conditionally render user icon or log in link -->
+                    <li class="nav-item d-none d-md-block logged-in">
+                        <a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+                            <em class="icon-user user-icon"></em> <!-- User Icon -->
+                            <span class="login-link">Log in</span> <!-- Log in Link -->
+                        </a>
+                    </li>
+                </ul>
+
+                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->
+                </li>
+
+            </ul><!-- END Left navbar-->
+
+
+            <form class="navbar-form" role="search" action="search.html">
+                <div class="form-group"><input class="form-control" type="text" placeholder="Type and hit enter ...">
+                    <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
+                </div><button class="d-none" type="submit">Submit</button>
+            </form><!-- END Search form-->
+        </nav><!-- END Top Navbar-->
+    </header><!-- sidebar-->
+    <section class="section-container">
+        <!-- Page content-->
+        <div class="content-wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section><!-- Page footer-->
+    <footer class="footer-container"><span>&copy; 2024 - Hanja Hero</span></footer>
+</div><!-- =============== VENDOR SCRIPTS ===============-->
+<!-- MODERNIZR-->
+<script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
+<script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
+<script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
+<script src="{% static 'vendor/i18next/i18next.js' %}"></script>
+<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script><!-- =============== PAGE VENDOR SCRIPTS ===============-->
+<!-- =============== APP SCRIPTS ===============-->
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
