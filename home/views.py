@@ -9,3 +9,9 @@ def login(request):
 
 def test(request):
     return render(request, 'test.html')
+
+def signup(request):
+    return render(request, 'register.html')
+
+def aboutus(request):
+    return render(request, 'aboutus.html')

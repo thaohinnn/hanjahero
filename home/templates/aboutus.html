@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <body class = 'container-fluid'>
+        <div class="homepage-specific-animation" id="home-introduction">
+            <!--Change link to test library -->
+            <div class="position-relative ct-tui  p-2 p-lg-5 bg-white" id="">
+                <div class="container position-relative">
+                    <div class="fadeInUp row m-0 p-0 justify-content-center" >
+                        <div class="col col-12 col-sm-10 col-lg-6 m-0 p-0 ct-tui__col d-none d-xl-flex">
+                            <img fetchpriority="high" decoding="async" width="600" height="450" src="{% static 'aboutus-bg.png' %}" class="thumbnail-component ct-tui__image object-fit-contain is-not-lazyload" alt="" loading="1">
+
+                        </div>
+                        <div class="col col-12 col-xl-6 m-0 p-0 ct-tui__col">
+                            <h1 class="h1 ct-tui__title">
+                                <p>Hanja Hero:</p>
+                            </h1>
+                            <div class="ct-tui__description">
+                                <h2><strong>The Premier TOPIK Mock Test Website</strong></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <article>
+            <p>In the realm of language learning and proficiency tests, one name stands out prominently: TOPIK. Standing for Test of Proficiency in Korean, TOPIK is a standardized test designed to evaluate non-native speakers' proficiency in the Korean language...</p>
+            <!-- Add the rest of your article content here -->
+            <p>Before delving into the intricacies of Hanja Hero, let's first grasp the significance of the TOPIK exam...</p>
+            <p>Enter Hanja Hero, a groundbreaking online platform that revolutionizes the way learners prepare for the TOPIK exam...</p>
+            <p>### Understanding TOPIK: Why It Matters</p>
+            <!-- Add the rest of your article content here -->
+        </article>
+        <footer>
+            <p>&copy; 2024 Hanja Hero. All rights reserved.</p>
+        </footer>
+        </div>
+    </body>
+
+
+
+{% endblock %}

@@ -159,6 +159,7 @@ body {
   background-color: rgba(162, 206, 255, 0.97);
 }
 
+
 .question-text-div {
   padding-bottom: 20px;}
 
@@ -1963,7 +1964,6 @@ body {
     border-bottom: 0; }
 
   .card-flat {
-    margin: 0 !important;
     border: 0; }
 
   .card-columns-2 {
