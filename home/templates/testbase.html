@@ -36,66 +36,23 @@
             <!-- START Left navbar-->
             <ul class="navbar-nav mr-auto flex-row">
 
-                <li class="nav-item dropdown d-none d-md-block">
-                    <a class="nav-link dropdown-toggle" href="#" id="aboutUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Home
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
-                        <a class="dropdown-item" href="#">About Us</a>
-                        <a class="dropdown-item" href="#">About the TOPIK exam</a>
-                        <!-- Add more dropdown items as needed -->
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown d-none d-md-block">
-                    <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Mock Tests Library
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
-                        <a class="dropdown-item" href="#">TOPIK I</a>
-                        <a class="dropdown-item" href="#">TOPIK II</a>
-                        <!-- Add more dropdown items as needed -->
-                    </div>
-                </li>
 
 
-                <li class="nav-item dropdown d-none d-md-block">
-                    <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Practice Tests Library
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
-                        <a class="dropdown-item" href="#">TOPIK I</a>
-                        <a class="dropdown-item" href="#">TOPIK 2</a>
-                        <!-- Add more dropdown items as needed -->
-                    </div>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="aboutUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Forum
-                    </a>
-                </li>
 
             </ul>
 
             <!-- START Right Navbar-->
             <ul class="navbar-nav flex-row">
-                <!-- START User button-->
-
-
-
-
-                <ul class="navbar-nav ml-auto">
-                    <!-- Conditionally render user icon or log in link -->
-                    <li class="nav-item d-none d-md-block logged-in">
-                        <a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
-                            <em class="icon-user user-icon"></em> <!-- User Icon -->
-                            <span class="login-link">Log in</span> <!-- Log in Link -->
-                        </a>
-                    </li>
-                </ul>
+                <!-- START Expand button-->
 
                 <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->
+                </li>
+
+                <!-- START SUM=BMIT button-->
+
+                <li class="nav-item">
+                    <button class="btn-submit" style="vertical-align:middle"><span>Submit </span></button>
                 </li>
 
             </ul><!-- END Left navbar-->
@@ -115,8 +72,12 @@
             {% endblock %}
         </div>
     </section><!-- Page footer-->
-    <footer class="footer-container"><span>&copy; 2024 - Hanja Hero</span></footer>
-</div><!-- =============== VENDOR SCRIPTS ===============-->
+
+</div>
+
+
+
+<!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
@@ -126,5 +87,13 @@
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
 </body>
+
+<footer class="bottom-navbar">
+    <div class="question-palette">
+        <button onclick="scrollToQuestion('question1')">1</button>
+        <button onclick="scrollToQuestion('question2')">2</button>
+        <button onclick="scrollToQuestion('question3')">3</button>
+    </div>
+</footer>
 
 </html>
