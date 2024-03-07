@@ -8,48 +8,52 @@
     <meta name="description" content="Bootstrap Admin App">
     <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
     <link rel="icon" type="image/x-icon" href="{% static 'logo-single.ico' %}">
-    <title>Hanja Hero - TOPIK Mock Tests</title><!-- =============== VENDOR STYLES ===============-->
+    <title>In Test</title><!-- =============== VENDOR STYLES ===============-->
     <!-- FONT AWESOME-->
     <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/brands.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/regular.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/solid.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/fontawesome.css' %}"><!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/fontawesome.css' %}">
+    <!-- SIMPLE LINE ICONS-->
     <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}"><!-- ANIMATE.CSS-->
     <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"><!-- WHIRL (spinners)-->
-    <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}"><!-- =============== PAGE VENDOR STYLES ===============-->
+    <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
+    <!-- =============== PAGE VENDOR STYLES ===============-->
     <!-- =============== BOOTSTRAP STYLES ==========s=====-->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss"><!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
+    <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
 </head>
 
 <body style="background-color: #fff">
+
 <div class="wrapper">
     <!-- top navbar-->
     <header class="topnavbar-wrapper">
         <!-- START Top Navbar-->
-        <nav class="navbar topnavbar">
+        <nav class="navbar topnavbar" style="position:fixed; width:100%">
             <!-- START navbar header-->
             <div class="navbar-header"><a class="navbar-brand" href="#/">
-                <div class="brand-logo"><img class="{% static 'img-fluid' %}" src="{% static 'img/logo.png' %}" alt="App Logo"></div>
-                <div class="brand-logo-collapsed"><img class="{% static 'img-fluid' %}" src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
+                <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}"
+                                             alt="App Logo" onclick="location.href='/home/'"></div>
+                <div class="brand-logo-collapsed"><img class="img-fluid"
+                                                       src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
             </a></div><!-- END navbar header-->
             <!-- START Left navbar-->
             <ul class="navbar-nav mr-auto flex-row">
-
-
-
 
 
             </ul>
 
             <!-- START Right Navbar-->
             <ul class="navbar-nav flex-row">
+
                 <!-- START Expand button-->
 
-                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->
-                </li>
+                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
+                        class="fas fa-expand"></em></a></li><!-- START Alert menu-->
 
-                <!-- START SUM=BMIT button-->
+                <!-- START SUBMIT button-->
 
                 <li class="nav-item">
                     <button class="btn-submit" style="vertical-align:middle"><span>Submit </span></button>
@@ -58,16 +62,11 @@
             </ul><!-- END Left navbar-->
 
 
-            <form class="navbar-form" role="search" action="search.html">
-                <div class="form-group"><input class="form-control" type="text" placeholder="Type and hit enter ...">
-                    <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
-                </div><button class="d-none" type="submit">Submit</button>
-            </form><!-- END Search form-->
         </nav><!-- END Top Navbar-->
     </header><!-- sidebar-->
     <section class="section-container">
         <!-- Page content-->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="padding: 0;">
             {% block content %}
             {% endblock %}
         </div>
@@ -76,24 +75,27 @@
 </div>
 
 
-
 <!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
 <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
 <script src="{% static 'vendor/i18next/i18next.js' %}"></script>
-<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script><!-- =============== PAGE VENDOR SCRIPTS ===============-->
+<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+<!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
-</body>
 
-<footer class="bottom-navbar">
+
+<nav class="bottom-navbar" id="bottom-navbar">
     <div class="question-palette">
         <button onclick="scrollToQuestion('question1')">1</button>
         <button onclick="scrollToQuestion('question2')">2</button>
         <button onclick="scrollToQuestion('question3')">3</button>
     </div>
-</footer>
+</nav>
+
+</body>
+
 
 </html>

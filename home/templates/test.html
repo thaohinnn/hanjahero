@@ -1,47 +1,308 @@
 {% extends 'testbase.html' %}
 
 {% block content %}
-    <body class = "testpage-no-animation" id = "test-page">
+    <style>
+        .flex {
+            position: fixed;
+            height: 77vh;
+            display: flex;
+            flex-direction: row;
+        }
 
-        <div class="card mb-3 border-black">
-            <div class="card-header text-black bg-card" style = "font-size: 22px; font-weight: bolder;">Question No.</div>
-            <div class="card-body">
-                <h5 class="card-title" style ="font-size: 18px; font-weight: bolder">Exercise question</h5>
-                <div class = "question-text" id="question-meta-data">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis nec urna sit amet lorem fringilla
-                    gravida non vitae justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec bibendum libero.
+        .flex > .left {
+            height: 77vh;
+            overflow-y: scroll;
+        }
+
+        .flex > .right {
+            height: 77vh;
+            overflow-y: scroll;
+        }
+
+        .gutter.gutter-horizontal {
+            cursor: ew-resize;
+        }
+
+        .gutter {
+            background-color: #f3f3f3;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+
+        .gutter.gutter-horizontal {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+        }
+
+        .divider {
+            width: 0;
+            background-color: #fff;
+            margin: 0 10px;
+        }
+
+        .heading {
+            padding: 12px;
+            background: #fff;
+            box-shadow: #0b1115;
+            text-align: center;
+            font-weight: 1000;
+            font-size: 30px;
+            color: #0062cc;
+            letter-spacing: 2px;
+        }
+
+        @media (min-width: 768px)
+
+
+
+    </style>
+
+
+    <body>
+<div class="container" style="padding:40px"></div>
+<div class="flex">
+        <div id="one" class="left">
+            <div class="heading">
+                TEXT
+            </div>
+
+            <!-- QUESTION CARDS -->
+
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis nec urna sit amet lorem
+                        fringilla
+                        gravida non vitae justo. Pellentesque habitant morbi tristique senectus et netus et
+                        malesuada
+                        fames ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec
+                        bibendum libero.
+                    </div>
 
-                <div class = "question-text-div" id="question">
-                    Vestibulum nec bibendum libero?
                 </div>
+            </div>
 
-                <div class="row" id="row-options">
-                    <div class="col">
-                        <div class="text-center">
-                            <div class="radio-container">
-                                <label class="c-radio"><input id="inlineradio1" type="radio" name="i-radio" value="option1"
-                                                              checked=""><span class="fa fa-circle"></span> a</label>
-                            </div>
-                            <div class="radio-container">
-                                <label class="c-radio"><input id="inlineradio2" type="radio" name="i-radio"
-                                                              value="option2"><span class="fa fa-circle"></span> b</label>
-                            </div>
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis nec urna sit amet lorem
+                        fringilla
+                        gravida non vitae justo. Pellentesque habitant morbi tristique senectus et netus et
+                        malesuada
+                        fames ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec
+                        bibendum libero.
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis nec urna sit amet lorem
+                        fringilla
+                        gravida non vitae justo. Pellentesque habitant morbi tristique senectus et netus et
+                        malesuada
+                        fames ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec
+                        bibendum libero.
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="divider">
+            <div class="gutter gutter-horizontal" style="width: 5px;"></div>
+        </div>
+
+        <div id="two" class="right">
+            <div class="heading">
+                ANSWERS
+            </div>
+
+            <!-- CHECKBOXES -->
+
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+
+                        ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec bibendum
+                        libero.
+                    </div>
+
+
+                    <div id="options">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
                         </div>
-                        <div class="text-center">
-                            <div class="radio-container">
-                                <label class="c-radio"><input id="inlineradio1" type="radio" name="i-radio" value="option1"
-                                                              checked=""><span class="fa fa-circle"></span> a</label>
-                            </div>
-                            <div class="radio-container">
-                                <label class="c-radio"><input id="inlineradio2" type="radio" name="i-radio"
-                                                              value="option2"><span class="fa fa-circle"></span> b</label>
-                            </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
                         </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+
+                        ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec bibendum
+                        libero.
+                    </div>
+
+
+                    <div id="options">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mb-3 border-black">
+                <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
+                    No.
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
+                    <div class="question-text" id="question-meta-data">
+
+                        ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec bibendum
+                        libero.
+                    </div>
+
+
+                    <div id="options">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </body>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+    <script>
+        Split(['#one', '#two'], {
+            sizes: [50, 50]
+        });
+    </script>
+
 {% endblock %}

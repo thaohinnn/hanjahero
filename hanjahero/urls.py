@@ -20,9 +20,14 @@ from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', views.home, name='home'),
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
-    path('test/', views.test, name='test'),
     path('signup/', views.signup, name='signup'),
-    path('aboutus/', views.aboutus, name='aboutus')
+    path('aboutus/', views.aboutus, name='aboutus'),
+    path('abouttheTOPIKexam/', views.abouttheTOPIKexam, name='abouttheTOPIKexam'),
+    path('mocktestslibrary/', views.mocktestslibrary, name='mocktestslibrary'),
+    path('practicetestslibrary/', views.practicetestslibrary, name='practicetestslibrary'),
+    path('mocktestslibrary/topik1/', views.topik1mocklibrary, name='topik1mocklibrary'),
+    path('test/', views.test, name='test'),
 ]

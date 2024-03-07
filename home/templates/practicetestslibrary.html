@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <title>Practice Tests Library</title>
+    <div class="homepage-specific-animation" id="home-introduction">
+        <!--Change link to test library -->
+        <div class="carousel" id="carouselExampleCaptions" data-ride="carousel">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active"><img class="d-block w-100"
+                                                       src="{% static 'img/practicetestslibrary-bg.png' %}"
+                                                       alt="practicetestslibrary-bg">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-relative ct-tui  p-2 p-lg-5 bg-white" id="">
+            <div class="container position-relative">
+                <div class="fadeInUp row m-0 p-0 justify-content-center">
+                    <h1 class="h1 ct-tui__title">
+                        Conquer TOPIK with our Practice Tests Library!</h1>
+                    <div class="ct-tui__description">
+
+                        <p>Taking the TOPIK II can be a daunting experience, but at our Practice Test Library, we're
+                            here to empower your preparation on your terms. We offer a comprehensive collection of
+                            exercises that mirror the TOPIK II format and levels, allowing you to refine your skills
+                            without the pressure of a timer.
+                            <br>
+                            <br>
+
+                        <h4>Here's what sets us apart:</h4>
+                        <ul>
+                            <li>Practice without time constraints: Focus on mastering concepts and developing your
+                                test-taking skills at your own pace.
+                            </li>
+                            <li>Tailored learning: Choose practice tests based on your current level and specific
+                                needs.
+                            </li>
+                            <li>Authentic format: Get familiar with the structure and question types encountered in the
+                                actual exam.
+                            </li>
+                            <li>Unlimited attempts: Take each practice test as many times as needed to solidify your
+                                understanding.
+                            </li>
+                        </ul>
+
+                        <p>Whether you're a beginner building your foundation or a seasoned learner seeking the
+                            final polish, our Practice Test Library provides the perfect platform to confidently
+                            approach the TOPIK II and achieve your desired score.
+
+                            <br><br><strong>Start practicing today and experience the freedom to learn at your own
+                                pace!</strong>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Your content here -->
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header" style="font-size: 20px; font-weight: bold;">TOPIK I</div>
+                    <div class="card-body">
+                        <p class="card-text">Are you preparing for the TOPIK I and looking for high-quality practice
+                            materials? Look no further! The TOPIK I Mock Test Library is the perfect resource for
+                            you!</p>
+                        <button class="mb-1 btn btn-secondary btn-oval" type="button">TOPIK I Excercises</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card card-default mb-3">
+                    <div class="card-header" style="font-size: 20px; font-weight: bold;">TOPIK II</div>
+                    <div class="card-body">
+                        <p class="card-text">Are you preparing for the TOPIK I and looking for high-quality practice
+                            materials? Look no further! Our TOPIK II Mock Test Library is designed to help you excel on
+                            you exam!</p>
+                        <button class="mb-1 btn btn-primary btn-oval" type="button">TOPIK II Exercises</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
