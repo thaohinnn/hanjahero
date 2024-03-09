@@ -28,15 +28,16 @@
 <body style="background-color: #fff">
 <div class="wrapper">
     <!-- top navbar-->
-    <header class="topnavbar-wrapper" >
+    <header class="topnavbar-wrapper">
         <!-- START Top Navbar-->
         <nav class="navbar topnavbar">
             <!-- START navbar header-->
             <div class="navbar-header"><a class="navbar-brand" href="#/">
-                <div class="brand-logo"><img class="{% static 'logo.png' %}" src="{% static 'img/logo.png' %}"
+                <div class="brand-logo"><img class="{% static 'img/logo.png' %}" src="{% static 'img/logo.png' %}"
                                              alt="App Logo" onclick="location.href='/home/'"></div>
-                <div class="brand-logo-collapsed"><img class="{% static 'img-fluid' %}"
-                                                       src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
+                <div class="brand-logo-collapsed"><img class="{% static 'img/logo-single.png' %}"
+                                                       src="{% static 'img/logo-single.png' %}" alt="App Logo"
+                                                       onclick="location.href='/home/'"></div>
             </a></div><!-- END navbar header-->
             <!-- START Left navbar-->
             <ul class="navbar-nav mr-auto flex-row">
@@ -49,6 +50,7 @@
                     <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
                         <a class="dropdown-item" href="/aboutus/">About Us</a>
                         <a class="dropdown-item" href="/abouttheTOPIKexam/">About the TOPIK exam</a>
+                        <a class="dropdown-item" href="/examdates/">TOPIK Exam dates</a>
                         <!-- Add more dropdown items as needed -->
                     </div>
                 </li>
@@ -61,7 +63,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
                         <a class="dropdown-item" href="/mocktestslibrary/topik1/">TOPIK I</a>
-                        <a class="dropdown-item" href="#">TOPIK II</a>
+                        <a class="dropdown-item" href="/mocktestslibrary/topik2/">TOPIK II</a>
                         <!-- Add more dropdown items as needed -->
                     </div>
                 </li>
@@ -97,29 +99,25 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Conditionally render user icon or log in link -->
                     <li class="nav-item d-none d-md-block logged-in">
-                        <a class="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
-                            <em class="icon-user user-icon"></em> <!-- User Icon -->
-                            <span class="login-link">Log in</span> <!-- Log in Link -->
+                        <a class="nav-link" id="user-block-toggle" href="/login/" data-toggle="collapse">
+                            <em class="icon-user user-icon" onclick="location.href='/login/'"></em> <!-- User Icon -->
+                            <span class="login-link" onclick="location.href='/login/'">Log in</span>
+                            <!-- Log in Link -->
                         </a>
                     </li>
                 </ul>
 
                 <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
                         class="fas fa-expand"></em></a></li><!-- START Alert menu-->
-                </li>
+
 
             </ul><!-- END Left navbar-->
 
 
-            <form class="navbar-form" role="search" action="search.html">
-                <div class="form-group"><input class="form-control" type="text" placeholder="Type and hit enter ...">
-                    <div class="fas fa-times navbar-form-close" data-search-dismiss=""></div>
-                </div>
-                <button class="d-none" type="submit">Submit</button>
-            </form><!-- END Search form-->
+            <button class="d-none" type="submit">Submit</button>
         </nav><!-- END Top Navbar-->
     </header><!-- sidebar-->
-    <section class="section-container">
+    <section class="section-container" style="margin-left: 0">
         <!-- Page content-->
         <div class="content-wrapper">
             {% block content %}

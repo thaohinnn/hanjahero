@@ -104,7 +104,7 @@ body {
     color: #052f7e; /* Example text color */
     padding: 10px 0; /* Adjust padding as needed */
     text-align: center;
-    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
 
 

@@ -26,8 +26,12 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('aboutus/', views.aboutus, name='aboutus'),
     path('abouttheTOPIKexam/', views.abouttheTOPIKexam, name='abouttheTOPIKexam'),
+    path('examdates/', views.TOPIKexamdates, name='TOPIKexamdates'),
     path('mocktestslibrary/', views.mocktestslibrary, name='mocktestslibrary'),
     path('practicetestslibrary/', views.practicetestslibrary, name='practicetestslibrary'),
     path('mocktestslibrary/topik1/', views.topik1mocklibrary, name='topik1mocklibrary'),
+    path('mocktestslibrary/topik2/', views.topik2mocklibrary, name='topik2mocklibrary'),
     path('test/', views.test, name='test'),
+    path('recover/', views.passwordrecover, name='passwordrecover'),
+    path('terms/', views.userterms, name='userterms')
 ]

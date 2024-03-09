@@ -9,10 +9,10 @@
             <div class="container position-relative">
                 <div class="fadeInUp row m-0 p-0 justify-content-center">
                     <div class="col col-12 col-xl-6 m-0 p-0 ct-tui__col">
-                        <h1 class="h1 ct-tui__title">
-                            <p> Hanja Hero</p></h1>
+                        <h1 class="h1 ct-tui__title" >
+                            <strong>Hanja Hero</strong></h1>
                         <div class="ct-tui__description">
-                            <h2><strong>TOPIK Mock Tests</strong></h2>
+                            <h2 style="font-weight: normal">TOPIK Mock Tests</h2>
                             <p>Our TOPIK Mock Test website offers a comprehensive platform for individuals preparing for
                                 the Test of Proficiency in Korean (TOPIK). <br><br>
                                 With a user-friendly interface and a vast array of practice materials, including mock
@@ -29,17 +29,23 @@
                         </div>
 
                         <div class="row m-0 pt-4 pb-5 ct-tui__bottoms">
-                            <div class="col col-6 col-lg-6">
+                            <div class="col col-6 col-lg-3">
                                 <a href="/aboutus/"
                                    class="btn-oval btn-primary btn-lg w-100 rounded-pill ct-tui__button btn"
                                    title="About Us" target="_blank">
                                     About Us </a>
                             </div>
-                            <div class="col col-6 col-lg-6">
+                            <div class="col col-6 col-lg-5">
                                 <a href="/abouttheTOPIKexam/"
                                    class="btn-oval btn-secondary btn-lg w-100 rounded-pill ct-tui__button btn"
                                    title="About the TOPIK exam" target="_blank">
                                     About the TOPIK exam </a>
+                            </div>
+                            <div class="col col-6 col-lg-4">
+                                <a href="/examdates/"
+                                   class="btn-oval btn-primary btn-lg w-100 rounded-pill ct-tui__button btn"
+                                   title="About the TOPIK exam" target="_blank">
+                                    TOPIK Exam dates </a>
                             </div>
                         </div>
                     </div>
@@ -47,7 +53,7 @@
                         <img fetchpriority="high" decoding="async" width="600" height="450"
                              src="{% static 'img/home-header.png' %}"
                              class="thumbnail-component ct-tui__image object-fit-contain is-not-lazyload" alt=""
-                             loading="1">
+                             loading="eager">
 
                     </div>
                 </div>
