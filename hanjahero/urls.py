@@ -33,5 +33,6 @@ urlpatterns = [
     path('mocktestslibrary/topik2/', views.topik2mocklibrary, name='topik2mocklibrary'),
     path('test/', views.test, name='test'),
     path('recover/', views.passwordrecover, name='passwordrecover'),
-    path('terms/', views.userterms, name='userterms')
+    path('terms/', views.userterms, name='userterms'),
+    path('practicetestslibrary/topik1/', views.topik1practicelibrary, name='topik1practicelibrary')
 ]
