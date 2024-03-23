@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
-    <title>TOPIK Hanja Hero</title>
+    <title>{{page_name}}</title>
 </head>
 
 <body style="background-color: #fff">
@@ -131,11 +131,15 @@
 <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
 <script src="{% static 'vendor/i18next/i18next.js' %}"></script>
 <script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+<script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'vendor/popper.js/dist/umd/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
 <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
-<script src="{% static 'js/app.js' %}"></script>
 {% block modal %}
+    {% include 'layout/modal.html' %}
 {% endblock %}
+<script src="{% static 'js/app.js' %}"></script>
 </body>
 
 </html>
