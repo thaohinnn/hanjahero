@@ -60,10 +60,14 @@ def topik1_practice_library(request):
     page_name =  {"page_name" : "TOPIK I Practice Tests"}
     return render(request, 'topik1_practice_library.html', page_name)
 
+def topik2_practice_library(request):
+    page_name = {"page_name" : "TOPIK II Practice Tests"}
+    return render(request, 'topik2_practice_library.html', page_name)
+
 
 def test(request):
     page_name =  {"page_name" : "TOPIK II Practice Tests"}
-    return render(request, 'test.html', page_name)
+    return render(request, 'layout/test.html', page_name)
 
 
 def password_recover(request):

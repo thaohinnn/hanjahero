@@ -28,11 +28,12 @@ urlpatterns = [
     path('abouttheTOPIKexam/', views.about_the_topik_exam, name='abouttheTOPIKexam'),
     path('examdates/', views.topik_exam_dates, name='TOPIKexamdates'),
     path('mocktestslibrary/', views.mock_tests_library, name='mocktestslibrary'),
-    path('practicetestslibrary/', views.practicetestslibrary, name='practicetestslibrary'),
+    path('practicetestslibrary/', views.practice_tests_library, name='practicetestslibrary'),
     path('mocktestslibrary/topik1/', views.topik1_mock_library, name='topik1mocklibrary'),
     path('mocktestslibrary/topik2/', views.topik2_mock_library, name='topik2mocklibrary'),
     path('test/', views.test, name='test'),
     path('recover/', views.password_recover, name='passwordrecover'),
     path('terms/', views.user_terms, name='userterms'),
-    path('practicetestslibrary/topik1/', views.topik1practicelibrary, name='topik1practicelibrary')
+    path('practicetestslibrary/topik1/', views.topik1_practice_library, name='topik1practicelibrary'),
+    path('practicetestslibrary/topik2/', views.topik2_practice_library, name='topik2practicelibrary'),
 ]
