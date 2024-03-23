@@ -104,9 +104,8 @@
             cursor: pointer;
         }
 
-    </style>
 
-    <title>TOPIK I Mock Tests</title>
+    </style>
     <div class="homepage-specific-animation" id="home-introduction">
         <!--Change link to test library -->
         <div class="carousel" id="carouselExampleCaptions" data-ride="carousel">
@@ -278,10 +277,11 @@
                                 <p style="text-align: center; padding-bottom: 10px">Date: July
                                     9-10th, 2022</p>
                                 <div class="row">
-                                    <button class="btn btn-secondary btn-oval" type="button"
-                                            style="border-radius: 20px; padding: 18px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); margin: 5px">
+                                    <button id="btnLargeModal" class="btn btn-secondary btn-oval" type="button"
+                                            style="border-radius: 20px; padding: 18px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); margin: 5px"
+                                            data-toggle="modal" data-target="#myModalLarge">
                                         <em class="fa-2x fas fa-headphones"></em><br>
-                                        Listening
+                                        Hello
                                     </button>
                                     <button class="btn btn-secondary btn-oval" type="button"
                                             style="border-radius: 20px; padding: 18px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); margin: 5px">
@@ -291,16 +291,17 @@
                                 </div>
                             </div>
                         </article>
-
-
                     </div>
                 </div>
             </div>
         </section>
-
+        <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModalLarge"> Large modal</button>
     </div>
 
-    <SCRIPT>
+
+    <!-- The Modal -->
+
+    <script>
 
         const prev = document.querySelector("#prev");
         const next = document.querySelector("#next");
@@ -324,7 +325,7 @@
             );
 
         prev.addEventListener("click", () => {
-            if (!leftValue == 0) {
+            if (!leftValue === 0) {
                 leftValue -= -totalMovementSize;
                 cCarouselInner.style.left = leftValue + "px";
             }
@@ -362,5 +363,11 @@
                 oldViewportWidth = newViewportWidth;
             }
         }
-    </SCRIPT>
+    </script>
+{% endblock %}
+
+{% block modal %}
+{% block modal_title_large %}
+    Hin Thui
+{% endblock %}
 {% endblock %}
