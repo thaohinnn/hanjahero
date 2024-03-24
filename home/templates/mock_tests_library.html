@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layout/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -17,14 +17,14 @@
             </div>
         </div>
 
-        <div class="position-relative ct-tui  p-2 p-lg-5 bg-white" id="">
+        <div class="position-relative ct-tui  p-2 p-lg-5 bg-white" id="" >
             <div class="container position-relative">
                 <div class="fadeInUp row m-0 p-0 justify-content-center">
                     <h1 class="h1 ct-tui__title">
                         Welcome to the TOPIK Mock Tests Library!</h1>
                     <div class="ct-tui__description">
 
-                        <p>Prepare for success with our comprehensive collection of TOPIK mock tests. Whether you're
+                        <p style="padding: 10px 100px">Prepare for success with our comprehensive collection of TOPIK mock tests. Whether you're
                             gearing up for the official exam or aiming to sharpen your Korean language skills, our
                             curated practice materials are designed to help you assess your proficiency, identify areas
                             for improvement, and build confidence. Dive in, explore, and embark on your journey to
@@ -56,7 +56,7 @@
                     <div class="card-header" style="font-size: 20px; font-weight: bold;">TOPIK II</div>
                     <div class="card-body">
                         <p class="card-text">Are you preparing for the TOPIK I and looking for high-quality practice
-                            materials? Look no further! Our TOPIK II Mock Test Library is designed to help you excel on
+                            materials? Look no further! Our TOPIK II Mock Tests are designed to help you excel on
                             you exam!</p>
                         <button class="mb-1 btn text-white btn-oval" style="background-color: #78ACE7; border-color: #78ACE7; " type="button" onclick="location.href='topik2/'">TOPIK II Tests</button>
                     </div>
@@ -64,4 +64,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}

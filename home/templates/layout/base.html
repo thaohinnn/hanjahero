@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
+    <title>{{page_name}}</title>
 </head>
 
 <body style="background-color: #fff">
@@ -76,8 +77,8 @@
                         Practice Tests Library
                     </a>
                     <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
-                        <a class="dropdown-item" href="#">TOPIK I</a>
-                        <a class="dropdown-item" href="#">TOPIK II</a>
+                        <a class="dropdown-item" href="/practicetestslibrary/topik1">TOPIK I</a>
+                        <a class="dropdown-item" href="/practicetestslibrary/topik2">TOPIK II</a>
                         <!-- Add more dropdown items as needed -->
                     </div>
                 </li>
@@ -110,9 +111,7 @@
                 <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
                         class="fas fa-expand"></em></a></li><!-- START Alert menu-->
 
-
             </ul><!-- END Left navbar-->
-
 
             <button class="d-none" type="submit">Submit</button>
         </nav><!-- END Top Navbar-->
@@ -132,8 +131,14 @@
 <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
 <script src="{% static 'vendor/i18next/i18next.js' %}"></script>
 <script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+<script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'vendor/popper.js/dist/umd/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
 <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
+{% block modal %}
+    {% include 'layout/modal.html' %}
+{% endblock %}
 <script src="{% static 'js/app.js' %}"></script>
 </body>
 

@@ -2,6 +2,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+    .flex {
+        position: fixed;
+        height: 77vh;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .flex > .left {
+        height: 77vh;
+        overflow-y: scroll;
+    }
+
+    .flex > .right {
+        height: 77vh;
+        overflow-y: scroll;
+    }
+
+    .gutter.gutter-horizontal {
+        cursor: ew-resize;
+    }
+
+    .gutter {
+        background-color: #f3f3f3;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    .gutter.gutter-horizontal {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    }
+
+    .divider {
+        width: 0;
+        background-color: #fff;
+        margin: 0 10px;
+    }
+
+    .heading {
+        padding: 12px;
+        background: #fff;
+        box-shadow: #0b1115;
+        text-align: center;
+        font-weight: 1000;
+        font-size: 30px;
+        color: #0062cc;
+        letter-spacing: 2px;
+    }
+
+    @media (min-width: 768px)
+
+
+</style>
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -67,8 +122,38 @@
     <section class="section-container">
         <!-- Page content-->
         <div class="content-wrapper" style="padding: 0;">
-            {% block content %}
-            {% endblock %}
+
+            <div class="container" style="padding:40px"></div>
+            <div class="flex">
+                <div id="one" class="left">
+                    <div class="heading">
+                        TEXT
+                    </div>
+
+                    <!-- QUESTION CARDS -->
+
+
+                    {% include 'layout/question_card.html' %}
+
+
+                </div>
+                <div class="divider">
+                    <div class="gutter gutter-horizontal" style="width: 5px;"></div>
+                </div>
+
+                <div id="two" class="right">
+                    <div class="heading">
+                        ANSWERS
+                    </div>
+
+                    <!-- CHECKBOXES -->
+
+                    {% include 'layout/question_checkbox.html' %}
+
+                </div>
+            </div>
+
+
         </div>
     </section><!-- Page footer-->
 
@@ -77,6 +162,22 @@
 
 <!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+<script>
+    Split(['#one', '#two'], {
+        sizes: [50, 50]
+    });
+</script>
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
 <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
