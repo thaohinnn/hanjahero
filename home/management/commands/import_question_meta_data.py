@@ -14,9 +14,9 @@ class Command(BaseCommand):
             data_list = json.load(f)
 
         for data in data_list:
-            # Retrieve QuestionMetaData instance if ID is provided
             question_meta_data_id = data.pop('question_meta_data', None)
             question_meta_data = None
+
             if question_meta_data_id is not None:
                 try:
                     question_meta_data = QuestionMetaData.objects.get(pk=question_meta_data_id)
@@ -25,4 +25,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.ERROR(f"QuestionMetaData with ID {question_meta_data_id} does not exist."))
 
             # Create or update the Question instance
-            question, created = Question.objects.update_or_create(question_id=data['question_id'], defaults={**data, 'question_meta_data': question_meta_data})
+            question, created = Question.objects.update_or_create(
+                question_id=data['question_id'],
+                defaults={**data, 'question_meta_data': question_meta_data} if question_meta_data_id else None
+            )
