@@ -1,6 +1,7 @@
 from django.db import models
 
 from home.models.question_meta_data import QuestionMetaData
+from home.const.format import format
 
 
 class Question(models.Model):
@@ -13,6 +14,6 @@ class Question(models.Model):
     correct_option = models.IntegerField(null=True)
     exam = models.IntegerField(null=True)
     skill = models.IntegerField(null=True)
-    format = models.IntegerField(null=True)
+    format = models.IntegerField(choices=format, null=True)
     level = models.IntegerField(null=True)
     question_meta_data = models.ForeignKey(QuestionMetaData, on_delete=models.RESTRICT, blank=True, null=True)

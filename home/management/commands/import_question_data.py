@@ -4,7 +4,6 @@ from home.models.question import Question
 from home.models.question_meta_data import QuestionMetaData  # Import Question and QuestionMetaData models
 
 
-
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
