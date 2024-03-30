@@ -1,18 +1,17 @@
 from django.db import models
 
 from home.models.question_meta_data import QuestionMetaData
-from home.models.test import Test
 
 
 class Question(models.Model):
     question_id = models.AutoField(primary_key=True)
-    question_text = models.TextField()
-    option_1 = models.TextField()
-    option_2 = models.TextField()
-    option_3 = models.TextField()
-    option_4 = models.TextField()
-    correct_option = models.IntegerField()
-    test = models.ForeignKey(Test, on_delete=models.CASCADE, null=True)
+    question_text = models.TextField(null=True)
+    option_1 = models.TextField(null=True)
+    option_2 = models.TextField(null=True)
+    option_3 = models.TextField(null=True)
+    option_4 = models.TextField(null=True)
+    correct_option = models.IntegerField(null=True)
+    exam = models.IntegerField(null=True)
     skill = models.IntegerField(null=True)
     format = models.IntegerField(null=True)
     level = models.IntegerField(null=True)
