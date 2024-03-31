@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 except QuestionMetaData.DoesNotExist:
                     # If the QuestionMetaData instance does not exist, set it to None
                     self.stdout.write(self.style.ERROR(f"QuestionMetaData with ID {question_meta_data_id} does not exist."))
-                      # Set to None if not found
+            # Set to None if not found
             elif question_meta_data_id is None:
                 question_meta_data = None
 
