@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework import status, generics
-from rest_framework.decorators import api_view
+from rest_framework import generics
+from .models.question_meta_data import QuestionMetaData
 from .serializers import QuestionSerializer
 from .models.question import Question
+from .utils import reorder_questions_by_format
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseForbidden)
+from .const.format import format
 
 
 def home(request):
@@ -94,17 +97,32 @@ class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
             queryset = Question.objects.none()
         return queryset
 
-'''
+
 ############ Todo: find way to add query strings & transform data from mysql model into views data
 def get_mock_test(request):
-    ##### DATA CHỨA CÂU HỎI
+
+    ##### GET DATA
+    format_constants = format
     # get query string parameters from the request
     skill = request.GET.get('skill')
-    test = request.GET.get('exam')
+    exam = request.GET.get('exam')
+
+    #Error-handling
+    if not skill or not exam:
+        return HttpResponseBadRequest("Sorry, this test is not available.")
+
     # filter based on query strings
     questions = Question.objects.filter(skill=skill, exam=exam)
-    ######## TRANSFORM DATA HERE
 
-    data = {"page_name": "TOPIK II Practice Tests"}
+    ######## TRANSFORM DATA HERE
+    # reorder questions
+    questions = reorder_questions_by_format(questions, format_constants)
+
+
+    data = {
+        "page_name": "TOPIK II Practice Tests",
+        "questions": questions,
+        "format": format_constants,
+    }
+
     return render(request, 'layout/test.html', data)
-'''
