@@ -1,11 +1,9 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models.question_meta_data import QuestionMetaData
 from .serializers import QuestionSerializer
 from .models.question import Question
 from .utils import reorder_questions_by_format
-from django.http import (HttpResponse, HttpResponseBadRequest,
-                         HttpResponseForbidden)
+from django.http import HttpResponseBadRequest
 from .const.format import format
 
 
