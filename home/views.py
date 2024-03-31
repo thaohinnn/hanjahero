@@ -71,11 +71,6 @@ def topik2_practice_library(request):
     return render(request, 'topik2_practice_library.html', page_name)
 
 
-def test(request):
-    page_name = {"page_name": "TOPIK II Practice Tests"}
-    return render(request, 'layout/test.html', page_name)
-
-
 def password_recover(request):
     page_name = {"page_name": "Forgot Password?"}
     return render(request, 'recover.html', page_name)
@@ -87,6 +82,29 @@ class QuestionView(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
 
 
-class SingleQuestionView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
-    queryset = Question.objects.all()
+class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionSerializer
+
+    def get_queryset(self):
+        # Retrieve a single question based on some condition, such as primary key
+        question_id = self.kwargs.get('pk')
+        if question_id is not None:
+            queryset = Question.objects.filter(pk=question_id)
+        else:
+            queryset = Question.objects.none()
+        return queryset
+
+'''
+############ Todo: find way to add query strings & transform data from mysql model into views data
+def get_mock_test(request):
+    ##### DATA CHỨA CÂU HỎI
+    # get query string parameters from the request
+    skill = request.GET.get('skill')
+    test = request.GET.get('exam')
+    # filter based on query strings
+    questions = Question.objects.filter(skill=skill, exam=exam)
+    ######## TRANSFORM DATA HERE
+
+    data = {"page_name": "TOPIK II Practice Tests"}
+    return render(request, 'layout/test.html', data)
+'''
