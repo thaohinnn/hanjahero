@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework import status, generics
-from rest_framework.decorators import api_view
+from rest_framework import generics
 from .serializers import QuestionSerializer
 from .models.question import Question
+from .utils import reorder_questions_by_format
+from django.http import HttpResponseBadRequest
+from .const.format import format
 
 
 def home(request):
@@ -71,11 +72,6 @@ def topik2_practice_library(request):
     return render(request, 'topik2_practice_library.html', page_name)
 
 
-def test(request):
-    page_name = {"page_name": "TOPIK II Practice Tests"}
-    return render(request, 'layout/test.html', page_name)
-
-
 def password_recover(request):
     page_name = {"page_name": "Forgot Password?"}
     return render(request, 'recover.html', page_name)
@@ -87,6 +83,44 @@ class QuestionView(generics.ListCreateAPIView):
     serializer_class = QuestionSerializer
 
 
-class SingleQuestionView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
-    queryset = Question.objects.all()
+class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionSerializer
+
+    def get_queryset(self):
+        # Retrieve a single question based on some condition, such as primary key
+        question_id = self.kwargs.get('pk')
+        if question_id is not None:
+            queryset = Question.objects.filter(pk=question_id)
+        else:
+            queryset = Question.objects.none()
+        return queryset
+
+
+############ Todo: find way to add query strings & transform data from mysql model into views data
+def get_mock_test(request):
+
+    ##### GET DATA
+    format_constants = format
+    # get query string parameters from the request
+    skill = request.GET.get('skill')
+    exam = request.GET.get('exam')
+
+    #Error-handling
+    if not skill or not exam:
+        return HttpResponseBadRequest("Sorry, this test is not available.")
+
+    # filter based on query strings
+    questions = Question.objects.filter(skill=skill, exam=exam)
+
+    ######## TRANSFORM DATA HERE
+    # reorder questions
+    questions = reorder_questions_by_format(questions, format_constants)
+
+
+    data = {
+        "page_name": "TOPIK II Practice Tests",
+        "questions": questions,
+        "format": format_constants,
+    }
+
+    return render(request, 'layout/test.html', data)
