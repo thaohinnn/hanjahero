@@ -5,6 +5,10 @@ from .models.question import Question
 from .utils import reorder_questions_by_format
 from django.http import HttpResponseBadRequest
 from .const.format import format
+from .const.exam import exam_list
+from .const.skill import skill_list
+from .const.level import level_list
+from .const.time_limit import time_limit_list
 
 
 def home(request):
@@ -96,16 +100,14 @@ class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
         return queryset
 
 
-############ Todo: find way to add query strings & transform data from mysql model into views data
 def get_mock_test(request):
-
     ##### GET DATA
     format_constants = format
     # get query string parameters from the request
     skill = request.GET.get('skill')
     exam = request.GET.get('exam')
 
-    #Error-handling
+    # Error-handling
     if not skill or not exam:
         return HttpResponseBadRequest("Sorry, this test is not available.")
 
@@ -116,7 +118,6 @@ def get_mock_test(request):
     # reorder questions
     questions = reorder_questions_by_format(questions, format_constants)
 
-
     data = {
         "page_name": "TOPIK II Practice Tests",
         "questions": questions,
@@ -124,3 +125,42 @@ def get_mock_test(request):
     }
 
     return render(request, 'layout/test.html', data)
+
+
+def get_mock_test_test(request):
+    ##### GET DATA
+    # get query string parameters from the request
+    skill = request.GET.get('skill')
+    exam = request.GET.get('exam')
+    level = request.GET.get('level')
+
+    # Error-handling
+    if not skill or not exam or not level:
+        return HttpResponseBadRequest("Sorry, this test is not available.")
+
+    # filter based on query strings
+    questions = Question.objects.filter(skill=skill, exam=exam)
+    format_constants = format
+
+    ######## TRANSFORM DATA HERE
+    # reorder questions
+    exam_name = exam_list[int(exam) - 1][int(exam)]
+    skill_name = skill_list[int(skill) - 1][int(skill)]
+    time_limit = time_limit_list[int(skill) - 1][int(skill)]
+
+    questions = reorder_questions_by_format(questions, format_constants)
+
+    data = {
+        "page_name": "TOPIK II Practice Tests",
+        "questions": questions,
+        "format": format_constants,
+        "exam": exam_name,
+        "skill": skill_name,
+        "time_limit": time_limit,
+
+    }
+
+    return render(request, 'layout/test2.html', data)
+
+
+

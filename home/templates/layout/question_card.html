@@ -1,17 +1,22 @@
-<div class="card mb-3 border-black">
-    <div class="card-header text-black bg-card" style="font-size: 22px; font-weight: bolder;">Question
-        No.
-    </div>
-    <div class="card-body">
-        <h5 class="card-title" style="font-size: 18px; font-weight: bolder">Exercise question</h5>
-        <div class="question-text" id="question-meta-data">
-            Lorem ipsum dolor sit amet, consectetur adipiscing eli. Duis nec urna sit amet lorem
-            fringilla
-            gravida non vitae justo. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada
-            fames ac turpis egestas. Vestibulum tincidunt est vitae ultricies aliquet. Vestibulum nec
-            bibendum libero.
-        </div>
+{% for question in questions %}
+    {% if question.question_meta_data %}
+        <div class="card mb-3 border-black">
+            {% for item in format %}
+                {% for key, value in item.items %}
+                    {% if key == question.format %}
+                        <div class="card-header text-black bg-card" style="font-size: 20px; font-weight: bolder;">
+                            {{ value }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
 
-    </div>
-</div>
+            <div class="img-fluid card-body">
+                <div class="img-fluid question-text" id="question-meta-data" style="font-size: 17px">
+                    {{ question.question_meta_data.question_meta_text|safe }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endfor %}

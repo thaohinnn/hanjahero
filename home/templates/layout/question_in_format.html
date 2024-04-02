@@ -10,6 +10,15 @@
             {% endfor %}
         {% endfor %}
         <div class="card-body">
+            {% if question.question_meta_data %}
+                <div class="card mb-3 border-black">
+                    <div class="img-fluid card-body">
+                        <div class="img-fluid question-text" id="question-meta-data" style="font-size: 17px">
+                            {{ question.question_meta_data.question_meta_text|safe }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
             <h5 class="card-title" style="font-size: 17px; line-height: 200%">Question
                 {{ forloop.counter }}.{% if question.question_text %} {{ question.question_text|safe }}{% endif %}</h5>

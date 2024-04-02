@@ -41,6 +41,7 @@ urlpatterns = [
     path('practicetestslibrary/topik1/', views.topik1_practice_library, name='topik1practicelibrary'),
     path('practicetestslibrary/topik2/', views.topik2_practice_library, name='topik2practicelibrary'),
     path('mock-test/', views.get_mock_test, name='mock_test'),
+    path('mock-test2/', views.get_mock_test_test, name='mock_test'),
 
 
     path('api/', include('home.urls')),

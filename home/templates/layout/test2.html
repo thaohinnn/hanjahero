@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo-single.ico' %}">
+    <title>In Test</title><!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/brands.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/regular.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/solid.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/fontawesome.css' %}">
+    <!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}"><!-- ANIMATE.CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"><!-- WHIRL (spinners)-->
+    <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
+    <!-- =============== PAGE VENDOR STYLES ===============-->
+    <!-- =============== BOOTSTRAP STYLES ==========s=====-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
+    <!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
+</head>
+
+<body style="background-color: #fff">
+
+<div class="wrapper">
+    <!-- top navbar-->
+    <header class="topnavbar-wrapper">
+        <!-- START Top Navbar-->
+        <nav class="navbar topnavbar" style="position:fixed; width:100%">
+            <!-- START navbar header-->
+            <div class="navbar-header"><a class="navbar-brand" href="#/">
+                <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}"
+                                             alt="App Logo" onclick="location.href='/home/'"></div>
+                <div class="brand-logo-collapsed"><img class="img-fluid"
+                                                       src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
+            </a></div><!-- END navbar header-->
+            <!-- START Left navbar-->
+            <ul class="navbar-nav mr-auto flex-row">
+
+
+            </ul>
+
+            <!-- START Right Navbar-->
+            <ul class="navbar-nav flex-row">
+
+                <!-- START Expand button-->
+
+                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
+                        class="fas fa-expand"></em></a></li><!-- START Alert menu-->
+
+                <!-- START SUBMIT button-->
+
+                <li class="nav-item">
+                    <button class="btn-submit" style="vertical-align:middle"><span>Submit </span></button>
+                </li>
+
+            </ul><!-- END Left navbar-->
+
+
+        </nav><!-- END Top Navbar-->
+    </header>
+
+    <section class="section-container">
+        <!-- Page content-->
+        <div class="content-wrapper" style="padding-top: 100px;">
+
+            {% include 'layout/test_info.html' %}
+
+            {% include 'layout/question_in_format.html' %}
+
+        </div>
+    </section>
+
+
+</div>
+
+
+<!-- =============== VENDOR SCRIPTS ===============-->
+<!-- MODERNIZR-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+<script>
+    Split(['#one', '#two'], {
+        sizes: [50, 50]
+    });
+</script>
+<script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
+<script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
+<script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
+<script src="{% static 'vendor/i18next/i18next.js' %}"></script>
+<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+<!-- =============== PAGE VENDOR SCRIPTS ===============-->
+<!-- =============== APP SCRIPTS ===============-->
+<script src="{% static 'js/app.js' %}"></script>
+
+
+<nav class="bottom-navbar" id="bottom-navbar">
+    <div class="question-palette">
+        <button onclick="scrollToQuestion('question1')">1</button>
+        <button onclick="scrollToQuestion('question2')">2</button>
+        <button onclick="scrollToQuestion('question3')">3</button>
+    </div>
+</nav>
+
+</body>
+
+
+</html>
