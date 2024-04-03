@@ -7,7 +7,6 @@ from django.http import HttpResponseBadRequest
 from .const.format import format
 from .const.exam import exam_list
 from .const.skill import skill_list
-from .const.level import level_list
 from .const.time_limit import time_limit_list
 
 
@@ -153,11 +152,9 @@ def get_mock_test_test(request):
     data = {
         "page_name": "TOPIK II Practice Tests",
         "questions": questions,
-        "format": format_constants,
         "exam": exam_name,
         "skill": skill_name,
         "time_limit": time_limit,
-
     }
 
     return render(request, 'layout/test2.html', data)

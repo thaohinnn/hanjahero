@@ -7,20 +7,16 @@ def reorder_questions_by_format(questions, format_constants):
 
     # Iterate over each question
     for question in questions:
-        # Get the format of the question
-        question_format = question.format
-
         # Add the question to the list corresponding to its format
-        questions_by_format[question_format].append(question)
+        questions_by_format[question.format].append(question)
 
-    # Sort the format constants alphabetically
-    sorted_formats = sorted(format_constants, key=lambda x: list(x.values())[0])
+    # Todo Add sorting questions_by_format by key here
 
-    # Reorder the questions based on the sorted formats
+    # Flat questions_by_format into reordered_questions
     reordered_questions = []
-    for format_item in sorted_formats:
-        format_id = list(format_item.keys())[0]
-        reordered_questions.extend(questions_by_format.get(format_id, []))
+    for format_id, format_item in questions_by_format.items():
+        # only set format string for first question in each format questions group.
+        format_item[0].format = format_constants[format_id-1]
+        reordered_questions.extend(questions_by_format.get(format_id-1, []))
 
     return reordered_questions
-
