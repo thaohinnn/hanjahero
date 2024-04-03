@@ -139,7 +139,6 @@ def get_mock_test_test(request):
 
     # filter based on query strings
     questions = Question.objects.filter(skill=skill, exam=exam)
-    format_constants = format
 
     ######## TRANSFORM DATA HERE
     # reorder questions
@@ -147,14 +146,13 @@ def get_mock_test_test(request):
     skill_name = skill_list[int(skill) - 1][int(skill)]
     time_limit = time_limit_list[int(skill) - 1][int(skill)]
 
-    questions = reorder_questions_by_format(questions, format_constants)
-
     data = {
         "page_name": "TOPIK II Practice Tests",
         "questions": questions,
         "exam": exam_name,
         "skill": skill_name,
         "time_limit": time_limit,
+        "format": format
     }
 
     return render(request, 'layout/test2.html', data)
