@@ -12,6 +12,7 @@ class Question(models.Model):
     option_3 = models.TextField(null=True)
     option_4 = models.TextField(null=True)
     correct_option = models.IntegerField(null=True)
+    score = models.IntegerField(default=2)
     exam = models.IntegerField(null=True)
     skill = models.IntegerField(null=True)
     format = models.IntegerField(null=True)
