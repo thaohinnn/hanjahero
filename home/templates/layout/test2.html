@@ -23,51 +23,50 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
+    <link rel="stylesheet" href="{% static 'css/timer.css' %}" id="timerSECTION">
 </head>
 
 <body style="background-color: #fff">
 
-<div class="wrapper">
+<div class="wrapper" style="width: 100%">
     <!-- top navbar-->
     <header class="topnavbar-wrapper">
         <!-- START Top Navbar-->
         <nav class="navbar topnavbar" style="position:fixed; width:100%">
             <!-- START navbar header-->
-            <div class="navbar-header"><a class="navbar-brand" href="#/">
-                <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}"
-                                             alt="App Logo" onclick="location.href='/home/'"></div>
-                <div class="brand-logo-collapsed"><img class="img-fluid"
-                                                       src="{% static 'img/logo-single.png' %}" alt="App Logo"></div>
-            </a></div><!-- END navbar header-->
-            <!-- START Left navbar-->
-            <ul class="navbar-nav mr-auto flex-row">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">
+                    <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}" alt="App Logo" onclick="location.href='/home/'"></div>
+                </a>
+            </div><!-- END navbar header-->
 
-
+            <!-- START Center Navbar -->
+            <ul class="navbar-nav mx-auto">
+                <!-- START Timer -->
+                <li class="nav-item ml-auto">
+                    <div class="d-flex align-items-center">
+                       {% include 'layout/timer.html' %}
+                    </div>
+                </li>
             </ul>
 
             <!-- START Right Navbar-->
             <ul class="navbar-nav flex-row">
 
                 <!-- START Expand button-->
-
-                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
-                        class="fas fa-expand"></em></a></li><!-- START Alert menu-->
-
+                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->
                 <!-- START SUBMIT button-->
-
                 <li class="nav-item">
-                    <button class="btn-submit" style="vertical-align:middle"><span>Submit </span></button>
+                    <button class="btn-submit" style="vertical-align:middle"><span>Submit</span></button>
                 </li>
-
             </ul><!-- END Left navbar-->
-
-
         </nav><!-- END Top Navbar-->
     </header>
 
-    <section class="section-container">
+
+    <section class="section-container" style="width: 100%">
         <!-- Page content-->
-        <div class="content-wrapper" style="padding-top: 100px;">
+        <div class="content-wrapper" style="padding-top: 100px">
 
             {% include 'layout/test_info.html' %}
 
@@ -106,6 +105,7 @@
 <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
+<script src="{% static '/js/timer.js' %}"></script>
 
 
 <nav class="bottom-navbar" id="bottom-navbar">
