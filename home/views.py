@@ -152,7 +152,8 @@ def get_mock_test_test(request):
         "exam": exam_name,
         "skill": skill_name,
         "time_limit": time_limit,
-        "format": format
+        "format": format,
+        "skill_time": skill
     }
 
     return render(request, 'layout/test2.html', data)
