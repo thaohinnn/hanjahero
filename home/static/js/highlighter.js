@@ -23,3 +23,7 @@ function highlightText() {
     span.className = 'highlight';
     range.surroundContents(span);
 }
+
+function keydownHandler(event) {
+    toggleHighlightMode(); // Turn off highlight mode on any key press
+}

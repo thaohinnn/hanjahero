@@ -24,6 +24,8 @@
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
     <link rel="stylesheet" href="{% static 'css/timer.css' %}" id="timerSECTION">
+    <link rel="stylesheet" href="{% static 'css/note-holder.css' %}" id="note">
+    <link rel="stylesheet" href="{% static 'css/highlighter.css' %}" id="note">
 </head>
 
 <body style="background-color: #fff">
@@ -36,7 +38,8 @@
             <!-- START navbar header-->
             <div class="navbar-header">
                 <a class="navbar-brand" href="#/">
-                    <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}" alt="App Logo" onclick="location.href='/home/'"></div>
+                    <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}" alt="App Logo"
+                                                 onclick="location.href='/home/'"></div>
                 </a>
             </div><!-- END navbar header-->
 
@@ -45,16 +48,24 @@
                 <!-- START Timer -->
                 <li class="nav-item ml-auto">
                     <div class="d-flex align-items-center">
-                       {% include 'layout/timer.html' %}
+                        {% include 'layout/timer.html' %}
                     </div>
                 </li>
             </ul>
 
             <!-- START Right Navbar-->
-            <ul class="navbar-nav flex-row">
-
+            <ul class="navbar-nav flex-row" style="align-items: center;">
+                <!-- START Note button-->
+                <li class="nav-item d-none d-md-block">
+                    {% include 'layout/note_holder.html' %}
+                </li>
+                <!-- START Note button-->
+                <li class="nav-item d-none d-md-block">
+                    {% include 'layout/highlighter.html' %}
+                </li>
                 <!-- START Expand button-->
-                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a></li><!-- START Alert menu-->
+                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
+                        class="fas fa-expand"></em></a></li><!-- START Alert menu-->
                 <!-- START SUBMIT button-->
                 <li class="nav-item">
                     <button class="btn-submit" style="vertical-align:middle"><span>Submit</span></button>
@@ -106,6 +117,8 @@
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static '/js/timer.js' %}"></script>
+<script src="{% static '/js/note.js' %}"></script>
+<script src="{% static '/js/highlighter.js' %}"></script>
 
 
 <nav class="bottom-navbar" id="bottom-navbar">
