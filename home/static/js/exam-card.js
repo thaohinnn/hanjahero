@@ -6,6 +6,7 @@ function generateExamCards() {
     examCardContainer.innerHTML = '';
 
     // Iterate through exam list and create cards
+    // Iterate through exam list and create cards
     exam_list.forEach((exam, index) => {
         const examNumber = Object.keys(exam)[0];
         const examName = Object.values(exam)[0];
@@ -17,6 +18,9 @@ function generateExamCards() {
         examCard.style.borderRadius = '20px';
         examCard.style.borderColor = '#fff';
         examCard.style.boxShadow = '-4px -4px 8px rgba(0, 0, 0, 0.02)';
+
+        // Store exam number in a data attribute
+        examCard.dataset.examNumber = examNumber;
 
         const examCardHeader = document.createElement('h1');
         examCardHeader.classList.add('card-header');
@@ -37,7 +41,7 @@ function generateExamCards() {
             const skillCard = document.createElement('div');
             skillCard.classList.add('card', 'mb-3', 'mr-3');
             skillCard.style.borderRadius = '20px';
-            skillCard.style.borderColor = `rgba(${parseInt(colors[skillIndex % colors.length].substring(1,3), 16)}, ${parseInt(colors[skillIndex % colors.length].substring(3,5), 16)}, ${parseInt(colors[skillIndex % colors.length].substring(5,7), 16)}, 0.2)`;
+            skillCard.style.borderColor = `rgba(${parseInt(colors[skillIndex % colors.length].substring(1, 3), 16)}, ${parseInt(colors[skillIndex % colors.length].substring(3, 5), 16)}, ${parseInt(colors[skillIndex % colors.length].substring(5, 7), 16)}, 0.2)`;
             skillCard.style.width = '30%';
             skillCard.style.boxShadow = 'none';
 
@@ -57,22 +61,27 @@ function generateExamCards() {
             const skillTitle = document.createElement('h5');
             skillTitle.classList.add('card-title');
             skillTitle.innerHTML = `
-                <span style="display: inline-block; font-weight: bolder; font-size: 20px; line-height: 2.5; color: ${colors[skillIndex % colors.length]}">${skillInfo.name}</span>
-            `;
+            <span style="display: inline-block; font-weight: bolder; font-size: 20px; line-height: 2.5; color: ${colors[skillIndex % colors.length]}">${skillInfo.name}</span>
+        `;
             skillCardBody.appendChild(skillTitle);
 
             // Create "Start Test" button
-            const startTestButton = document.createElement('button');
-            startTestButton.classList.add('btn', 'btn-oval', 'btn-secondary');
-            startTestButton.type = 'button';
-            startTestButton.textContent = 'Start Test';
-            startTestButton.style.backgroundColor = colors[skillIndex % colors.length];
-            startTestButton.style.color = '#fff';// Set button color
-            startTestButton.style.border = 'none';
-            startTestButton.addEventListener('click', function() {
+            const takeTestButton = document.createElement('button');
+            takeTestButton.classList.add('btn', 'btn-oval', 'btn-secondary');
+            takeTestButton.type = 'button';
+            takeTestButton.textContent = 'Take Test';
+            takeTestButton.style.backgroundColor = colors[skillIndex % colors.length];
+            takeTestButton.style.color = '#fff';// Set button color
+            takeTestButton.style.border = 'none';
+
+            // Store exam number and skill number in data attributes
+            takeTestButton.dataset.examNumber = examNumber;
+            takeTestButton.dataset.skillNumber = skillNumber;
+
+            takeTestButton.addEventListener('click', function () {
                 openModal(skillNumber);
             });
-            skillCardBody.appendChild(startTestButton);
+            skillCardBody.appendChild(takeTestButton);
 
             // Add skill card body to skill card
             skillCard.appendChild(skillCardBody);
@@ -88,3 +97,26 @@ function generateExamCards() {
 
 // Call the function to generate exam cards
 generateExamCards();
+
+// Function to handle click event on skill and exam cards
+function handleClick(event) {
+    const target = event.target;
+
+    // Check if the clicked element or its parent is a skill or exam card
+    if (target.classList.contains('btn') && target.textContent === 'Take Test') {
+        // Retrieve the selectedSkill and selectedExam from the clicked button's dataset
+        const selectedSkill = target.dataset.skillNumber;
+        const selectedExam = target.dataset.examNumber;
+
+        // Set the selectedSkill and selectedExam in the HTML
+        document.getElementById('selectedSkill').dataset.skill = selectedSkill;
+        document.getElementById('selectedExam').dataset.exam = selectedExam;
+
+        // Use the retrieved IDs as needed
+        console.log('Selected Skill:', selectedSkill);
+        console.log('Selected Exam:', selectedExam);
+    }
+}
+
+// Attach click event listener to the container of exam cards
+document.getElementById('examCardContainer').addEventListener('click', handleClick);
