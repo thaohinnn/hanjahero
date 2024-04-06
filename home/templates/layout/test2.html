@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="{% static 'css/timer.css' %}" id="timerSECTION">
     <link rel="stylesheet" href="{% static 'css/note-holder.css' %}" id="note">
     <link rel="stylesheet" href="{% static 'css/highlighter.css' %}" id="note">
+    <!-- Add Bootstrap Tour CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-tour.min.css' %}" id="note">
+    <link rel="stylesheet" href="{% static 'css/start-timer-button.css' %}" id="note">
+
 </head>
 
 <body style="background-color: #fff">
@@ -64,7 +68,7 @@
                     {% include 'layout/highlighter.html' %}
                 </li>
                 <!-- START Expand button-->
-                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
+                <li class="nav-item d-none d-md-block"><a class="nav-link" id="fullscreen-button" data-toggle-fullscreen=""><em
                         class="fas fa-expand"></em></a></li><!-- START Alert menu-->
                 <!-- START SUBMIT button-->
                 <li class="nav-item">
@@ -76,6 +80,8 @@
 
 
     <section class="section-container" style="width: 100%">
+
+        {% include 'layout/start_test_button.html' %}
         <!-- Page content-->
         <div class="content-wrapper" style="padding-top: 100px">
 
@@ -119,17 +125,9 @@
 <script src="{% static '/js/timer.js' %}"></script>
 <script src="{% static '/js/note.js' %}"></script>
 <script src="{% static '/js/highlighter.js' %}"></script>
-
-
-<nav class="bottom-navbar" id="bottom-navbar">
-    <div class="question-palette">
-        <button onclick="scrollToQuestion('question1')">1</button>
-        <button onclick="scrollToQuestion('question2')">2</button>
-        <button onclick="scrollToQuestion('question3')">3</button>
-    </div>
-</nav>
+<!-- Add Bootstrap Tour JS -->
+<script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
+<script src="{% static '/js/test-tour.js' %}"></script>
 
 </body>
-
-
 </html>
