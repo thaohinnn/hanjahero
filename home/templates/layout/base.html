@@ -66,7 +66,6 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item dropdown d-none d-md-block">
                     <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown"
                        onclick="location.href='/practicetestslibrary/'" role="button" data-toggle="dropdown"
@@ -132,10 +131,15 @@
 <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
 <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
-{% block modal %}
-    {% include 'layout/modal.html' %}
-{% endblock %}
 <script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/constants.js' %}"></script>
+<script src="{% static 'js/exam-card.js' %}"></script>
+<script src="{% static 'js/modal.js' %}"></script>
+
+
+
+{% include 'layout/modal.html' %}
+
 </body>
 
 </html>
