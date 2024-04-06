@@ -120,6 +120,10 @@
     </section><!-- Page footer-->
     <footer class="footer-container"><span>&copy; 2024 - Hanja Hero</span></footer>
 </div><!-- =============== VENDOR SCRIPTS ===============-->
+
+{% include 'layout/modal.html' %}
+
+
 <!-- MODERNIZR-->
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
@@ -135,10 +139,13 @@
 <script src="{% static 'js/constants.js' %}"></script>
 <script src="{% static 'js/exam-card.js' %}"></script>
 <script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/time-limit-option.js' %}"></script>
+<script src="{% static 'js/link-generation.js' %}"></script>
 
 
 
-{% include 'layout/modal.html' %}
+
+
 
 </body>
 
