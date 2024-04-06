@@ -1,0 +1,34 @@
+{% load static %}
+<div class="col-md-6">
+    <div class="card mb-3 h-100 d-flex"
+         style="background-color: #ffffff; border: none; box-shadow: none; border-radius: 50px; width: 100%;">
+        <div class="card-content" style="padding: 20px;">
+            <!-- HEADER -->
+            <h2 style="text-align: center; color: #052f7e; line-height: 50px;">
+                <img src="{% static '/img/practice-test.png' %}" alt="Practice Test"
+                     style="width: 70px; padding-bottom: 15px;">
+                <br>
+                Practice Mode
+            </h2>
+            <!-- Tasks -->
+            <h4>
+                1. Choose task(s) you want to practice:
+            </h4>
+            <div id="checkboxContainer" style="margin-left: 20px;">
+                <!-- Checkboxes will be generated here -->
+            </div>
+            <!-- TIME LIMIT -->
+            <h4>
+                2. Choose time limit:
+            </h4>
+            {% include 'layout/time_limit_option.html' %}
+
+            <div style="text-align: center; padding: 20px">
+                <button id="startPractice" class="btn btn-oval btn-primary" type="button" style="background-color: #052f7e;
+                    color: #fff; border: none; box-shadow: none; padding: 10px 20px; font-size: 15px">
+                    <strong>START PRACTICE TEST</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

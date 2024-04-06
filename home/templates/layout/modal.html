@@ -1,63 +1,20 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="modal fade" id="myModalLarge" tabindex="-1" aria-labelledby="myModalLabelLarge" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog to modal-xl for extra large size -->
+        <div class="modal-content" style="background-color: #fafafa; border-radius: 50px; border: none">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">
-                    {% block modal_title_normal %}
-                    {% endblock %}
-                </h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <h4 class="modal-title" id="myModalLabelLarge"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin: 0 0 -1rem auto !important;">
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                {% block modal_body_normal %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_normal %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-</div><!-- Modal Large-->
-<div class="modal fade" id="myModalLarge" tabindex="-1" role="dialog" aria-labelledby="myModalLabelLarge"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabelLarge">
-                    {% block modal_title_large %}
-                    {% endblock %}
-                </h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {% block modal_body_large %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_large %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-</div><!-- Modal Small-->
-<div class="modal fade" id="myModalSmall" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSmall"
-     aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabelSmall">
-                    {% block modal_title_small %}
-                    {% endblock %}</h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {% block modal_body_small %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_small %}
-                {% endblock %}
+            <div class="modal-body" style="padding-top: 0">
+                <div class="row">
+                    <!-- Include Practice Mode Card -->
+                    {% include 'layout/practice_card.html' %}
+
+                    <!-- Include Mock Test Mode Card -->
+                    {% include 'layout/mock_card.html' %}
+                </div>
             </div>
         </div>
     </div>
