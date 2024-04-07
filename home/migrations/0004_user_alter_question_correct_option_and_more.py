@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('date_of_birth', models.DateField()),
                 ('gender', models.CharField(max_length=10)),
                 ('phone_number', models.IntegerField()),
-                ('email_address', models.EmailField(max_length=254, unique=True)),
+                ('username', models.EmailField(max_length=254, unique=True)),
                 ('time_created', models.DateTimeField(auto_now_add=True)),
                 ('password', models.CharField(max_length=20)),
             ],

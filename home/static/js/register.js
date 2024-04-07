@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const dateOfBirth = document.getElementById('date_of_birth').value;
         const gender = document.getElementById('gender').value;
         const phoneNumber = document.getElementById('phone_number').value;
-        const email = document.getElementById('email_address').value;
+        const email = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
         // Display error messages if fields are empty
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         if (!email) {
-            displayErrorMessage('email_address_error', 'Please enter your email address.');
+            displayErrorMessage('username_error', 'Please enter your email address.');
             return;
         }
         if (!password) {
