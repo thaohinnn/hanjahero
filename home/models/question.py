@@ -1,7 +1,6 @@
 from django.db import models
 
 from home.models.question_meta_data import QuestionMetaData
-from home.const.format import format
 
 
 class Question(models.Model):
