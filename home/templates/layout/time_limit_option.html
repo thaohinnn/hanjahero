@@ -1,0 +1,21 @@
+<div class="btn-group mb-1" style="width: 100%">
+    <button id="timeLimitBtn" class="btn dropdown-toggle btn-secondary" type="button"
+            data-toggle="dropdown" aria-expanded="true"
+            style="border: 1px solid rgba(17,59,138,0.2); border-radius: 30px; width: calc(100% - 40px); height: 40px; text-align: left;">
+        Time limit
+    </button>
+    <div class="dropdown-menu" role="menu"
+         style="position: absolute; will-change: transform; top: 0; left: 0;
+         transform: translate3d(0px, 34px, 0px); width: calc(100% - 2px); border-radius: 25px;
+         border: none; padding-top: 10px;"
+         x-placement="bottom-start">
+        <a class="dropdown-item" onclick="updateTimeLimit('10 minutes')">10 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('20 minutes')">20 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('30 minutes')">30 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('40 minutes')">40 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('50 minutes')">50 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('60 minutes')">60 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('70 minutes')">70 minutes</a>
+        <a class="dropdown-item" onclick="updateTimeLimit('No limit')">No limit</a>
+    </div>
+</div>
