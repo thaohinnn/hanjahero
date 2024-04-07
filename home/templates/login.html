@@ -34,7 +34,13 @@
             </div>
             <div class="card-body">
                 <p class="text-center py-2"><strong>SIGN IN TO CONTINUE.</strong></p>
-                <form class="mb-3" id="loginForm" novalidate="">
+                {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <form class="mb-3" id="loginForm" method="post" action="{% url 'login' %}" novalidate="">
+                {% csrf_token %}
                     <div class="form-group">
                         <div class="input-group with-focus"><label for="exampleInputEmail1"></label><input class="form-control border-right-0"
                                                                                                            id="exampleInputEmail1" type="email"
