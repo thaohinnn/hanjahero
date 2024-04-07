@@ -15,7 +15,7 @@
     "date_of_birth": "2004-06-25",
     "gender": "Male",
     "phone_number": 84901234567,
-    "email_address": "phamnmt@gmail.com",
+    "username": "phamnmt@gmail.com",
     "password": "password789",
     "user_id": "2"
   },
@@ -25,7 +25,7 @@
     "date_of_birth": "2002-04-10",
     "gender": "Male",
     "phone_number": 13812345678,
-    "email_address": "wang.xr53@gmail.com",
+    "username": "wang.xr53@gmail.com",
     "password": "passwordabc",
     "user_id": "3"
   },
@@ -35,7 +35,7 @@
     "date_of_birth": "1999-07-15",
     "gender": "Female",
     "phone_number": 13587654321,
-    "email_address": "lirưiaohong@gmail.com",
+    "username": "lirưiaohong@gmail.com",
     "password": "passwordxyz",
     "user_id": "4"
   },
@@ -45,7 +45,7 @@
     "date_of_birth": "2000-11-20",
     "gender": "Male",
     "phone_number": 849012341234,
-    "email_address": "taro.koyamada@gmail.com",
+    "username": "taro.koyamada@gmail.com",
     "password": "password123xyz",
     "user_id": "5"
   },
@@ -55,7 +55,7 @@
     "date_of_birth": "1998-02-05",
     "gender": "Female",
     "phone_number": 848098765432,
-    "email_address": "hanako.kosuzuki@gmail.com",
+    "username": "hanako.kosuzuki@gmail.com",
     "password": "passwordxyz123",
     "user_id": "6"
   },
@@ -65,7 +65,7 @@
     "date_of_birth": "2003-09-15",
     "gender": "Male",
     "phone_number": 1234567890,
-    "email_address": "jackwu8734gmail.com",
+    "username": "jackwu8734gmail.com",
     "password": "password123",
     "user_id": "7"
   },
@@ -75,7 +75,7 @@
     "date_of_birth": "2002-12-20",
     "gender": "Female",
     "phone_number": 84987654321,
-    "email_address": "lilyscho@gmail.com",
+    "username": "lilyscho@gmail.com",
     "password": "password456",
     "user_id": "8"
   },
@@ -85,7 +85,7 @@
     "date_of_birth": "2000-05-15",
     "gender": "Female",
     "phone_number": 84987654321,
-    "email_address": "hoangathi@outlook.com",
+    "username": "hoangathi@outlook.com",
     "password": "password123",
     "user_id": "9"
   },
@@ -95,7 +95,7 @@
     "date_of_birth": "2004-03-10",
     "gender": "Male",
     "phone_number": 84912345678,
-    "email_address": "ledminh42@outlook.com",
+    "username": "ledminh42@outlook.com",
     "password": "password456",
     "user_id": "10"
   },
@@ -105,7 +105,7 @@
     "date_of_birth": "2002-07-25",
     "gender": "Female",
     "phone_number": 84901234567,
-    "email_address": "ngotl43@outlook.com",
+    "username": "ngotl43@outlook.com",
     "password": "password789",
     "user_id": "11"
   },
@@ -115,7 +115,7 @@
     "date_of_birth": "2001-08-10",
     "gender": "Male",
     "phone_number": 13812345678,
-    "email_address": "zhang.x25g@outlook.com",
+    "username": "zhang.x25g@outlook.com",
     "password": "passwordabc",
     "user_id": "12"
   },
@@ -125,7 +125,7 @@
     "date_of_birth": "1998-11-15",
     "gender": "Female",
     "phone_number": 13587654321,
-    "email_address": "zhao.xiao5hong@outlook.com",
+    "username": "zhao.xiao5hong@outlook.com",
     "password": "passwordxyz",
     "user_id": "13"
   },
@@ -135,7 +135,7 @@
     "date_of_birth": "2003-04-20",
     "gender": "Male",
     "phone_number": 849012341234,
-    "email_address": "kenta.koyamada@outlook.com",
+    "username": "kenta.koyamada@outlook.com",
     "password": "password123xyz",
     "user_id": "14"
   },
@@ -145,7 +145,7 @@
     "date_of_birth": "2000-02-05",
     "gender": "Female",
     "phone_number": 848098765432,
-    "email_address": "mayumi53@outlook.com",
+    "username": "mayumi53@outlook.com",
     "password": "passwordxyz123",
     "user_id": "15"
   },
@@ -155,7 +155,7 @@
     "date_of_birth": "2004-09-15",
     "gender": "Male",
     "phone_number": 1234567890,
-    "email_address": "oliver34g@outlook.com",
+    "username": "oliver34g@outlook.com",
     "password": "password123",
     "user_id": "16"
   },
@@ -165,7 +165,7 @@
     "date_of_birth": "2002-12-20",
     "gender": "Female",
     "phone_number": 84987654321,
-    "email_address": "sophia3249@outlook.com",
+    "username": "sophia3249@outlook.com",
     "password": "password456",
     "user_id": "17"
   },
@@ -175,7 +175,7 @@
     "date_of_birth": "2000-09-15",
     "gender": "Male",
     "phone_number": 84987654321,
-    "email_address": "davminh@gmail.com",
+    "username": "davminh@gmail.com",
     "password": "password123",
     "user_id": "18"
   },
@@ -185,7 +185,7 @@
     "date_of_birth": "2003-08-20",
     "gender": "Female",
     "phone_number": 84912345678,
-    "email_address": "buisfi@gmail.com",
+    "username": "buisfi@gmail.com",
     "password": "password456",
     "user_id": "19"
   },
@@ -195,7 +195,7 @@
     "date_of_birth": "2001-06-25",
     "gender": "Male",
     "phone_number": 84901234567,
-    "email_address": "vu.vvmg@gmail.com",
+    "username": "vu.vvmg@gmail.com",
     "password": "password789",
     "user_id": "20"
   },
@@ -205,7 +205,7 @@
     "date_of_birth": "2002-07-10",
     "gender": "Male",
     "phone_number": 13812345678,
-    "email_address": "chen.xioming@gmail.com",
+    "username": "chen.xioming@gmail.com",
     "password": "passwordabc",
     "user_id": "21"
   },
@@ -215,7 +215,7 @@
     "date_of_birth": "1999-10-15",
     "gender": "Female",
     "phone_number": 13587654321,
-    "email_address": "huang.xiaaohong@gmail.com",
+    "username": "huang.xiaaohong@gmail.com",
     "password": "passwordxyz",
     "user_id": "22"
   },
@@ -225,7 +225,7 @@
     "date_of_birth": "2003-01-20",
     "gender": "Male",
     "phone_number": 849012341234,
-    "email_address": "ken.koyamada@gmail.com",
+    "username": "ken.koyamada@gmail.com",
     "password": "password123xyz",
     "user_id": "23"
   },
@@ -235,7 +235,7 @@
     "date_of_birth": "2000-04-05",
     "gender": "Female",
     "phone_number": 848098765432,
-    "email_address": "mami.kosuzuki@gmail.com",
+    "username": "mami.kosuzuki@gmail.com",
     "password": "passwordxyz123",
     "user_id": "24"
   },
@@ -245,7 +245,7 @@
     "date_of_birth": "2004-03-15",
     "gender": "Male",
     "phone_number": 1234567890,
-    "email_address": "ethan.ir@gmail.com",
+    "username": "ethan.ir@gmail.com",
     "password": "password123",
     "user_id": "25"
   },
@@ -255,7 +255,7 @@
     "date_of_birth": "2002-10-20",
     "gender": "Female",
     "phone_number": 84987654321,
-    "email_address": "emma.chai@gmail.com",
+    "username": "emma.chai@gmail.com",
     "password": "password456",
     "user_id": "26"
   },
@@ -265,7 +265,7 @@
     "date_of_birth": "1990-01-15",
     "gender": "Male",
     "phone_number": 84987654321,
-    "email_address": "ngphsnh@gmail.com",
+    "username": "ngphsnh@gmail.com",
     "password": "password123",
     "user_id": "27"
   },
@@ -275,7 +275,7 @@
     "date_of_birth": "1988-03-20",
     "gender": "Female",
     "phone_number_number": 84912345678,
-    "email_address": "trasog88@gmail.com",
+    "username": "trasog88@gmail.com",
     "password": "password456",
     "user_id": "28"
   },
@@ -285,7 +285,7 @@
     "date_of_birth": "1995-06-25",
     "gender": "Male",
     "phone_number": 84901234567,
-    "email_address": "phamr033@gmail.com",
+    "username": "phamr033@gmail.com",
     "password": "password789",
     "user_id": "29"
   },
@@ -295,7 +295,7 @@
     "date_of_birth": "1992-04-10",
     "gender": "Male",
     "phone_number": 13812345678,
-    "email_address": "wang.gss0@gmail.com",
+    "username": "wang.gss0@gmail.com",
     "password": "passwordabc",
     "user_id": "30"
   },
@@ -305,7 +305,7 @@
     "date_of_birth": "1990-07-15",
     "gender": "Female",
     "phone_number": 13587654321,
-    "email_address": "li.res332@gmail.com",
+    "username": "li.res332@gmail.com",
     "password": "passwordxyz",
     "user_id": "31"
   },
@@ -315,7 +315,7 @@
     "date_of_birth": "1987-11-20",
     "gender": "Male",
     "phone_number": 849012341234,
-    "email_address": "taro.gss@gmail.com",
+    "username": "taro.gss@gmail.com",
     "password": "password123xyz",
     "user_id": "32"
   },
@@ -325,7 +325,7 @@
     "date_of_birth": "1994-02-05",
     "gender": "Female",
     "phone_number": 848098765432,
-    "email_address": "hanako.suzuki@gmail.com",
+    "username": "hanako.suzuki@gmail.com",
     "password": "passwordxyz123",
     "user_id": "33"
   },
@@ -335,7 +335,7 @@
     "date_of_birth": "1990-09-15",
     "gender": "Male",
     "phone_number": 1234567890,
-    "email_address": "johnaga32@gmail.com",
+    "username": "johnaga32@gmail.com",
     "password": "password123",
     "user_id": "34"
   },
@@ -345,7 +345,7 @@
     "date_of_birth": "1993-12-20",
     "gender": "Female",
     "phone_number": 84987654321,
-    "email_address": "janecar24@gmail.com",
+    "username": "janecar24@gmail.com",
     "password": "password456",
     "user_id": "35"
   },
@@ -355,7 +355,7 @@
     "date_of_birth": "2001-01-15",
     "gender": "Male",
     "phone_number": 84987654321,
-    "email_address": "nguyfsif01@gmail.com",
+    "username": "nguyfsif01@gmail.com",
     "password": "password123",
     "user_id": "36"
   }

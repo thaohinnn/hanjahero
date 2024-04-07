@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from rest_framework import generics
 
@@ -25,7 +26,7 @@ def log_in(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
             # Redirect to a success page or home page
@@ -49,7 +50,7 @@ def sign_up(request):
             date_of_birth = request.POST.get('date_of_birth')
             gender = request.POST.get('gender')
             phone_number = request.POST.get('phone_number')
-            email_address = request.POST.get('email_address')
+            username = request.POST.get('username')
             password = request.POST.get('password')
 
             # Create a new User object and save it to the database
@@ -59,22 +60,16 @@ def sign_up(request):
                 date_of_birth=date_of_birth,
                 gender=gender,
                 phone_number=phone_number,
-                email_address=email_address,
-                password=password
+                username=username,
+                password=make_password(password)
             )
-
+            login(request, new_user)
             # Redirect to a success page or do something else
-            return redirect('success_page')  # Replace 'success_page' with the URL name of your success page
+            return redirect('home')  # Replace 'success_page' with the URL name of your success page
 
         except IntegrityError as e:
-            # Check if the error is due to a duplicate entry for email_address
-            if 'email_address' in str(e):
-                error_message = "Email address already exists. Please use a different email."
-            else:
-                error_message = "An error occurred while processing your request."
-
             # Render the form again with the error message
-            return render(request, 'register.html', {'error_message': error_message, 'page_name': "Sign Up"})
+            return render(request, 'register.html', {'error_message': e, 'page_name': "Sign Up"})
 
     # For GET request, render the sign-up form
     page_name = {"page_name": "Sign Up"}

@@ -1,4 +1,6 @@
 import json
+
+from django.contrib.auth.hashers import make_password
 from django.core.management.base import BaseCommand
 from home.models.user import User
 
@@ -19,7 +21,7 @@ class Command(BaseCommand):
             date_of_birth = item.get('date_of_birth')
             gender = item.get('gender')
             phone_number = str(item.get('phone_number'))  # Convert phone_number to string
-            email_address = item.get('email_address')
+            username = item.get('username')
             password = item.get('password')
             user_id = int(item.get('user_id'))  # Convert user_id to integer
 
@@ -32,8 +34,8 @@ class Command(BaseCommand):
                     'date_of_birth': date_of_birth,
                     'gender': gender,
                     'phone_number': phone_number,
-                    'email_address': email_address,
-                    'password': password
+                    'username': username,
+                    'password': make_password(password)
                 }
             )
 
