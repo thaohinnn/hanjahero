@@ -1,1 +1,1 @@
-level = [{1: "TOPIK 2"}]
+level_list = [{2: "TOPIK 2"}]

@@ -1,0 +1,90 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Metrophobic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+
+.timer-label {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.main-wrapper {
+    width: 100%;
+    height: 100%;
+
+}
+.timer-wrapper {
+    width: fit-content;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 10px;
+}
+
+.timer-section {
+    margin: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.timer {
+    height: 35px;
+    background-color: white;
+    border-radius: 4px;
+    margin: 2px;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
+    line-height: 35px;
+    font-size: 30px;
+    color: #052f7e;
+    -webkit-transition: 0.2s all;
+    -o-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.colon {
+    height: 100%;
+    background-color: white;
+    border-radius: 4px;
+    margin: 2px;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
+    font-size: 30px;
+    color: #052f7e;
+    -webkit-transition: 0.2s all;
+    -o-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+
+#message {
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+}
+
+@-webkit-keyframes pulsate {
+    0% {font-size: 30px}
+    20% {font-size: 35px}
+    40% {font-size: 30px}
+    60% {font-size: 35px}
+    80% {font-size: 30px}
+    100% {font-size: 30px}
+}
+
+@keyframes pulsate {
+    0% {font-size: 30px}
+    20% {font-size: 35px}
+    40% {font-size: 30px}
+    60% {font-size: 35px}
+    80% {font-size: 30px}
+    100% {font-size: 30px}
+}
+

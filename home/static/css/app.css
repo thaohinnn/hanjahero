@@ -11,7 +11,7 @@
 /* ========================================================================
      Component: layout
  ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Malgun+Gothic&display=swap");
 
 
 html {
@@ -765,7 +765,7 @@ body {
         background-color: #fff;
         background-image: linear-gradient(to right, #fff 0%, #fff 100%);
         background-repeat: repeat-x;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     @media (min-width: 768px) {
@@ -1601,7 +1601,7 @@ body {
        Component: typo
    ========================================================================== */
     body {
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Malgun Gothic', sans-serif;
         color: #000000;
         font-size: 0.875rem;
     }
@@ -1720,7 +1720,7 @@ body {
         background-color: #fff; /* Background color of the card */
         padding: 20px; /* Padding around the content inside the card */
         border-radius: 10px; /* Rounded corners for the card */
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle depth effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle depth effect */
     }
 
     .card .card-header {
@@ -1980,7 +1980,7 @@ body {
         border-radius: 0.2rem;
         font-size: 14px;
         padding: 0.3125rem 0;
-        box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px;
+        box-shadow: rgba(0, 0, 0, 0.176) 0 6px 12px;
         border-color: #e1e1e1;
     }
 
@@ -3995,7 +3995,7 @@ body {
             }
 
             .no-padding {
-                padding: 0px;
+                padding: 0;
             }
 
             /* hide sidebar container */

@@ -1,63 +1,38 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="modal fade" id="myModalLarge" tabindex="-1" aria-labelledby="myModalLabelLarge" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog to modal-xl for extra large size -->
+        <div class="modal-content" style="background-color: #ffffff; border-radius: 50px; border: none">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">
-                    {% block modal_title_normal %}
-                    {% endblock %}
-                </h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <h4 class="modal-title" id="myModalLabelLarge"></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin: 0 0 -1rem auto !important;">
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                {% block modal_body_normal %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_normal %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-</div><!-- Modal Large-->
-<div class="modal fade" id="myModalLarge" tabindex="-1" role="dialog" aria-labelledby="myModalLabelLarge"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabelLarge">
-                    {% block modal_title_large %}
-                    {% endblock %}
-                </h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {% block modal_body_large %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_large %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
-</div><!-- Modal Small-->
-<div class="modal fade" id="myModalSmall" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSmall"
-     aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabelSmall">
-                    {% block modal_title_small %}
-                    {% endblock %}</h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {% block modal_body_small %}
-                {% endblock %}</div>
-            <div class="modal-footer">
-                {% block modal_footer_small %}
-                {% endblock %}
+            <div class="modal-body" style="padding-top: 0">
+                <div class="row">
+                    <!-- Include Practice Mode Card -->
+                    {% include 'layout/practice_card.html' %}
+
+                    <!-- Include Mock Test Mode Card -->
+                    {% include 'layout/mock_card.html' %}
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="text-align: center; padding: 20px">
+                            <button id="startPractice" class="btn btn-oval btn-primary" type="button" style="background-color: #052f7e;
+                    color: #fff; border: none; box-shadow: none; padding: 10px 20px; font-size: 15px">
+                                <strong>START PRACTICE TEST</strong>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="text-align: center; padding: 20px">
+                            <button id="startTestButton" class="btn btn-oval btn-primary" type="button" style="background-color: #861218;
+                color: #fff; border: none; box-shadow: none; padding: 10px 20px; font-size: 15px">
+                                <strong>START TEST</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

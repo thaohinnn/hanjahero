@@ -28,56 +28,107 @@
         <!-- START card-->
         <div class="card card-flat">
             <div class="card-header text-center bg-white"><a href="#"><img class="block-center"
-                                                                           src="{% static 'img/logo.png' %}" alt="Image"
-                                                                           onclick="location.href='/home'"></a>
+                                                                           src="{% static 'img/logo.png' %}"
+                                                                           alt="Image" onclick="location.href='/home'"></a>
             </div>
             <div class="card-body">
-                <p class="text-center py-2">SIGNUP TO GET INSTANT ACCESS.</p>
-                <form class="mb-3" id="registerForm" novalidate>
-                    <div class="form-group"><label class="text-muted" for="signupInputEmail1">Email address</label>
-                        <div class="input-group with-focus"><input class="form-control border-right-0"
-                                                                   id="signupInputEmail1" type="email"
-                                                                   placeholder="Enter email" autocomplete="off"
-                                                                   required>
-                            <div class="input-group-append"><span
-                                    class="input-group-text text-muted bg-transparent border-left-0"><em
-                                    class="fa fa-envelope"></em></span></div>
+                <h3 style="text-align: center; color: #5e676c">SIGN UP</h3>
+                {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <form class="mb-3" id="registerForm" method="post" action="/signup/" novalidate>
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label class="text-muted" for="first_name">First Name</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="first_name" name="first_name" type="text"
+                                   placeholder="Enter first name" autocomplete="off" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-user"></em></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group"><label class="text-muted" for="signupInputPassword1">Password</label>
-                        <div class="input-group with-focus"><input class="form-control border-right-0"
-                                                                   id="signupInputPassword1" type="password"
-                                                                   placeholder="Password" autocomplete="off" required>
-                            <div class="input-group-append"><span
-                                    class="input-group-text text-muted bg-transparent border-left-0"><em
-                                    class="fa fa-lock"></em></span></div>
+                    <span class="error-message" id="first_name_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="last_name">Last Name</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="last_name" name="last_name" type="text"
+                                   placeholder="Enter last name" autocomplete="off" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-user"></em></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group"><label class="text-muted" for="signupInputRePassword1">Retype
-                        Password</label>
-                        <div class="input-group with-focus"><input class="form-control border-right-0"
-                                                                   id="signupInputRePassword1" type="password"
-                                                                   placeholder="Retype Password" autocomplete="off"
-                                                                   required
-                                                                   data-parsley-equalto="#signupInputPassword1">
-                            <div class="input-group-append"><span
-                                    class="input-group-text text-muted bg-transparent border-left-0"><em
-                                    class="fa fa-lock"></em></span></div>
+                    <span class="error-message" id="last_name_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="date_of_birth">Date of Birth</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="date_of_birth" name="date_of_birth"
+                                   type="date" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-calendar"></em></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="checkbox c-checkbox mt-0"><label><input type="checkbox" value="" required
-                                                                        name="agreed"></label> I agree with the<a
-                            class="ml-1" href="/terms/">terms</a></label></div>
-                    <button class="btn btn-block btn-primary mt-3" type="submit">Create account</button>
+                    <span class="error-message" id="date_of_birth_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="gender">Gender</label>
+                        <div class="input-group with-focus">
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="error-message" id="gender_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="phone_number">Phone Number</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="phone_number" name="phone_number" type="tel"
+                                   placeholder="Enter phone number" autocomplete="off" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-phone"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="phone_number_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="email_address">Email Address</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="email_address" name="email_address" type="email"
+                                   placeholder="Enter email" autocomplete="off" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-envelope"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="email_address_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="password">Password</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="password" name="password" type="password"
+                                   placeholder="Password" autocomplete="off" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em class="fa fa-lock"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="password_error"></span>
+                    <button class="btn btn-block btn-primary mt-3" type="submit" id="submitBtn">Create account</button>
                 </form>
                 <p class="pt-3 text-center">Have an account?</p><a class="btn btn-block btn-secondary"
-                                                                   href="/login/">Signin</a>
+                                                                   href="/login/">Sign in</a>
             </div>
         </div><!-- END card-->
         <div class="p-3 text-center"><span class="mr-2">&copy;</span><span>2024</span><span class="mr-2">-</span><span>Hanja Hero</span><br><span>TOPIK Mock Test</span>
         </div>
     </div>
-</div><!-- =============== VENDOR SCRIPTS ===============-->
+</div>
+
+<!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- i18next-->
@@ -89,6 +140,7 @@
 <script src="{% static 'vendor/parsleyjs/dist/parsley.js' %}"></script>
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/register.js' %}"></script>
 </body>
 
 </html>

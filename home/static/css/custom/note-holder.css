@@ -1,0 +1,9 @@
+#note-box {
+    position: absolute;
+    top: 50px; /* Adjust this value based on your navbar height */
+    right: 10px;
+    width: 200px; /* Set the width of the note box */
+    height: 200px; /* Set the height of the note box */
+    border: none;
+
+}

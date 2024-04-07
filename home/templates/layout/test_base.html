@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo-single.ico' %}">
+    <title>In Test</title><!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/brands.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/regular.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/solid.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/@fortawesome/fontawesome-free/css/fontawesome.css' %}">
+    <!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}"><!-- ANIMATE.CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"><!-- WHIRL (spinners)-->
+    <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
+    <!-- =============== PAGE VENDOR STYLES ===============-->
+    <!-- =============== BOOTSTRAP STYLES ==========s=====-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" id="bscss">
+    <!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
+    <link rel="stylesheet" href="{% static 'css/timer.css' %}" id="timerSECTION">
+    <link rel="stylesheet" href="{% static 'css/custom/note-holder.css' %}" id="note">
+    <link rel="stylesheet" href="{% static 'css/custom/highlighter.css' %}" id="note">
+    <!-- Add Bootstrap Tour CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom/bootstrap-tour.min.css' %}" id="note">
+    <link rel="stylesheet" href="{% static 'css/custom/start-timer-button.css' %}" id="note">
+
+</head>
+
+<body style="background-color: #fff">
+
+<!-- =============== TEST CONTENT ==============-->
+<div class="wrapper" style="width: 100%">
+
+    {% include 'layout/test_navbar.html' %}
+
+    <!-- TEST -->
+    <section class="section-container" style="width: 100%">
+
+        <!-- Start Timer -->
+        {% include 'layout/start_test_button.html' %}
+
+        <!-- Test content-->
+        <div class="content-wrapper" style="padding-top: 100px">
+
+            <!-- Test Info -->
+            {% include 'layout/test_info.html' %}
+
+            <!-- Test Questions -->
+            {% include 'layout/test_questions.html' %}
+
+        </div>
+    </section>
+
+
+
+    <!-- =============== VENDOR SCRIPTS ===============-->
+<!-- MODERNIZR-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
+<script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
+<script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
+<script src="{% static 'vendor/i18next/i18next.js' %}"></script>
+<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+<!-- =============== PAGE VENDOR SCRIPTS ===============-->
+<!-- =============== APP SCRIPTS ===============-->
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static '/js/test-timer.js' %}"></script>
+<script src="{% static 'js/time-limit-option.js' %}"></script>
+<script src="{% static '/js/note.js' %}"></script>
+<script src="{% static '/js/highlighter.js' %}"></script>
+<script src="{% static '/js/submit-test.js' %}"></script>
+<!-- Add Bootstrap Tour JS -->
+<script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
+<script src="{% static '/js/test-tour.js' %}"></script>
+
+</div>
+</body>
+</html>

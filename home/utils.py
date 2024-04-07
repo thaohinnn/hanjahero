@@ -1,4 +1,5 @@
 from collections import defaultdict
+from .models.question import Question
 
 
 def reorder_questions_by_format(questions, format_constants):
@@ -7,40 +8,39 @@ def reorder_questions_by_format(questions, format_constants):
 
     # Iterate over each question
     for question in questions:
-        # Get the format of the question
-        question_format = question.format
-
         # Add the question to the list corresponding to its format
-        questions_by_format[question_format].append(question)
+        questions_by_format[question.format].append(question)
 
-    # Sort the format constants alphabetically
-    sorted_formats = sorted(format_constants, key=lambda x: list(x.values())[0])
+    # Todo Add sorting questions_by_format by key here
 
-    # Reorder the questions based on the sorted formats
+    # Flat questions_by_format into reordered_questions
     reordered_questions = []
-    for format_item in sorted_formats:
-        format_id = list(format_item.keys())[0]
-        reordered_questions.extend(questions_by_format.get(format_id, []))
+    for format_id, format_item in questions_by_format.items():
+        # only set format string for first question in each format questions group.
+        format_item[0].format = format_constants[format_id-1]
+        reordered_questions.extend(questions_by_format.get(format_id-1, []))
 
     return reordered_questions
 
 
-def reorder_format(questions, format_constants):
-    # Create a defaultdict to store questions grouped by format
-    questions_by_format = defaultdict(list)
+def grade_test(user_responses):
+    total_score = 0
 
-    # Iterate over each question
-    for question in questions:
-        # Get the format of the question
-        question_format = question.format
+    for response in user_responses:
+        question_id = response['question_id']
+        selected_option = response['selected_option']
 
-        # Add the question to the list corresponding to its format
-        questions_by_format[question_format].append(question)
+        # Retrieve the correct option from the database
+        try:
+            question = Question.objects.get(question_id=question_id)
+            correct_option = question.correct_option
+            score = question.score
+        except Question.DoesNotExist:
+            # Handle the case where the question doesn't exist
+            continue
 
-    # Sort the format constants alphabetically
-    sorted_formats = sorted(format_constants, key=lambda x: list(x.values())[0])
+        # Check if the user's answer matches the correct option
+        if selected_option == correct_option:
+            total_score += score
 
-    return sorted_formats
-
-
-print('s')
+    return total_score
