@@ -1,0 +1,43 @@
+{% load static %}
+<header class="topnavbar-wrapper">
+    <!-- START Top Navbar-->
+    <nav class="navbar topnavbar" style="position:fixed; width:100%">
+        <!-- START navbar header-->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+                <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}" alt="App Logo"
+                                             onclick="location.href='/home/'"></div>
+            </a>
+        </div><!-- END navbar header-->
+
+        <!-- START Center Navbar -->
+        <ul class="navbar-nav mx-auto">
+            <!-- START Timer -->
+            <li class="nav-item ml-auto">
+                <div class="d-flex align-items-center">
+                    {% include 'layout/timer.html' %}
+                </div>
+            </li>
+        </ul>
+
+        <!-- START Right Navbar-->
+        <ul class="navbar-nav flex-row" style="align-items: center;">
+            {% include 'layout/stop_timer_button.html' %}
+            <!-- START Note button-->
+            <li class="nav-item d-none d-md-block">
+                {% include 'layout/note_holder.html' %}
+            </li>
+            <!-- START Note button-->
+            <li class="nav-item d-none d-md-block">
+                {% include 'layout/highlighter.html' %}
+            </li>
+            <!-- START Expand button-->
+            <li class="nav-item d-none d-md-block"><a class="nav-link" id="fullscreen-button" data-toggle-fullscreen=""><em
+                    class="fas fa-expand"></em></a></li><!-- START Alert menu-->
+            <!-- START SUBMIT button-->
+            <li class="nav-item">
+                <button class="btn-submit" id="submitTestButton" style="vertical-align:middle"><span>Submit</span></button>
+            </li>
+        </ul><!-- END Left navbar-->
+    </nav><!-- END Top Navbar-->
+</header>

@@ -34,86 +34,38 @@
 
 <body style="background-color: #fff">
 
+<!-- =============== TEST CONTENT ==============-->
 <div class="wrapper" style="width: 100%">
-    <!-- top navbar-->
-    <header class="topnavbar-wrapper">
-        <!-- START Top Navbar-->
-        <nav class="navbar topnavbar" style="position:fixed; width:100%">
-            <!-- START navbar header-->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#/">
-                    <div class="brand-logo"><img class="img-fluid" src="{% static 'img/logo.png' %}" alt="App Logo"
-                                                 onclick="location.href='/home/'"></div>
-                </a>
-            </div><!-- END navbar header-->
 
-            <!-- START Center Navbar -->
-            <ul class="navbar-nav mx-auto">
-                <!-- START Timer -->
-                <li class="nav-item ml-auto">
-                    <div class="d-flex align-items-center">
-                        {% include 'layout/timer.html' %}
-                    </div>
-                </li>
-            </ul>
+    {% include 'layout/test_navbar.html' %}
 
-            <!-- START Right Navbar-->
-            <ul class="navbar-nav flex-row" style="align-items: center;">
-                <!-- START Note button-->
-                <li class="nav-item d-none d-md-block">
-                    {% include 'layout/note_holder.html' %}
-                </li>
-                <!-- START Note button-->
-                <li class="nav-item d-none d-md-block">
-                    {% include 'layout/highlighter.html' %}
-                </li>
-                <!-- START Expand button-->
-                <li class="nav-item d-none d-md-block"><a class="nav-link" id="fullscreen-button" data-toggle-fullscreen=""><em
-                        class="fas fa-expand"></em></a></li><!-- START Alert menu-->
-                <!-- START SUBMIT button-->
-                <li class="nav-item">
-                    <button class="btn-submit" style="vertical-align:middle"><span>Submit</span></button>
-                </li>
-            </ul><!-- END Left navbar-->
-        </nav><!-- END Top Navbar-->
-    </header>
-
-
+    <!-- TEST -->
     <section class="section-container" style="width: 100%">
 
+        <!-- Start Timer -->
         {% include 'layout/start_test_button.html' %}
-        <!-- Page content-->
+
+        <!-- Test content-->
         <div class="content-wrapper" style="padding-top: 100px">
 
+            <!-- Test Info -->
             {% include 'layout/test_info.html' %}
 
-            {% include 'layout/question_in_format.html' %}
+            <!-- Test Questions -->
+            {% include 'layout/test_questions.html' %}
 
         </div>
     </section>
 
 
-</div>
 
-
-<!-- =============== VENDOR SCRIPTS ===============-->
+    <!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
-<script>
-    Split(['#one', '#two'], {
-        sizes: [50, 50]
-    });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
 <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
 <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
@@ -122,12 +74,15 @@
 <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 <!-- =============== APP SCRIPTS ===============-->
 <script src="{% static 'js/app.js' %}"></script>
-<script src="{% static '/js/timer.js' %}"></script>
+<script src="{% static '/js/test-timer.js' %}"></script>
+<script src="{% static 'js/time-limit-option.js' %}"></script>
 <script src="{% static '/js/note.js' %}"></script>
 <script src="{% static '/js/highlighter.js' %}"></script>
+<script src="{% static '/js/submit-test.js' %}"></script>
 <!-- Add Bootstrap Tour JS -->
 <script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
 <script src="{% static '/js/test-tour.js' %}"></script>
 
+</div>
 </body>
 </html>
