@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     content: "This is the timer. It shows how much time you have left.",
                 },
                 {
+                    element: "#timer-button",
+                    title: "Stop Timer",
+                    content: "Click on the icon stop the timer. Click on it again to resume.",
+                },
+                {
                     element: "#note-button",
                     title: "Take Notes",
                     content: "Click on the icon to write down your notes. Click on it again to exit the notes.",
@@ -36,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     element: ".btn-submit",
                     title: "Submit",
                     content: "When you are done, you can click here to submit right away.",
+                },
+                {
+                    element: "#startButton",
+                    title: "Start Test",
+                    content: "Click here to start test right away.",
                 }
             ],
             backdrop: true,
