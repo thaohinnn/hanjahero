@@ -40,9 +40,10 @@ urlpatterns = [
     path('terms/', views.user_terms, name='userterms'),
     path('practicetestslibrary/topik1/', views.topik1_practice_library, name='topik1practicelibrary'),
     path('practicetestslibrary/topik2/', views.topik2_practice_library, name='topik2practicelibrary'),
-    path('test/', views.get_mock_test_test, name='mock_test'),
-    path('practice/', views.get_mock_test_test, name='mock_test'),
+    path('test/', views.get_test, name='mock_test'),
+    path('practice/', views.get_test, name='mock_test'),
     path('grade-test/', views.grade_test_view, name='grade_test_view'),
+    path('logout/', views.logout_view, name='logout'),
 
 
     path('api/', include('home.urls')),

@@ -6,7 +6,7 @@ class User(AbstractUser):
     user_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True)
     gender = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=20, null=True)
     username = models.EmailField(unique=True)
