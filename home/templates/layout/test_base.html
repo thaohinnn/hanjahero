@@ -1,7 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,51 +36,68 @@
 <!-- =============== TEST CONTENT ==============-->
 <div class="wrapper" style="width: 100%">
 
-    {% include 'layout/test_navbar.html' %}
+    {% include 'layout/../block/test_navbar.html' %}
 
     <!-- TEST -->
     <section class="section-container" style="width: 100%">
 
         <!-- Start Timer -->
-        {% include 'layout/start_test_button.html' %}
+        {% include 'layout/../block/start_test_button.html' %}
 
         <!-- Test content-->
         <div class="content-wrapper" style="padding-top: 100px">
 
-            <!-- Test Info -->
-            {% include 'layout/test_info.html' %}
+            <form id="testForm" method="post" action="{% url 'grade_test_view' %}">
+                {% csrf_token %}
+                <!-- Test Info -->
+                {% include 'layout/../block/test_info.html' %}
 
-            <!-- Test Questions -->
-            {% include 'layout/test_questions.html' %}
-
+                <!-- Test Questions -->
+                {% if skill_number == '2' %}
+                    {% include 'layout/../block/writing_test_questions.html' %}
+                    {% else %}
+                    {% include 'layout/../block/test_questions.html' %}
+                {% endif %}
+                <input type="hidden" name="skill" id="skill" value="{{ skill_number }}">
+                <input type="hidden" name="exam" id="exam" value="{{ exam_number }}">
+                {% if format %}
+                    <input type="hidden" name="format" id="format" value="{{ format_param }}">
+                {% endif %}
+            </form>
         </div>
+
+
     </section>
 
 
-
     <!-- =============== VENDOR SCRIPTS ===============-->
-<!-- MODERNIZR-->
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
-<script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
-<script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
-<script src="{% static 'vendor/i18next/i18next.js' %}"></script>
-<script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
-<!-- =============== PAGE VENDOR SCRIPTS ===============-->
-<!-- =============== APP SCRIPTS ===============-->
-<script src="{% static 'js/app.js' %}"></script>
-<script src="{% static '/js/test-timer.js' %}"></script>
-<script src="{% static 'js/time-limit-option.js' %}"></script>
-<script src="{% static '/js/note.js' %}"></script>
-<script src="{% static '/js/highlighter.js' %}"></script>
-<script src="{% static '/js/submit-test.js' %}"></script>
-<!-- Add Bootstrap Tour JS -->
-<script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
-<script src="{% static '/js/test-tour.js' %}"></script>
+    <!-- MODERNIZR-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script><!-- STORAGE API-->
+    <script src="{% static 'vendor/js-storage/js.storage.js' %}"></script><!-- SCREENFULL-->
+    <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script><!-- i18next-->
+    <script src="{% static 'vendor/i18next/i18next.js' %}"></script>
+    <script src="{% static 'vendor/i18next-xhr-backend/i18nextXHRBackend.js' %}"></script>
+    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+    <!-- =============== APP SCRIPTS ===============-->
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static '/js/test-timer.js' %}"></script>
+    <script src="{% static 'js/time-limit-option.js' %}"></script>
+    <script src="{% static '/js/note.js' %}"></script>
+    <script src="{% static '/js/highlighter.js' %}"></script>
+    <script src="{% static '/js/submit-test.js' %}"></script>
+    <!-- Add Bootstrap Tour JS -->
+    <script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
+    <script src="{% static '/js/test-tour.js' %}"></script>
+
 
 </div>
 </body>
