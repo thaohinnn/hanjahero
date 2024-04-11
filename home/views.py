@@ -13,32 +13,40 @@ from .const.exam import exam_list
 from .const.skill import skill_list
 from .const.time_limit import time_limit_list
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    page_name = {"page_name": "Hanja Hero"}
-    return render(request, 'home.html', page_name)
+    context = {"page_name": "Hanja Hero",}
+    return render(request, 'home.html', context)
 
 
 def log_in(request):
-    page_name = {"page_name": "Log In"}
+    context = {
+        "page_name": "Log In",
+    }
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
+
             # Redirect to a success page or home page
-            return redirect('/home/')
-        else:
+            return redirect('/home/', context)
+        elif user is None:
+            context['error_message'] = "Invalid credentials. Log in again."
             # Return an error message or render the login page again with error
-            print("Invalid credentials")
-            messages.error(request, 'Invalid credentials')  # Add error message using Django messages framework
-            return render(request, 'login.html')
+            return render(request, 'login.html', context)
     else:
         # Render the login page
-        return render(request, 'login.html', page_name)
+        return render(request, 'login.html', context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/home/')
 
 
 def sign_up(request):
@@ -74,6 +82,7 @@ def sign_up(request):
     # For GET request, render the sign-up form
     page_name = {"page_name": "Sign Up"}
     return render(request, 'register.html', page_name)
+
 
 def user_terms(request):
     page_name = {"page_name": "User Terms"}
@@ -149,7 +158,8 @@ class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
         return queryset
 
 
-def get_mock_test_test(request):
+@login_required
+def get_test(request):
     # Get query string parameters from the request
     skill = request.GET.get('skill')
     exam = request.GET.get('exam')

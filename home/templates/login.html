@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -39,7 +39,7 @@
                         {{ error_message }}
                     </div>
                 {% endif %}
-                <form class="mb-3" id="loginForm" method="post" action="{% url 'login' %}" novalidate="">
+                <form class="mb-3" id="loginForm" method="POST" action="{% url 'login' %}" novalidate="">
                 {% csrf_token %}
                     <div class="form-group">
                         <div class="input-group with-focus"><label for="exampleInputEmail1"></label><input class="form-control border-right-0"

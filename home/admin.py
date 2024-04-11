@@ -7,6 +7,8 @@ from home.models.user import User
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
+from home.models.user_test_result import UserTestResult
+
 
 class QuestionResource(resources.ModelResource):
     class Meta:
@@ -22,3 +24,4 @@ admin.site.register(Question)
 admin.site.register(QuestionMetaData)
 admin.site.register(TestHistory)
 admin.site.register(User)
+admin.site.register(UserTestResult)

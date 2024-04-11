@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -67,7 +67,7 @@
                 </li>
 
                 <li class="nav-item dropdown d-none d-md-block">
-                    <a class="nav-link dropdown-toggle" href="#" id="practiceTestsDropdown"
+                    <a class="nav-link dropdown-toggle" href="#" id="practiceTests"
                        onclick="location.href='/practicetestslibrary/'" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Practice Tests Library
@@ -80,7 +80,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="aboutUsDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link" href="#" id="aboutUs" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Forum
                     </a>
@@ -91,17 +91,32 @@
             <!-- START Right Navbar-->
             <ul class="navbar-nav flex-row">
                 <!-- START User button-->
-
-
                 <li class="navbar-nav ml-auto">
                     <!-- Conditionally render user icon or log in link -->
+                    {% if user.is_authenticated %}
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="user-block-toggle logged in"
+                       onclick="location.href='/logout/'" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span class="login-link"
+                              style="margin-right: 10px">{{ user.first_name }} {{ user.last_name }}</span>
+                        <!-- Display first name -->
+                        <em class="icon-user user-icon"></em> <!-- User Icon -->
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="/logout/">Sign out</a>
+                        <a class="dropdown-item" href="/profile/">Settings</a>
+                        <!-- Add more dropdown items as needed -->
+                    </div>
+                </li>
+                {% else %}
                 <li class="nav-item d-none d-md-block logged-in">
-                    <a class="nav-link" id="user-block-toggle" href="/login/" data-toggle="collapse">
-                        <em class="icon-user user-icon" onclick="location.href='/login/'"></em> <!-- User Icon -->
-                        <span class="login-link" onclick="location.href='/login/'">Log in</span>
-                        <!-- Log in Link -->
+                    <a class="nav-link" id="user-block-toggle" onclick="location.href='/login/'" data-toggle="collapse">
+                        <em class="icon-user user-icon"></em> <!-- User Icon -->
+                        <span class="login-link">Log in</span> <!-- Log in Link -->
                     </a>
                 </li>
+                {% endif %}
 
                 <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
                         class="fas fa-expand"></em></a></li><!-- START Alert menu-->
@@ -141,7 +156,6 @@
 <script src="{% static 'js/exam-card.js' %}"></script>
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/link-generation.js' %}"></script>
-
 
 
 </body>
