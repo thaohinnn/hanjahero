@@ -1,11 +1,11 @@
+from datetime import datetime
+
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from rest_framework import generics
 
 from .models.user import User
 from .serializers import QuestionSerializer
-from .models.question import Question
-from .utils import grade_test
 from django.http import HttpResponseBadRequest
 from django.db import IntegrityError
 from .const.format import format
@@ -14,11 +14,14 @@ from .const.skill import skill_list
 from .const.time_limit import time_limit_list
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from .models.question import Question
+from .models.user_test_result import UserTestResult
+from .models.test_history import TestHistory
 
 
 def home(request):
-    context = {"page_name": "Hanja Hero",}
+    context = {"page_name": "Hanja Hero", }
     return render(request, 'home.html', context)
 
 
@@ -158,7 +161,6 @@ class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
         return queryset
 
 
-@login_required
 def get_test(request):
     # Get query string parameters from the request
     skill = request.GET.get('skill')
@@ -188,10 +190,12 @@ def get_test(request):
     time_limit = time_limit_list[int(skill) - 1][int(skill)]
 
     data = {
-        "page_name": "TOPIK II Practice Tests",
+        "page_name": "In Test",
         "questions": questions,
         "exam": exam_name,
+        "exam_number": exam,
         "skill": skill_name,
+        "skill_number": skill,
         "time_limit": time_limit,
         "format_param": format_param,
         "format": format,
@@ -203,20 +207,74 @@ def get_test(request):
 
 def grade_test_view(request):
     if request.method == 'POST':
+        # Process the form data efficiently
+        skill = request.POST.get('skill')
+        exam = request.POST.get('exam')
+        format_value = request.POST.get('format', None)  # Default to None if not provided
+
+        # Filter only the relevant 'exampleRadios' keys and extract their answers
+        submitted_answers = {int(key.split('_')[1]): int(value) for key, value in request.POST.items() if key.startswith('answer')}
+
+        # Fetch relevant questions in one go to minimize database hits
+        question_ids = submitted_answers.keys()
+        questions = Question.objects.filter(question_id__in=question_ids)
+
         total_score = 0
-        for key, value in request.POST.items():
-            if key.startswith('question_'):  # Assuming question fields start with 'question_'
-                question_id = int(key.split('_')[1])
-                selected_option = int(value)
-                # Now you have the question_id and selected_option, you can process it further
-                # For simplicity, let's assume you have a list of dictionaries containing user responses
-                user_responses = [{'question_id': question_id, 'selected_option': selected_option}]
-                total_score += grade_test(user_responses)
-        return render(request, 'grade_result.html', {'total_score': total_score})
-    else:
-        pass
-        # Handle GET request (show the form to submit test responses)
-        ##return render(request, 'test_form.html')
+        user_choices = {}
+        correct_answers = {}
 
+        # Process questions and calculate total score
+        for question in questions:
+            submitted_answer = submitted_answers.get(question.question_id)
+            correct_option_num = question.correct_option  # Assuming correct option is directly comparable to
+            # submitted answer
 
+            user_choices[question.question_id] = submitted_answer
+            correct_answers[question.question_id] = correct_option_num
 
+            if submitted_answer == correct_option_num:
+                total_score += question.score
+
+        user = request.user if request.user.is_authenticated else User.objects.get(username='undefinedUser')
+
+        # Create test history once, outside of the loop
+        test_history = TestHistory.objects.create(
+            user=user,
+            exam_name=exam,
+            skill_name=skill,
+            test_date=datetime.now(),
+            score=total_score,
+            format_name=format_value
+        )
+
+        # Prepare bulk create for user test results
+        user_test_results = [UserTestResult(
+            user_answer=submitted_answers[question.question_id],
+            question_id=question,
+            test_history_id=test_history
+        ) for question in questions]
+
+        UserTestResult.objects.bulk_create(user_test_results)
+
+        # Assuming `exam_list` and `skill_list` are defined elsewhere and are valid
+        exam_name = exam_list[int(exam) - 1][int(exam)]
+        skill_name = skill_list[int(skill) - 1][int(skill)]
+
+        user_finished_questions = Question.objects.filter(skill=skill, exam=exam)
+
+        context = {
+            "page_name": "Your Results",
+            "score": total_score,
+            "questions": questions,
+            "user_finished_questions": user_finished_questions,
+            "exam": exam_name,
+            "exam_number": exam,
+            "skill": skill_name,
+            "skill_number": skill,
+            "user_choices": user_choices,
+            "correct_answers": correct_answers,
+        }
+
+        return render(request, 'final_grade_result.html', context)
+
+    return HttpResponseRedirect('/')

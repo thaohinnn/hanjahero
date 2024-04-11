@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="border-radius: 0; box-shadow: none; ">
+        <div class="card-header" style="font-weight: bolder; color: black; text-align: center;
+            font-size: 30px">Your result:</div>
+        <div class="card-body text-center">
+            {% include 'block/grade_radial.html' %}
+        </div>
+    </div>
+
+    <div class="card">
+    <!--  include 'block/user_finished_test.html' %} -->
+    </div>
+
+
+{% endblock %}

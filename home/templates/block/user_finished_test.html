@@ -1,0 +1,60 @@
+{% load custom_filters %}
+{% for question in user_finished_questions %}
+    <div class="card mb-3 border-black" style="border-radius: 0; box-shadow: none">
+        {% for item in format %}
+            {% for key, value in item.items %}
+                {% if key == question.format %}
+                    <div class="card-header text-black bg-card" style="font-size: 20px; font-weight: bolder;">
+                        {{ value }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <div class="card-body">
+            {% if question.question_meta_data %}
+                <div class="card mb-3 border-black" style="width: 100%; align-items: center">
+                    <div class="card-body">
+                        <div class="question-meta-data-text" id="question-meta-data" style="font-size: 17px">
+                            {{ question.question_meta_data.question_meta_text|safe }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <h5 class="card-title" style="font-size: 17px; line-height: 200%; white-space: nowrap;">
+                <span style="display: inline-block; margin-right: 5px; font-weight: bolder">{{ forloop.counter }}. ({{ question.score }}점)</span>
+                {% if question.question_text %}
+                    <span style="display: inline-block;">{{ question.question_text|safe }}</span>
+                {% endif %}
+            </h5>
+            {% for option_num in "1234"|make_list %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                           name="exampleRadios{{ forloop.parentloop.counter }}"
+                           id="exampleRadios{{ option_num }}_{{ forloop.parentloop.counter }}"
+                           value="option{{ option_num }}" disabled
+                           {% if user_choices|get_item:question.question_id|stringformat:"s" == option_num %}checked{% endif %}>
+                    <label class="form-check-label" for="exampleRadios{{ option_num }}_{{ forloop.parentloop.counter }}"
+                           style="font-size: 15px;
+                                   {% if correct_answers|get_item:question.question_id|stringformat:"s" == option_num %}color: green;
+                                   {% elif user_choices|get_item:question.question_id|stringformat:"s" == option_num %}color: red;
+                                   {% endif %}">
+                        {% with "option_"|add:option_num|add:"_is_image" as option_image_attr %}
+                            {% with "option_"|add:option_num as option_attr %}
+                                {% if question|get_attribute:option_image_attr %}
+                                    <img src="{{ question|get_attribute:option_attr }}" class="img-fluid" alt="Option {{ option_num }}">
+                                {% else %}
+                                    {{ question|get_attribute:option_attr|safe }}
+                                    <!-- Existing marks for correct and incorrect answers -->
+                                {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                    </label>
+                </div>
+            {% endfor %}
+            <!-- Check for user choice outside the options loop -->
+            {% if not user_choices|get_item:question.question_id|stringformat:"s" %}
+                <div style="color: red; margin-top: 10px;">You didn't choose an answer</div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
