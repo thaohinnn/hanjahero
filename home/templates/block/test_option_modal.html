@@ -10,11 +10,14 @@
             <div class="modal-body" style="padding-top: 0">
                 <div class="row">
                     <!-- Include Practice Mode Card -->
-                    {% include 'layout/practice_card.html' %}
+                    {% include 'layout/../block/practice_card.html' %}
 
                     <!-- Include Mock Test Mode Card -->
-                    {% include 'layout/mock_card.html' %}
+                    {% include 'layout/../block/mock_card.html' %}
                 </div>
+                {% if not user.is_authenticated %}
+                <p style="padding-top: 20px; text-align: center; color: red">Sign in to save your test results and track your progress over time!</p>
+                {% endif %}
                 <div class="row">
                     <div class="col-md-6">
                         <div style="text-align: center; padding: 20px">
