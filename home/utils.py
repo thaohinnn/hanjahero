@@ -1,5 +1,5 @@
 from collections import defaultdict
-from .models.question import Question
+from home.models.question import Question
 
 
 def reorder_questions_by_format(questions, format_constants):
@@ -22,3 +22,9 @@ def reorder_questions_by_format(questions, format_constants):
 
     return reordered_questions
 
+
+def get_description_by_key(key, format_names):
+    for format_dict in format_names:
+        if key in format_dict:
+            return format_dict[key]
+    return "Description not found"

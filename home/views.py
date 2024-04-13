@@ -3,7 +3,10 @@ from datetime import datetime
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from rest_framework import generics
+from django.utils.timezone import now
+from collections import defaultdict
 
+from utils import get_description_by_key
 from .models.user import User
 from .serializers import QuestionSerializer
 from django.http import HttpResponseBadRequest
@@ -206,73 +209,88 @@ def get_test(request):
 
 
 def grade_test_view(request):
+    format_names = {k: v for d in format for k, v in d.items()}
     if request.method == 'POST':
-        # Process the form data efficiently
         skill = request.POST.get('skill')
         exam = request.POST.get('exam')
-        format_value = request.POST.get('format', None)  # Default to None if not provided
+        format_value = request.POST.get('format', None)
 
-        # Filter only the relevant 'exampleRadios' keys and extract their answers
+        # Filter answers submitted and fetch question IDs
         submitted_answers = {int(key.split('_')[1]): int(value) for key, value in request.POST.items() if key.startswith('answer')}
-
-        # Fetch relevant questions in one go to minimize database hits
         question_ids = submitted_answers.keys()
-        questions = Question.objects.filter(question_id__in=question_ids)
+
+        # Fetch all questions for the given skill and exam, and optionally by format
+        all_questions = Question.objects.filter(skill=skill, exam=exam)
+        if format_value:
+            format_values = format_value.split(',')  # Split format parameter into a list of values
+            all_questions = all_questions.filter(format__in=format_values)
 
         total_score = 0
         user_choices = {}
         correct_answers = {}
 
-        # Process questions and calculate total score
-        for question in questions:
-            submitted_answer = submitted_answers.get(question.question_id)
-            correct_option_num = question.correct_option  # Assuming correct option is directly comparable to
-            # submitted answer
+        # Initialize format statistics
+        format_statistics = defaultdict(lambda: {'correct': 0, 'wrong': 0, 'unchosen': 0})
 
-            user_choices[question.question_id] = submitted_answer
+        # Iterate over fetched questions
+        for question in all_questions:
+            correct_option_num = question.correct_option
+            user_choice = submitted_answers.get(question.question_id)
+            question_format = question.format
+
+            # For statistics, use the description as the key
+            format_key = format_names.get(question_format, "Unknown Format")
+
+            # Update user choices and correct answers tracking
+            user_choices[question.question_id] = user_choice
             correct_answers[question.question_id] = correct_option_num
 
-            if submitted_answer == correct_option_num:
+            # Calculate scores and stats based on user answers
+            if user_choice is None:
+                format_statistics[format_key]['unchosen'] += 1
+            elif user_choice == correct_option_num:
                 total_score += question.score
+                format_statistics[format_key]['correct'] += 1
+            else:
+                format_statistics[format_key]['wrong'] += 1
 
+        # User and TestHistory handling
         user = request.user if request.user.is_authenticated else User.objects.get(username='undefinedUser')
-
-        # Create test history once, outside of the loop
         test_history = TestHistory.objects.create(
             user=user,
             exam_name=exam,
             skill_name=skill,
-            test_date=datetime.now(),
+            test_date=now(),
             score=total_score,
             format_name=format_value
         )
 
-        # Prepare bulk create for user test results
-        user_test_results = [UserTestResult(
-            user_answer=submitted_answers[question.question_id],
-            question_id=question,
-            test_history_id=test_history
-        ) for question in questions]
+        # Prepare and execute bulk create for user test results
+        # Filter questions to include only those with a provided answer
+        user_test_results = [
+            UserTestResult(
+                user_answer=submitted_answers[question_id],
+                question_id=Question.objects.get(question_id=question_id),  # Ensure you fetch the Question object
+                test_history_id=test_history
+            )
+            for question_id in question_ids if submitted_answers.get(question_id) is not None  # Check if the answer is not None
+        ]
 
         UserTestResult.objects.bulk_create(user_test_results)
 
-        # Assuming `exam_list` and `skill_list` are defined elsewhere and are valid
-        exam_name = exam_list[int(exam) - 1][int(exam)]
-        skill_name = skill_list[int(skill) - 1][int(skill)]
 
-        user_finished_questions = Question.objects.filter(skill=skill, exam=exam)
-
+# Context for rendering results
         context = {
             "page_name": "Your Results",
-            "score": total_score,
-            "questions": questions,
-            "user_finished_questions": user_finished_questions,
-            "exam": exam_name,
             "exam_number": exam,
-            "skill": skill_name,
             "skill_number": skill,
+            "score": total_score,
+            "questions": all_questions,
+            "exam": exam,
+            "skill": skill,
             "user_choices": user_choices,
             "correct_answers": correct_answers,
+            "format_statistics": dict(format_statistics),  # Convert default dictionary to a regular dictionary for template usage
         }
 
         return render(request, 'final_grade_result.html', context)
