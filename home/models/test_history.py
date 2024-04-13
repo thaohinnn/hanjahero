@@ -11,3 +11,5 @@ class TestHistory(models.Model):
     format_name = models.JSONField(null=True)
     test_date = models.DateField()
     score = models.FloatField()
+    time_limit = models.IntegerField(default=0)
+    format_statistics = models.JSONField(null=True)

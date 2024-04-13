@@ -36,8 +36,8 @@ def safe_get(dictionary, key):
 
 @register.filter(name='sum_attribute')
 def sum_attribute(value, arg):
-    """Sums the value of a key specified by 'arg' across all dictionaries in the 'value' dictionary."""
-    return sum(sub_dict.get(arg, 0) for sub_dict in value.values())
+    """Sums an attribute from a dictionary of dictionaries."""
+    return sum(item.get(arg, 0) for item in value.values())
 
 
 @register.filter(name='get_format_description')

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     const startButton = document.getElementById('startButton');
+    const timeLimitField = document.getElementById('timeLimit'); // Get the hidden input field
     let timer; // Declare timer variable outside the event listener scope
     let timerPaused = false; // Flag to track if the timer is paused
 
@@ -67,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
             }
         }
+
+        timeLimitField.value = Math.round(countdownTime / (1000 * 60));
 
         // Start the timer
         timer = startTimer(countdownTime);

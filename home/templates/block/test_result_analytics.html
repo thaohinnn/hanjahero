@@ -1,6 +1,11 @@
 {% load custom_filters %}
-
-<h4 style="text-align: left; padding-top: 30px">Answer Statistics:</h4>
+<h4 style="text-align: left; padding-top: 30px">Test Details:</h4>
+<ul style="text-align: left; font-size: 16px">
+    <li><strong>Exam:</strong> {{ exam_name }}</li>
+    <li><strong>Skill:</strong> {{ skill_name }}</li>
+    <li><strong>Time limit:</strong> {{ time_limit }}</li>
+</ul>
+<h4 style="text-align: left; padding-top: 10px">Answer Statistics:</h4>
 <table class="table">
     <tr>
         <th>Format</th>
@@ -16,6 +21,7 @@
             <td>{{ stats.unchosen }}</td>
         </tr>
     {% endfor %}
+    <tr>
     <tr>
         <th>Total</th>
         <td style="color: green; font-weight: bolder">{{ format_statistics|sum_attribute:"correct" }}</td>
