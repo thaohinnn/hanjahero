@@ -43,7 +43,7 @@
                                             {% endif %}>
                                     <label class="form-check-label"
                                            for="exampleRadios{{ option_num }}_{{ forloop.parentloop.counter }}"
-                                           style="font-size: 15px; margin-bottom: 0;
+                                           style="font-size: 15px; margin-bottom: 0; background-color:
                                                    {% if correct_answers|get_item:question.question_id|stringformat:'s' == option_num %}#b0e0a8; /* Light green */
                                                    {% elif user_choices|get_item:question.question_id|stringformat:'s' == option_num %}#f8d7da; /* Light red */
                                                    {% else %}transparent;{% endif %} padding: 5px;">

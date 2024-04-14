@@ -44,8 +44,7 @@ urlpatterns = [
     path('practice/', views.get_test, name='mock_test'),
     path('test-result/', views.grade_test_view, name='grade_test_view'),
     path('logout/', views.logout_view, name='logout'),
-    path('test-history/', views.get_all_test_history, name='get-next-id'),
-    path('test-history/<int:test_history_id>', views.get_test_history, name='get-next-id'),
+    path('test-history/<int:test_history_id>', views.get_test_history, name='get_test_history'),
     path('profile/<int:user_id>', views.user_profile, name='user_profile'),  # For function-based view
 
     path('api/', include('home.urls')),

@@ -3,9 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
 from django.utils.timezone import now
 from collections import defaultdict
-from django.contrib.auth.decorators import login_required
 
-from .models.user import User
+from home.models.user import User
 from .serializers import QuestionSerializer
 from django.http import HttpResponseBadRequest
 from django.db import IntegrityError
@@ -327,6 +326,7 @@ def get_test_history(request, test_history_id):
 # Context for rendering results
     context = {
         "page_name": "Your Results",
+        "test_date": test_history.test_date,
         "exam_name": exam_name,
         "skill_name": skill_name,
         "score": total_score,
@@ -354,9 +354,10 @@ def user_profile(request, user_id):
         gender = request.user.gender
         phone_number = request.user.phone_number
         username = request.user.username
-        time_created = request.user.time_created
+        test_histories = TestHistory.objects.filter(user=user)
 
         context = {
+            'test_histories': test_histories,
             'page_name': first_name + ' ' + last_name,
             'user_id': user_id,
             'first_name': first_name,
@@ -365,29 +366,7 @@ def user_profile(request, user_id):
             'gender': gender,
             'phone_number': phone_number,
             'username': username,
-            'time_created': time_created,
         }
         return render(request, 'user_profile.html', context)
     else:
-        return render(request, 'login.html')
-
-
-def get_all_test_history(request, user_id):
-    user = get_object_or_404(User, pk=user_id)
-
-    # Ensure the request user is the same as the profile they want to access or has permission
-    if request.user.is_authenticated and (request.user == user or request.user.is_superuser):
-        # Fetch all test histories related to the user
-        test_histories = TestHistory.objects.filter(user=user)
-
-
-
-        # Pass the test histories to the template
-        context = {
-            'test_histories': test_histories,
-            'profile_user': user  # User whose history is being viewed
-        }
-        return render(request, 'test_history.html', context)
-    else:
-        # Redirect unauthenticated or unauthorized users to login page
         return render(request, 'login.html')

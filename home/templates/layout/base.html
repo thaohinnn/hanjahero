@@ -98,7 +98,7 @@
                     {% if user.is_authenticated %}
                 <li class="nav-item dropdown d-none d-md-block">
                     <a class="nav-link dropdown-toggle" href="#" id="user-block-toggle logged in"
-                       onclick="location.href='/logout/'" role="button" data-toggle="dropdown"
+                       onclick="location.href='{% url 'user_profile' user_id=user.pk %}'" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <span class="login-link"
                               style="margin-right: 10px">{{ user.first_name }} {{ user.last_name }}</span>
@@ -106,8 +106,9 @@
                         <em class="icon-user user-icon"></em> <!-- User Icon -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="{% url 'user_profile' user_id=user.pk %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'user_profile' user_id=user.pk %}">My Test History</a>
                         <a class="dropdown-item" href="/logout/">Sign out</a>
-                        <a class="dropdown-item" href="/profile/">Settings</a>
                         <!-- Add more dropdown items as needed -->
                     </div>
                 </li>
