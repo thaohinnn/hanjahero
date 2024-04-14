@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
 from django.utils.timezone import now
 from collections import defaultdict
+from django.contrib.auth.decorators import login_required
 
 from .models.user import User
 from .serializers import QuestionSerializer
@@ -12,7 +13,7 @@ from .const.format import format
 from .const.exam import exam_list
 from .const.skill import skill_list
 from .const.time_limit import time_limit_list
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from .models.question import Question
@@ -340,3 +341,53 @@ def get_test_history(request, test_history_id):
         # Convert default dictionary to a regular dictionary for template usage
     }
     return render(request, 'final_grade_result.html', context)
+
+
+def user_profile(request, user_id):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=user_id)
+    if request.user.is_authenticated:
+        # Access the custom user fields
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        date_of_birth = request.user.date_of_birth
+        gender = request.user.gender
+        phone_number = request.user.phone_number
+        username = request.user.username
+        time_created = request.user.time_created
+
+        context = {
+            'page_name': first_name + ' ' + last_name,
+            'user_id': user_id,
+            'first_name': first_name,
+            'last_name': last_name,
+            'date_of_birth': date_of_birth,
+            'gender': gender,
+            'phone_number': phone_number,
+            'username': username,
+            'time_created': time_created,
+        }
+        return render(request, 'user_profile.html', context)
+    else:
+        return render(request, 'login.html')
+
+
+def get_all_test_history(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    # Ensure the request user is the same as the profile they want to access or has permission
+    if request.user.is_authenticated and (request.user == user or request.user.is_superuser):
+        # Fetch all test histories related to the user
+        test_histories = TestHistory.objects.filter(user=user)
+
+
+
+        # Pass the test histories to the template
+        context = {
+            'test_histories': test_histories,
+            'profile_user': user  # User whose history is being viewed
+        }
+        return render(request, 'test_history.html', context)
+    else:
+        # Redirect unauthenticated or unauthorized users to login page
+        return render(request, 'login.html')
