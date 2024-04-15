@@ -1,0 +1,115 @@
+{% extends "layout/base.html" %}
+{% block content %}
+    <div class="card" style="width: 90%; border: none; border-radius: 0; ">
+        <div class="card-header">
+            <h1>My Profile</h1>
+        </div>
+        <div class="card-body">
+            <form>
+                {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <form class="mb-3" id="registerForm" method="post" action="/signup/" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <!-- First Name -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted" for="first_name">First Name</label>
+                                <div class="input-group with-focus">
+                                    <input class="form-control border-right-0" id="first_name" name="first_name"
+                                           type="text"
+                                           placeholder="First Name" value="{{ first_name }}" autocomplete="off"
+                                           required>
+                                    <div class="input-group-append">
+                    <span class="input-group-text text-muted bg-transparent border-left-0">
+                        <em class="fa fa-user"></em>
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted" for="last_name">Last Name</label>
+                                <div class="input-group with-focus">
+                                    <input class="form-control border-right-0" id="last_name" name="last_name"
+                                           type="text"
+                                           placeholder="Last Name" value="{{ last_name }}" autocomplete="off" required>
+                                    <div class="input-group-append">
+                    <span class="input-group-text text-muted bg-transparent border-left-0">
+                        <em class="fa fa-user"></em>
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-muted" for="date_of_birth">Date of Birth</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="date_of_birth" name="date_of_birth"
+                                   type="date" required value="{{ date_of_birth }}">
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em
+                                        class="fa fa-calendar"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-muted" for="gender">Gender</label>
+                        <div class="input-group with-focus">
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="error-message" id="gender_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="phone_number">Phone Number</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="phone_number" name="phone_number" type="tel"
+                                   placeholder="Enter phone number" value="{{ phone_number }}" autocomplete="off"
+                                   required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em
+                                        class="fa fa-phone"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="phone_number_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="username">Username</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="username" name="username" type="email"
+                                   placeholder="Enter email" autocomplete="off" value="{{ username }}" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em
+                                        class="fa fa-envelope"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="username_error"></span>
+                    <div class="form-group">
+                        <label class="text-muted" for="password">Password</label>
+                        <div class="input-group with-focus">
+                            <input class="form-control border-right-0" id="password" name="password" type="password"
+                                   placeholder="Password" autocomplete="off" value="{{ password }}" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted bg-transparent border-left-0"><em
+                                        class="fa fa-lock"></em></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+{% endblock %}

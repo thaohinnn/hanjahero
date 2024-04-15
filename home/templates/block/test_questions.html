@@ -31,60 +31,44 @@
                         <tr>
                             <td style="padding-right: 70px;">
                                 <input class="form-check-input" type="radio"
-                                       name="exampleRadios{{ forloop.counter }}"
+                                       name="answer_{{ question.question_id }}"
                                        id="exampleRadios1_{{ forloop.counter }}"
-                                       value="option1">
+                                       value="1">
                                 <label class="form-check-label" for="exampleRadios1_{{ forloop.counter }}"
                                        style="font-size: 15px;">
-                                    {% if question.option_1_is_image %}
-                                        <img src="{{ question.option_1 }}" class="img-fluid" alt="Option 1">
-                                    {% else %}
-                                        {{ question.option_1|safe }}
-                                    {% endif %}
+                                    {{ question.option_1|safe }}
                                 </label>
                             </td>
                             <td style="padding-left: 70px;">
                                 <input class="form-check-input" type="radio"
-                                       name="exampleRadios{{ forloop.counter }}"
+                                       name="answer_{{ question.question_id }}"
                                        id="exampleRadios2_{{ forloop.counter }}"
-                                       value="option2">
+                                       value="2">
                                 <label class="form-check-label" for="exampleRadios2_{{ forloop.counter }}"
                                        style="font-size: 15px;">
-                                    {% if question.option_2_is_image %}
-                                        <img src="{{ question.option_2 }}" class="img-fluid" alt="Option 1">
-                                    {% else %}
-                                        {{ question.option_2|safe }}
-                                    {% endif %}
+                                    {{ question.option_2|safe }}
                                 </label>
                             </td>
                         </tr>
                         <tr>
                             <td style="padding-right: 70px;">
                                 <input class="form-check-input" type="radio"
-                                       name="exampleRadios{{ forloop.counter }}"
+                                       name="answer_{{ question.question_id }}"
                                        id="exampleRadios3_{{ forloop.counter }}"
-                                       value="option3">
+                                       value="3">
                                 <label class="form-check-label" for="exampleRadios3_{{ forloop.counter }}"
                                        style="font-size: 15px;">
-                                    {% if question.option_3_is_image %}
-                                        <img src="{{ question.option_3 }}" class="img-fluid" alt="Option 1">
-                                    {% else %}
-                                        {{ question.option_3|safe }}
-                                    {% endif %}
+                                    {{ question.option_3|safe }}
                                 </label>
                             </td>
                             <td style="padding-left: 70px;">
                                 <input class="form-check-input" type="radio"
-                                       name="exampleRadios{{ forloop.counter }}"
+                                       name="answer_{{ question.question_id }}"
                                        id="exampleRadios4_{{ forloop.counter }}"
-                                       value="option4">
+                                       value="4">
                                 <label class="form-check-label" for="exampleRadios4_{{ forloop.counter }}"
                                        style="font-size: 15px;">
-                                    {% if question.option_4_is_image %}
-                                        <img src="{{ question.option_4 }}" class="img-fluid" alt="Option 1">
-                                    {% else %}
-                                        {{ question.option_4|safe }}
-                                    {% endif %}
+                                    {{ question.option_4|safe }}
                                 </label>
                             </td>
                         </tr>

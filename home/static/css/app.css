@@ -107,6 +107,16 @@ body {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.option-content p {
+    margin: 0; /* Example: Removes margin from <p> tags */
+    color: #333; /* Sets text color */
+    /* You can add more styles here */
+}
+
+#question-meta-data p img {
+    width: 100%;
+    height: auto;
+}
 
 .homepage-specific-animation {
     opacity: 100%;
@@ -1601,7 +1611,7 @@ body {
        Component: typo
    ========================================================================== */
     body {
-        font-family: 'Malgun Gothic', sans-serif;
+        font-family: "Source Sans Pro", sans-serif;
         color: #000000;
         font-size: 0.875rem;
     }

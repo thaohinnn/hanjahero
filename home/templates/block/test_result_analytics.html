@@ -1,0 +1,32 @@
+{% load custom_filters %}
+<h4 style="text-align: left; padding-top: 30px">Test Details:</h4>
+<ul style="text-align: left; font-size: 16px">
+    <li><strong>Test Date:</strong> {{ test_date }}</li>
+    <li><strong>Exam:</strong> {{ exam_name }}</li>
+    <li><strong>Skill:</strong> {{ skill_name }}</li>
+    <li><strong>Time limit:</strong> {{ time_limit }}</li>
+</ul>
+<h4 style="text-align: left; padding-top: 10px">Answer Statistics:</h4>
+<table class="table">
+    <tr>
+        <th>Format</th>
+        <th style="color: green">Correct Answers</th>
+        <th style="color: red">Wrong Answers</th>
+        <th style="color: #052f7e">Unanswered Questions</th>
+    </tr>
+    {% for format_name, stats in format_statistics.items %}
+        <tr>
+            <td>{{ format_name }}</td>
+            <td>{{ stats.correct }}</td>
+            <td>{{ stats.wrong }}</td>
+            <td>{{ stats.unchosen }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+    <tr>
+        <th>Total</th>
+        <td style="color: green; font-weight: bolder">{{ format_statistics|sum_attribute:"correct" }}</td>
+        <td style="color: red; font-weight: bolder">{{ format_statistics|sum_attribute:"wrong" }}</td>
+        <td style="color: #052f7e; font-weight: bolder">{{ format_statistics|sum_attribute:"unchosen" }}</td>
+    </tr>
+</table>

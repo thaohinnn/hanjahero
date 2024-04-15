@@ -9,6 +9,8 @@ python3 manage.py import_question_meta_data home/static/data/question_meta_data.
 python3 manage.py import_question_data home/static/data/question_data.json
 python3 manage.py populate_time_limit
 python3 manage.py import_user_data home/static/data/user_data.json
+python3 manage.py update_total_scores  
+python manage.py assign_test_types
 ```
 * Run project steps:
 ```shell

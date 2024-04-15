@@ -4,6 +4,8 @@ from home.models.question_meta_data import QuestionMetaData
 
 
 class Question(models.Model):
+    class Meta:
+        app_label = 'home'
     question_id = models.AutoField(primary_key=True)
     question_text = models.TextField(null=True)
     option_1 = models.TextField(null=True)

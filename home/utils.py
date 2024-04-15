@@ -1,5 +1,5 @@
 from collections import defaultdict
-from .models.question import Question
+from home.models.question import Question
 
 
 def reorder_questions_by_format(questions, format_constants):
@@ -23,24 +23,8 @@ def reorder_questions_by_format(questions, format_constants):
     return reordered_questions
 
 
-def grade_test(user_responses):
-    total_score = 0
-
-    for response in user_responses:
-        question_id = response['question_id']
-        selected_option = response['selected_option']
-
-        # Retrieve the correct option from the database
-        try:
-            question = Question.objects.get(question_id=question_id)
-            correct_option = question.correct_option
-            score = question.score
-        except Question.DoesNotExist:
-            # Handle the case where the question doesn't exist
-            continue
-
-        # Check if the user's answer matches the correct option
-        if selected_option == correct_option:
-            total_score += score
-
-    return total_score
+def get_description_by_key(key, format_names):
+    for format_dict in format_names:
+        if key in format_dict:
+            return format_dict[key]
+    return "Description not found"
