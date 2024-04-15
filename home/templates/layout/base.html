@@ -107,7 +107,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="{% url 'user_profile' user_id=user.pk %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'user_profile' user_id=user.pk %}">My Test History</a>
+                        <a class="dropdown-item" href="{% url 'user_test_history' user_id=user.pk %}">My Test History</a>
                         <a class="dropdown-item" href="/logout/">Sign out</a>
                         <!-- Add more dropdown items as needed -->
                     </div>

@@ -46,6 +46,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('test-history/<int:test_history_id>', views.get_test_history, name='get_test_history'),
     path('profile/<int:user_id>', views.user_profile, name='user_profile'),  # For function-based view
+    path('my-tests/<int:user_id>', views.user_test_history, name='user_test_history'),  # For function-based view
 
     path('api/', include('home.urls')),
 

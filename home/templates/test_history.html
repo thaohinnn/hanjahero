@@ -1,37 +1,83 @@
+{% load custom_filters %}
 {% if user.is_authenticated %}
-    <h2>Test History for {{ username }}</h2>
+
+    <h2 style="padding: 10px">My Test History</h2>
+
     {% if test_histories %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Exam Name</th>
-                <th>Skill Name</th>
-                <th>Test Date</th>
-                <th>Score</th>
-                <th>Time Limit</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for test in test_histories %}
+        <!-- Practice Tests Table -->
+        <div class="table-responsive">
+            <h3 style="padding: 10px">Practice Tests</h3>
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>{{ test.exam_name }}</td>
-                    <td>{{ test.skill_name }}</td>
-                    <td>{{ test.test_date }}</td>
-                    <td>{{ test.score }}</td>
-                    <td>{{ test.time_limit }} minutes</td>
-                    <td><button class="btn btn-oval" style="border-color: #eeeeee" type="button" onclick="location.href='{% url 'get_test_history' test_history_id=test.test_history_id %}'">
-                        View Details</button></td>
-                    <td>
-                    </td>
+                    <th>Exam Name</th>
+                    <th>Skill Name</th>
+                    <th>Test Date</th>
+                    <th>Score</th>
+                    <th>Time Limit</th>
+                    <th></th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for test in test_histories %}
+                    {% if test.test_type == 1 %}
+                        <tr>
+                            <td>{{ test.exam_name|convert_exam_name }}</td>
+                            <td>{{ test.skill_name|convert_skill_name }}</td>
+                            <td>{{ test.test_date }}</td>
+                            <td>{{ test.user_score }} / {{ test.total_score }}</td>
+                            <td>{{ test.time_limit }} minutes</td>
+                            <td>
+                                <button class="btn btn-oval" style="border-color: #eeeeee" type="button"
+                                        onclick="location.href='{% url 'get_test_history' test_history_id=test.test_history_id %}'">
+                                    View Details
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mock Tests Table -->
+        <div class="table-responsive">
+            <h3 style="padding: 10px">Mock Tests</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Skill Name</th>
+                    <th>Test Date</th>
+                    <th>Score</th>
+                    <th>Time Limit</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for test in test_histories %}
+                    {% if test.test_type == 2 %}
+                        <tr>
+                            <td>{{ test.exam_name|convert_exam_name }}</td>
+                            <td>{{ test.skill_name|convert_skill_name }}</td>
+                            <td>{{ test.test_date }}</td>
+                            <td>{{ test.user_score }} / {{ test.total_score }}</td>
+                            <td>{{ test.time_limit }} minutes</td>
+                            <td>
+                                <button class="btn btn-oval" style="border-color: #eeeeee" type="button"
+                                        onclick="location.href='{% url 'get_test_history' test_history_id=test.test_history_id %}'">
+                                    View Details
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <p>No test history available for this user.</p>
     {% endif %}
 {% else %}
     <p>You need to be logged in to view this page.</p>
 {% endif %}
-

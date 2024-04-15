@@ -43,3 +43,24 @@ def sum_attribute(value, arg):
 @register.filter(name='get_format_description')
 def get_format_description(format_list, key):
     return next((item.get(key, None) for item in format_list if key in item), None)
+
+
+@register.filter(name='convert_exam_name')
+def convert_exam_name(value):
+    exam_names = {1: '기출 35회',
+    2: '기출 36회',
+    3: '기출 37회',
+    4: '기출 41회',
+    5: '기출 47회',
+    6: '기출 52회',
+    7: '기출 60회',
+    8: '기출 64회'
+                  }
+    return exam_names.get(value, "Unknown Exam")
+
+
+@register.filter(name='convert_skill_name')
+def convert_skill_name(value):
+    skill_names = {1: '듣기', 2: '쓰기', 3: '읽기'}
+
+    return skill_names.get(value, "Unknown Skill")

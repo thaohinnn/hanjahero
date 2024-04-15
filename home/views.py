@@ -231,6 +231,7 @@ def grade_test_view(request):
                 # Handle the case where conversion to integer fails
                 pass  # You might want to log this case or handle it appropriately
 
+        user_score = 0
         total_score = 0
         user_choices = {}
         correct_answers = {}
@@ -254,11 +255,14 @@ def grade_test_view(request):
             # Calculate scores and stats based on user answers
             if user_choice is None:
                 format_statistics[format_key]['unchosen'] += 1
+                total_score += question.score
             elif user_choice == correct_option_num:
+                user_score += question.score
                 total_score += question.score
                 format_statistics[format_key]['correct'] += 1
             else:
                 format_statistics[format_key]['wrong'] += 1
+                total_score += question.score
 
 
 
@@ -269,7 +273,8 @@ def grade_test_view(request):
             exam_name=exam,
             skill_name=skill,
             test_date=now(),
-            score=total_score,
+            user_score=user_score,
+            total_score=total_score,
             format_name=format_value,
             time_limit=time_limit,
             format_statistics=dict(format_statistics),
@@ -296,7 +301,8 @@ def get_test_history(request, test_history_id):
     format_names_list = format
     format_names = {k: v for d in format for k, v in d.items()}
     # Getting info
-    total_score = round(test_history.score)
+    total_score = round(test_history.total_score)
+    user_score = round(test_history.user_score)
     exam = test_history.exam_name
     skill = test_history.skill_name
     time_limit = test_history.time_limit
@@ -329,7 +335,8 @@ def get_test_history(request, test_history_id):
         "test_date": test_history.test_date,
         "exam_name": exam_name,
         "skill_name": skill_name,
-        "score": total_score,
+        "total_score": total_score,
+        "user_score": user_score,
         "time_limit": time_limit,
         "exam": exam,
         "skill": skill,
@@ -358,6 +365,7 @@ def user_profile(request, user_id):
 
         context = {
             'test_histories': test_histories,
+            'exam_list': exam_list,
             'page_name': first_name + ' ' + last_name,
             'user_id': user_id,
             'first_name': first_name,
@@ -368,5 +376,27 @@ def user_profile(request, user_id):
             'username': username,
         }
         return render(request, 'user_profile.html', context)
+    else:
+        return render(request, 'login.html')
+
+
+def user_test_history(request, user_id):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=user_id)
+    if request.user.is_authenticated:
+        # Access the custom user fields
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        test_histories = TestHistory.objects.filter(user=user)
+
+        context = {
+            'test_histories': test_histories,
+            'exam_list': exam_list,
+            'page_name': "My Test History",
+            'user_id': user_id,
+            'first_name': first_name,
+            'last_name': last_name,
+        }
+        return render(request, 'user_test_history.html', context)
     else:
         return render(request, 'login.html')
