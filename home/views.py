@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
 from django.utils.timezone import now
 from collections import defaultdict
-
+from django.contrib.auth.decorators import login_required
 from home.models.user import User
 from .serializers import QuestionSerializer
 from django.http import HttpResponseBadRequest
@@ -350,53 +350,50 @@ def get_test_history(request, test_history_id):
     return render(request, 'final_grade_result.html', context)
 
 
+@login_required
 def user_profile(request, user_id):
     User = get_user_model()
     user = get_object_or_404(User, pk=user_id)
-    if request.user.is_authenticated:
-        # Access the custom user fields
-        first_name = request.user.first_name
-        last_name = request.user.last_name
-        date_of_birth = request.user.date_of_birth
-        gender = request.user.gender
-        phone_number = request.user.phone_number
-        username = request.user.username
-        test_histories = TestHistory.objects.filter(user=user)
 
-        context = {
-            'test_histories': test_histories,
-            'exam_list': exam_list,
-            'page_name': first_name + ' ' + last_name,
-            'user_id': user_id,
-            'first_name': first_name,
-            'last_name': last_name,
-            'date_of_birth': date_of_birth,
-            'gender': gender,
-            'phone_number': phone_number,
-            'username': username,
-        }
-        return render(request, 'user_profile.html', context)
-    else:
-        return render(request, 'login.html')
+    # Access the custom user fields
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    date_of_birth = request.user.date_of_birth
+    gender = request.user.gender
+    phone_number = request.user.phone_number
+    username = request.user.username
+    test_histories = TestHistory.objects.filter(user=user)
 
+    context = {
+        'test_histories': test_histories,
+        'exam_list': exam_list,  # Assuming exam_list is defined elsewhere
+        'page_name': first_name + ' ' + last_name,
+        'user_id': user_id,
+        'first_name': first_name,
+        'last_name': last_name,
+        'date_of_birth': date_of_birth,
+        'gender': gender,
+        'phone_number': phone_number,
+        'username': username,
+    }
+    return render(request, 'user_profile.html', context)
 
+@login_required
 def user_test_history(request, user_id):
     User = get_user_model()
     user = get_object_or_404(User, pk=user_id)
-    if request.user.is_authenticated:
-        # Access the custom user fields
-        first_name = request.user.first_name
-        last_name = request.user.last_name
-        test_histories = TestHistory.objects.filter(user=user)
 
-        context = {
-            'test_histories': test_histories,
-            'exam_list': exam_list,
-            'page_name': "My Test History",
-            'user_id': user_id,
-            'first_name': first_name,
-            'last_name': last_name,
-        }
-        return render(request, 'user_test_history.html', context)
-    else:
-        return render(request, 'login.html')
+    # Access the custom user fields
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    test_histories = TestHistory.objects.filter(user=user)
+
+    context = {
+        'test_histories': test_histories,
+        'exam_list': exam_list,  # Assuming exam_list is defined elsewhere
+        'page_name': "My Test History",
+        'user_id': user_id,
+        'first_name': first_name,
+        'last_name': last_name,
+    }
+    return render(request, 'user_test_history.html', context)
