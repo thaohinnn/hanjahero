@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const startButton = document.getElementById('startButton');
     const timeLimitField = document.getElementById('timeLimit'); // Get the hidden input field
     let timer; // Declare timer variable outside the event listener scope
-    let timerPaused = false; // Flag to track if the timer is paused
+    let remainingTime; // Track remaining time
+    let timerPaused = true; // Initially paused until 'start' is clicked
 
     // Show the overlay when the page loads
     overlay.style.display = 'block';
@@ -16,37 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide the overlay
         overlay.style.display = 'none';
 
-        // Timer logic starts here
-        let countdownTime;
+        let initialCountdownTime;
 
         // Check if the URL path corresponds to '/practice'
         if (window.location.pathname === '/practice/') {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            countdownTime = 1000 * 60 * parseInt(urlParams.get('time_limit'));
+            initialCountdownTime = 1000 * 60 * parseInt(urlParams.get('time_limit'));
 
-            if (isNaN(countdownTime)) {
+            if (isNaN(initialCountdownTime)) {
                 // If countdown time is not provided in the query string, set a default time
-                countdownTime = 1000 * 60 * 60; // Default to 60 minutes
+                initialCountdownTime = 1000 * 60 * 60; // Default to 60 minutes
             }
-
-            // Create a stop timer button
-            const stopTimerButton = document.getElementById('timer-icon');
-
-            // Add event listener to stop timer button
-            stopTimerButton.addEventListener('click', function() {
-                if (!timerPaused) {
-                    clearInterval(timer); // Stop the timer
-                    document.getElementById('timer-icon').classList.remove('fa-stop');
-                    document.getElementById('timer-icon').classList.add('fa-play');
-                } else {
-                    // Resume the timer
-                    timer = startTimer(countdownTime);
-                    document.getElementById('timer-icon').classList.remove('fa-play');
-                    document.getElementById('timer-icon').classList.add('fa-stop');
-                }
-                timerPaused = !timerPaused; // Toggle timerPaused flag
-            });
         } else {
             // Default countdown time for other paths (e.g., '/test')
             const queryString = window.location.search;
@@ -55,65 +37,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
             switch (countdownOption) {
                 case '1':
-                    countdownTime = 1000 * 60 * 50; // 50 minutes
+                    initialCountdownTime = 1000 * 60 * 50; // 50 minutes
                     break;
                 case '2':
-                    countdownTime = 1000 * 60 * 60; // 60 minutes
+                    initialCountdownTime = 1000 * 60 * 60; // 60 minutes
                     break;
                 case '3':
-                    countdownTime = 1000 * 60 * 70; // 70 minutes
+                    initialCountdownTime = 1000 * 60 * 70; // 70 minutes
                     break;
                 default:
-                    countdownTime = 1000 * 60 * 60; // Default to 60 minutes if no valid option is provided
+                    initialCountdownTime = 1000 * 60 * 60; // Default to 60 minutes if no valid option is provided
                     break;
             }
         }
 
-        timeLimitField.value = Math.round(countdownTime / (1000 * 60));
+        timeLimitField.value = Math.round(initialCountdownTime / (1000 * 60));
 
-        // Start the timer
-        timer = startTimer(countdownTime);
+        if (timerPaused) { // Initial start
+            remainingTime = initialCountdownTime;
+            timer = startTimer();
+            timerPaused = false;
+        }
     });
 
     // Function to start the timer
-    function startTimer(countdownTime) {
-        let eventDate = new Date().getTime() + countdownTime;
+    function startTimer() {
+        let eventDate = new Date().getTime() + remainingTime;
 
         return setInterval(() => {
             const actualTime = new Date().getTime();
-            let difference = eventDate - actualTime;
+            remainingTime = eventDate - actualTime;
 
             // Update the eventDate if it's in the past
-            if (difference < 0) {
+            if (remainingTime < 0) {
                 clearInterval(timer);
-                difference = 0; // Set difference to 0 to prevent negative countdown
+                remainingTime = 0; // Set remainingTime to 0 to prevent negative countdown
             }
 
-            const minutes = Math.floor(difference / (1000 * 60)); // Calculate minutes
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000); // Calculate seconds
+            updateUI(remainingTime); // Call a function to update the UI
 
-            // Update the UI with the countdown values
-            const minDozens = Math.floor(minutes / 10);
-            const minUnity = Math.floor(minutes % 10);
-            const secDozens = Math.floor(seconds / 10);
-            const secUnity = Math.floor(seconds % 10);
-
-            document.getElementById('min-dozens').innerHTML = minDozens;
-            document.getElementById('min-unity').innerHTML = minUnity;
-            document.getElementById('sec-dozens').innerHTML = secDozens;
-            document.getElementById('sec-unity').innerHTML = secUnity;
-
-            // Remove blur class from timer elements
-            document.getElementById('min-dozens').classList.remove('timer-blur');
-            document.getElementById('min-unity').classList.remove('timer-blur');
-            document.getElementById('sec-dozens').classList.remove('timer-blur');
-            document.getElementById('sec-unity').classList.remove('timer-blur');
-
-            if (difference <= 1000) { // Check if difference is less than or equal to 1000 milliseconds (1 second)
-                // Display "Time's up!" message and trigger click on the submit button
+            if (remainingTime <= 1000) { // Check if remainingTime is less than or equal to 1000 milliseconds (1 second)
                 clearInterval(timer);
-                document.getElementById('submitTestButton').click();
+                document.getElementById('submitTestButton').click(); // Simulate test submission
             }
         }, 200);
     }
+
+    // Function to update the UI based on remaining time
+    function updateUI(difference) {
+        const minutes = Math.floor(difference / (1000 * 60)); // Calculate minutes
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000); // Calculate seconds
+
+        // Update the UI with the countdown values
+        document.getElementById('min-dozens').innerHTML = Math.floor(minutes / 10);
+        document.getElementById('min-unity').innerHTML = Math.floor(minutes % 10);
+        document.getElementById('sec-dozens').innerHTML = Math.floor(seconds / 10);
+        document.getElementById('sec-unity').innerHTML = Math.floor(seconds % 10);
+    }
+
+    // Handle pause and resume functionality
+    const stopTimerButton = document.getElementById('timer-icon');
+    stopTimerButton.addEventListener('click', function() {
+        if (!timerPaused) {
+            clearInterval(timer); // Stop the timer
+            stopTimerButton.classList.remove('fa-play');
+            stopTimerButton.classList.add('fa-stop');
+        } else {
+            timer = startTimer(); // Resume the timer
+            stopTimerButton.classList.remove('fa-stop');
+            stopTimerButton.classList.add('fa-play');
+        }
+        timerPaused = !timerPaused; // Toggle timerPaused flag
+    });
 });
