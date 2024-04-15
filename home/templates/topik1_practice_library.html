@@ -3,58 +3,53 @@
 
 {% block content %}
 
-    <div class="homepage-specific-animation" id="home-introduction">
-        <!--Change link to test library -->
-        <div class="carousel" id="carouselExampleCaptions" data-ride="carousel">
-            <div class="carousel-inner">
+    <div class="carousel" id="carouselExampleCaptions" data-ride="carousel" style="padding-bottom: 30px">
+        <div class="carousel-inner">
 
-                <div class="carousel-item active"><img class="d-block w-100"
-                                                       src="{% static 'img/topik1-bg.png' %}"
-                                                       alt="topik1-bg">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
+            <div class="carousel-item active"><img class="d-block w-100"
+                                                   src="{% static 'img/topik1-bg.png' %}"
+                                                   alt="topik1-bg">
+                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="position-relative ct-tui  p-2 p-lg-5 bg-white" id="">
-            <div class="container position-relative">
-                <div class="fadeInUp row m-0 p-0 justify-content-center">
-                    <h1 class="h1 ct-tui__title">
-                        Welcome to the <strong>TOPIK I</strong> Mock Tests Library!</h1>
-                    <div class="ct-tui__description">
-                        <br>
-                        <p><strong>Master the TOPIK I exam</strong> with our comprehensive library of realistic mock
-                            tests and targeted
-                            practice questions. Whether you're a seasoned learner or just starting your journey, our
-                            resources are designed to <strong>boost your score</strong> and <strong>maximize your
-                                confidence</strong> on test day.</p>
-                        <ul>
-                            <li><strong>Timed Tests</strong>: Each mock test comes with a built-in timer that mirrors
-                                the official TOPIK I exam duration.
-                            </li>
-                            <li><strong>Performance Tracking</strong>: Monitor your progress over time by taking
-                                multiple mock tests and tracking your scores.
-                            </li>
-                            <li><strong>Maximize Your Confidence on Test Day</strong>: By familiarizing yourself with
-                                the test format, time constraints, and question styles through our realistic mock tests,
-                                you'll approach the actual TOPIK I feeling calm, confident, and prepared to succeed!
-                            </li>
-                        </ul>
-                    </div>
-
+    <div class="card" style="width: 100%; border: None; padding: 0; border-radius: 40px">
+    <div class="position-relative ct-tui  p-2 p-lg-5" style="background-color: transparent; padding: 4rem">
+        <div class="container position-relative">
+            <div class="fadeInUp row m-0 p-0 justify-content-center">
+                <h1 class="h1 ct-tui__title">
+                    Welcome to the <strong>TOPIK I</strong> Practice Tests Library!</h1>
+                <div class="ct-tui__description">
+                    <br>
+                    <p><strong>Master the TOPIK I exam</strong> with our comprehensive library of realistic mock
+                        tests and targeted
+                        practice questions. Whether you're a seasoned learner or just starting your journey, our
+                        resources are designed to <strong>boost your score</strong> and <strong>maximize your
+                            confidence</strong> on test day.</p>
+                    <ul>
+                        <li><strong>Timed Tests</strong>: Each mock test comes with a built-in timer that mirrors
+                            the official TOPIK I exam duration.
+                        </li>
+                        <li><strong>Performance Tracking</strong>: Monitor your progress over time by taking
+                            multiple mock tests and tracking your scores.
+                        </li>
+                        <li><strong>Maximize Your Confidence on Test Day</strong>: By familiarizing yourself with
+                            the test format, time constraints, and question styles through our realistic mock tests,
+                            you'll approach the actual TOPIK I feeling calm, confident, and prepared to succeed!
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <!-- Tests content here -->
+    <!-- Tests content here -->
 
 
 {% endblock %}
-
 {% block modal %}
-{% block modal_title_large %}
-{% endblock %}
 {% endblock %}
 </div>
