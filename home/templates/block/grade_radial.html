@@ -3,8 +3,9 @@
     <circle class="bg"></circle>
     <circle class="fg"></circle>
     <!-- Add text element for the score -->
-    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
-          font-size="50" font-weight="bolder" fill="#113B8AFF">
-        {{ user_score }} / {{ total_score }}
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#113B8AFF">
+        <tspan font-size="55" font-weight="bolder">{{ user_score }}</tspan>
+        <tspan font-size="40" font-weight="normal" dy="15"> /</tspan>
+        <tspan font-size="30" font-weight="normal" dy="10">{{ total_score }}</tspan>
     </text>
 </svg>
