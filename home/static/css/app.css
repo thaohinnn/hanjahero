@@ -11,7 +11,7 @@
 /* ========================================================================
      Component: layout
  ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Malgun+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
 
 html {
@@ -1611,7 +1611,7 @@ body {
        Component: typo
    ========================================================================== */
     body {
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         color: #000000;
         font-size: 0.875rem;
     }
