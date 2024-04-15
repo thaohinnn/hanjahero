@@ -1,3 +1,4 @@
 .highlight {
-    background-color: yellow;
+    background-color: yellow; /* Highlight color */
+    cursor: pointer; /* Indicates the text can be clicked */
 }

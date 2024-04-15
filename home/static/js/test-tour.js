@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         element: "#highlight-button",
                         title: "Highlighter",
-                        content: "This is the highlighter tool. Click on the pen, and highlight the text. Click the icon or press any key to stop.",
+                        content: "This is the highlighter tool. Click on the pen, and highlight the text. Click the icon or press any key to stop highlighting mode. If you want to remove highlight, click on the highlighted words again.",
                     },
                     {
                         element: "#fullscreen-button",
