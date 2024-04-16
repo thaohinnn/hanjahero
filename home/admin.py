@@ -8,6 +8,7 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 from home.models.user_test_result import UserTestResult
+from home.models.user_post import Post
 
 
 class QuestionResource(resources.ModelResource):
@@ -23,5 +24,6 @@ class QuestionAdmin(ImportExportModelAdmin):
 admin.site.register(Question)
 admin.site.register(QuestionMetaData)
 admin.site.register(TestHistory)
+admin.site.register(Post)
 admin.site.register(User)
 admin.site.register(UserTestResult)

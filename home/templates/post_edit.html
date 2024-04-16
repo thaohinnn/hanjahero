@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="card" style="border: none; padding: 40px">
+    <h2>Add Post</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn"
+                style="background-color: rgb(0, 51, 153); color: rgb(255, 255, 255); border: none; border-radius: 20px">Submit</button>
+    </form>
+</div>
+{% endblock %}
+

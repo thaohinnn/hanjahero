@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ post.title }}</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text"><small class="text-muted">By {{ post.author }} on {{ post.date_posted }}</small></p>
+
+            <div class="border"></div>
+            <div class="card"
+                 style="width: 100%; box-shadow: None; background-color: #f5f5f5; border: None; border-radius: 0">
+                <div class="comments">
+                    <h5>Comments:</h5>
+                    {% for comment in comments %}
+                    <div class="card comment" style="border: none; width: 100%">
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.content }}</p>
+                        <i style="font-size: 12px">{{ comment.created_at|date:"d M Y H:i" }}</i>
+                    </div>
+                    {% empty %}
+                    <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn"
+                        style="background-color: rgb(0, 51, 153); color: rgb(255, 255, 255); border: none; border-radius: 20px">Submit
+                </button>
+            </form>
+        </div>
+        <div class="card-footer text-muted" style="text-align: right; background-color: #fff">
+            <a href="/forum/" class="btn btn-secondary">Back to Posts</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

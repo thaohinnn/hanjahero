@@ -35,6 +35,7 @@ body {
     height: auto;
     min-height: 100%;
     overflow-x: hidden;
+    background-color: #f8f9fa;
 }
 
 .wrapper .aside-container {
@@ -1975,7 +1976,7 @@ body {
         box-shadow: 0 0 0 #000;
         border-color: #eee;
         border-bottom: 2px solid #e4eaec;
-        border-radius: 0.2rem;
+        border-radius: 15px;
     }
 
     .popover .popover-title {
@@ -4021,3 +4022,32 @@ body {
     }
 }
 
+.custom-textarea {
+    border-radius: 20px;
+    border-color: #d3d3d3
+}
+
+.floating-btn {
+    position: fixed;      /* Fixed position relative to the viewport */
+    bottom: 50px;         /* 20px from the bottom */
+    right: 50px;          /* 20px from the right */
+    padding: 10px 15px;   /* Padding for size */
+    width: 50px;
+    height: 50px;
+    font-size: 20px;      /* Text size */
+    color: rgb(255, 255, 255);         /* Text color */
+    background-color: #052f7e; /* Background color */
+    border: none;         /* No border */
+    border-radius: 30px;   /* Rounded corners */
+    box-shadow: 0 4px 8px rgb(0,0,0,0.1);
+    text-align: center;   /* Center text */
+    cursor: pointer;      /* Pointer cursor on hover */
+    text-decoration: none; /* No underlining of text */
+    z-index: 1000;        /* Ensure it's on top of other elements */
+}
+
+.floating-btn:hover {
+    background-color: rgb(255, 255, 255); /* Darker shade on hover */
+    color: #052f7e; /* Background color */
+    box-shadow: 0 4px 8px rgb(0,0,0,0.2);
+}
