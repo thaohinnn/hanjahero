@@ -18,6 +18,8 @@ from django.http import HttpResponseRedirect
 from .models.question import Question
 from .models.user_test_result import UserTestResult
 from .models.test_history import TestHistory
+from .models.user_post import Post, Comment
+from .forms import PostForm, CommentForm
 
 
 def home(request):
@@ -264,8 +266,6 @@ def grade_test_view(request):
                 format_statistics[format_key]['wrong'] += 1
                 total_score += question.score
 
-
-
         # User and TestHistory handling
         user = request.user if request.user.is_authenticated else User.objects.get(username='undefinedUser')
         test_history = TestHistory.objects.create(
@@ -328,8 +328,7 @@ def get_test_history(request, test_history_id):
     # Dictionary to store correct options for each question
     correct_answers = {question.question_id: question.correct_option for question in all_questions}
 
-
-# Context for rendering results
+    # Context for rendering results
     context = {
         "page_name": "Your Results",
         "test_date": test_history.test_date,
@@ -378,6 +377,7 @@ def user_profile(request, user_id):
     }
     return render(request, 'user_profile.html', context)
 
+
 @login_required
 def user_test_history(request, user_id):
     User = get_user_model()
@@ -397,3 +397,38 @@ def user_test_history(request, user_id):
         'last_name': last_name,
     }
     return render(request, 'user_test_history.html', context)
+
+
+def post_list(request):
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'post_list.html', {'posts': posts})
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = post.comments.all().order_by('-created_at')
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'post_detail.html', {'post': post, 'form': form, 'comments': comments, 'pk': pk})
+
+
+@login_required
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'post_edit.html', {'form': form})
