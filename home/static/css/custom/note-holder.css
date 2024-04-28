@@ -7,3 +7,22 @@
     border: none;
 
 }
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-auto-rows: 50px;
+    gap: 5px;
+}
+
+
+.nav-button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(0, 51, 153);
+    border-radius: 5px;
+    background-color: #fff;
+    color: rgb(0, 51, 153);
+    cursor: pointer;
+    font-size: 14px;
+}
