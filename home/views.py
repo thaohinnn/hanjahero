@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect
 from .models.question import Question
 from .models.user_test_result import UserTestResult
 from .models.test_history import TestHistory
-from .models.user_post import Post, Comment
+from .models.user_post import Post
 from .forms import PostForm, CommentForm
 
 
@@ -179,7 +179,7 @@ def get_test(request):
         level = '2'
 
     # Filter based on query strings
-    questions = Question.objects.filter(skill=skill, exam=exam)
+    questions = Question.objects.filter(skill=skill, exam=exam, level=level)
 
     # Apply additional filtering based on the 'format' parameter if provided
     if format_param:
@@ -266,6 +266,12 @@ def grade_test_view(request):
                 format_statistics[format_key]['wrong'] += 1
                 total_score += question.score
 
+        if format_value is None:
+            test_type = 2
+        else:
+            test_type = 1
+
+
         # User and TestHistory handling
         user = request.user if request.user.is_authenticated else User.objects.get(username='undefinedUser')
         test_history = TestHistory.objects.create(
@@ -278,6 +284,7 @@ def grade_test_view(request):
             format_name=format_value,
             time_limit=time_limit,
             format_statistics=dict(format_statistics),
+            test_type=test_type,
         )
 
         # Prepare and execute bulk create for user test results
@@ -401,7 +408,7 @@ def user_test_history(request, user_id):
 
 def post_list(request):
     posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'post_list.html', {'posts': posts})
+    return render(request, 'post_list.html', {'posts': posts, 'page_name': "Forum"})
 
 
 def post_detail(request, pk):
@@ -417,7 +424,8 @@ def post_detail(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'post_detail.html', {'post': post, 'form': form, 'comments': comments, 'pk': pk})
+    return render(request, 'post_detail.html', {'post': post, 'form': form, 'comments': comments,
+                                                'pk': pk, 'page_name': "Post"})
 
 
 @login_required
@@ -428,7 +436,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk, context={'page_name': "New Post"})
     else:
         form = PostForm()
-    return render(request, 'post_edit.html', {'form': form})
+    return render(request, 'post_edit.html', {'form': form, 'page_name': "Edit Post"})

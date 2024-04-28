@@ -1,4 +1,5 @@
 .highlight {
     background-color: yellow; /* Highlight color */
-    cursor: pointer; /* Indicates the text can be clicked */
+    cursor: url('static/img/eraser-cursor.png'), pointer;/* Indicates the text can be clicked */
 }
+

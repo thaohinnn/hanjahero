@@ -61,6 +61,7 @@
                 <input type="hidden" name="skill" id="skill" value="{{ skill_number }}">
                 <input type="hidden" name="exam" id="exam" value="{{ exam_number }}">
                 <input type="hidden" name="timeLimit" id="timeLimit" value="">
+                <input type="hidden" name="testType" id="testType" value="">
                 {% if format %}
                     <input type="hidden" name="format" id="format" value="{{ format_param }}">
                 {% endif %}
@@ -91,6 +92,7 @@
     <!-- =============== APP SCRIPTS ===============-->
     <script src="{% static 'js/app.js' %}"></script>
     <script src="{% static '/js/test-timer.js' %}"></script>
+    <script src="{% static '/js/question-navigation.js' %}"></script>
     <script src="{% static 'js/time-limit-option.js' %}"></script>
     <script src="{% static '/js/note.js' %}"></script>
     <script src="{% static '/js/highlighter.js' %}"></script>
@@ -98,6 +100,7 @@
     <!-- Add Bootstrap Tour JS -->
     <script src="{% static '/js/bootstrap-tour.min.js' %}"></script>
     <script src="{% static '/js/test-tour.js' %}"></script>
+
 
 
 </div>

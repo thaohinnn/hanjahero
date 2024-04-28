@@ -20,7 +20,7 @@
                     </div>
                 </div>
             {% endif %}
-            <h5 class="card-title" style="font-size: 17px; line-height: 200%; white-space: nowrap;">
+            <h5 class="card-title" id="QuestionNo{{ forloop.counter }}" style="font-size: 17px; line-height: 200%; white-space: nowrap;">
                 <span style="display: inline-block; margin-right: 5px; font-weight: bolder">{{ forloop.counter }}. ({{ question.score }}점)</span>
                 {% if question.question_text %}
                     <span style="display: inline-block;">{{ question.question_text|safe }}</span>{% endif %}
