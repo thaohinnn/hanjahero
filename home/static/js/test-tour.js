@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         content: "Click on the icon stop the timer. Click on it again to resume.",
                     },
                     {
+                        element: "#nav-button",
+                        title: "Question Navigation",
+                        content: "Click on the icon to see all questions. Click on the number to quickly move to the question.",
+                    },
+                    {
                         element: "#note-button",
                         title: "Take Notes",
                         content: "Click on the icon to write down your notes. Click on it again to exit the notes.",
