@@ -212,6 +212,7 @@ def grade_test_view(request):
     if request.method == 'POST':
         skill = request.POST.get('skill')
         exam = request.POST.get('exam')
+        level = request.POST.get('level')
         format_value = request.POST.get('format', None)
         time_limit = request.POST.get('timeLimit')
 
@@ -222,7 +223,11 @@ def grade_test_view(request):
 
         # Fetch all questions for the given skill and exam, and optionally by format
 
-        all_questions = Question.objects.filter(skill=skill, exam=exam)
+        if not level:
+            level = '2'
+
+        # Filter based on query strings
+        all_questions = Question.objects.filter(skill=skill, exam=exam, level=level)
 
         # Only apply the format filter if format_value is provided and not empty
         if format_value:
@@ -315,11 +320,16 @@ def get_test_history(request, test_history_id):
     time_limit = test_history.time_limit
     format_value = test_history.format_name
     format_statistics = test_history.format_statistics
+    level = test_history.level
 
     exam_name = exam_list[int(exam) - 1][int(exam)]
     skill_name = skill_list[int(skill) - 1][int(skill)]
-    all_questions = Question.objects.filter(skill=skill, exam=exam)
 
+    if level is None:
+        level = '2'
+
+        # Filter based on query strings
+    all_questions = Question.objects.filter(skill=skill, exam=exam, level=level)
     # Only apply the format filter if format_value is provided and not empty
     if format_value:
         try:

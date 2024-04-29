@@ -15,3 +15,4 @@ class TestHistory(models.Model):
     time_limit = models.IntegerField(default=0)
     format_statistics = models.JSONField(null=True)
     test_type = models.IntegerField(default=0)
+    level = models.IntegerField(null=True)
