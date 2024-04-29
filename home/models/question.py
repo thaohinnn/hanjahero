@@ -20,5 +20,5 @@ class Question(models.Model):
     level = models.IntegerField(null=True)
     question_meta_data = models.ForeignKey(QuestionMetaData, on_delete=models.RESTRICT, blank=True, null=True)
     time_limit = models.IntegerField(default=1)  # Add the time_limit field
-
+    writing_answer = models.TextField(null=True)
 

@@ -13,6 +13,8 @@ python3 manage.py populate_time_limit
 python3 manage.py import_user_data home/static/data/user_data.json
 python3 manage.py update_total_scores  
 python manage.py assign_test_types
+python manage.py import_writing_answer home/static/data/writing_answers.json
+
 ```
 * Run project steps:
 ```shell
