@@ -6,6 +6,7 @@
     <li><strong>Skill:</strong> {{ skill_name }}</li>
     <li><strong>Time limit:</strong> {{ time_limit }} minutes</li>
 </ul>
+{% if skill != 2 %}
 <h4 style="text-align: left; padding-top: 10px">Answer Statistics:</h4>
 <table class="table">
     <tr>
@@ -30,3 +31,4 @@
         <td style="color: #052f7e; font-weight: bolder">{{ format_statistics|sum_attribute:"unchosen" }}</td>
     </tr>
 </table>
+{% endif %}

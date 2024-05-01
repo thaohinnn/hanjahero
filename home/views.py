@@ -208,6 +208,7 @@ def get_test(request):
 
 
 def grade_test_view(request):
+
     format_names = {k: v for d in format for k, v in d.items()}
     if request.method == 'POST':
         skill = request.POST.get('skill')
@@ -220,6 +221,17 @@ def grade_test_view(request):
         submitted_answers = {int(key.split('_')[1]): int(value) for key, value in request.POST.items() if
                              key.startswith('answer')}
         question_ids = submitted_answers.keys()
+
+        user_writing_answers = {}
+        question_ids = user_writing_answers.keys()
+
+        # Iterate over all POST keys to find keys related to writing answers
+        for key, value in request.POST.items():
+            if key.startswith('writing_answer_'):
+                # Extract the question ID from the key
+                question_id = int(key.split('_')[-1])
+                # Add the writing answer to the dictionary
+                user_writing_answers[question_id] = value
 
         # Fetch all questions for the given skill and exam, and optionally by format
 
@@ -296,12 +308,12 @@ def grade_test_view(request):
         # Filter questions to include only those with a provided answer
         user_test_results = [
             UserTestResult(
-                user_answer=submitted_answers[question_id],
-                question_id=Question.objects.get(question_id=question_id),  # Ensure you fetch the Question object
-                test_history_id=test_history
+                user_answer=submitted_answers.get(question_id) if submitted_answers is not None else None,
+                question_id=Question.objects.get(question_id=question_id),
+                test_history_id=test_history,
+                user_writing_answer=user_writing_answers.get(question_id) if user_writing_answers is not None else None,
             )
-            for question_id in question_ids if submitted_answers.get(question_id) is not None
-            # Check if the answer is not None
+            for question_id in question_ids
         ]
 
         UserTestResult.objects.bulk_create(user_test_results)
@@ -340,7 +352,10 @@ def get_test_history(request, test_history_id):
             pass  # You might want to log this case or handle it appropriately
 
     user_choices = UserTestResult.objects.filter(test_history_id=test_history_id)
+    user_writing_answers = {result.question_id_id: result.user_writing_answer for result in user_choices}
     user_choices = {result.question_id_id: result.user_answer for result in user_choices}
+
+
 
     # Dictionary to store correct options for each question
     correct_answers = {question.question_id: question.correct_option for question in all_questions}
@@ -361,6 +376,7 @@ def get_test_history(request, test_history_id):
         "user_choices": user_choices,
         "correct_answers": correct_answers,
         "format_statistics": format_statistics,
+        "user_writing_answers": user_writing_answers
         # Convert default dictionary to a regular dictionary for template usage
     }
     return render(request, 'final_grade_result.html', context)

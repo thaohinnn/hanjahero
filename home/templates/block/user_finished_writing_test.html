@@ -1,0 +1,44 @@
+{% load custom_filters %}
+{% for question in questions %}
+<div class="card mb-3 border-black" style="border-radius: 0; box-shadow: none">
+    {% for item in format_names %}
+    {% for key, value in item.items %}
+    {% if key == question.format %}
+    <div class="card-header text-black bg-card" style="font-size: 20px; font-weight: bolder;">
+        {{ value }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    <div class="card-body">
+        <h5 class="card-title" style="font-size: 17px; line-height: 200%; white-space: nowrap;">
+            <span style="display: inline-block; margin-right: 5px; font-weight: bolder">{{ forloop.counter }}. ({{ question.score }}점)</span>
+            {% if question.question_text %}
+            <span style="display: inline-block;">{{ question.question_text|safe }}</span>
+            {% else %}
+            <span style="display: inline-block;"></span>  <!-- Displays a non-breaking space if no text -->
+            {% endif %}
+        </h5>
+        {% if question.question_meta_data %}
+        <div class="card mb-3 border-black" style="width: 100%; align-items: center">
+            <div class="card-body">
+                <div class="question-meta-data-text" id="question-meta-data" style="font-size: 17px">
+                    {{ question.question_meta_data.question_meta_text|safe }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="card" style="border-radius: 2px; background-color: #fff; width: 100%">
+            <div class="card-header" style="font-weight: bolder; padding-left: 0; padding-bottom: 10px">Your Answer:</div>
+            <div>{{ user_writing_answers|get_item:question.question_id|safe }}
+                {% if not user_writing_answers|get_item:question.question_id %}
+                <div class="text-danger">You didn't answer this question.</div>
+                {% endif %}</div>
+        </div>
+
+        <div class="card" style="border-radius: 2px; background-color: #b0e0a8; width: 100%">
+            <div class="card-header" style="font-weight: bolder; padding-left: 0; padding-bottom: 10px">Suggested Answer:</div>
+            {{ question.writing_answer|safe }}</div>
+    </div>
+</div>
+{% endfor %}
