@@ -10,3 +10,4 @@ class UserTestResult(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.RESTRICT)
     test_history_id = models.ForeignKey(TestHistory, on_delete=models.RESTRICT)
     user_writing_answer = models.TextField(null=True, max_length=1000)
+    suggested_writing_answer = models.TextField(null=True, max_length=5000)

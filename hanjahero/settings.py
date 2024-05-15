@@ -153,6 +153,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-if DEBUG:
-    INSTALLED_APPS += ['debug_toolbar']
-    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+GEMINI_SK = os.getenv('GEMINI_SK')

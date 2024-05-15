@@ -16,12 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hanjahero import settings
 from home import views
-
-
-if settings.DEBUG:
-    import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -56,6 +51,4 @@ urlpatterns = [
     path('flashcard-set/new/', views.flashcard_set_new, name='flashcard_set_new'),
 
     path('api/', include('home.urls')),
-
-    # path(r'__debug__/', include(debug_toolbar.urls)),
 ]

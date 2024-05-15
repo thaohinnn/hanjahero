@@ -37,8 +37,7 @@
         </div>
 
         <div class="card" style="border-radius: 2px; background-color: #b0e0a8; width: 100%">
-            <div class="card-header" style="font-weight: bolder; padding-left: 0; padding-bottom: 10px">Suggested Answer:</div>
-            {{ question.writing_answer|safe }}</div>
+            {{ suggested_writing_answers|get_item:question.question_id|safe }}</div>
     </div>
 </div>
 {% endfor %}

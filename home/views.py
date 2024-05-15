@@ -1,11 +1,13 @@
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
+from markdown.core import markdown
 from rest_framework import generics
 from django.utils.timezone import now
 from collections import defaultdict
 from django.contrib.auth.decorators import login_required
 from home.models.user import User
 from home.models.flashcards import FlashcardSet, Flashcard
+from utils import grade_writing_task
 from .serializers import QuestionSerializer
 from django.http import HttpResponseBadRequest
 from django.db import IntegrityError
@@ -210,7 +212,6 @@ def get_test(request):
 
 
 def grade_test_view(request):
-
     format_names = {k: v for d in format for k, v in d.items()}
     if request.method == 'POST':
         skill = request.POST.get('skill')
@@ -290,7 +291,6 @@ def grade_test_view(request):
         else:
             test_type = 1
 
-
         # User and TestHistory handling
         user = request.user if request.user.is_authenticated else User.objects.get(username='undefinedUser')
         test_history = TestHistory.objects.create(
@@ -310,12 +310,16 @@ def grade_test_view(request):
         # Filter questions to include only those with a provided answer
         user_test_results = [
             UserTestResult(
-                user_answer=submitted_answers.get(question_id) if submitted_answers is not None else None,
-                question_id=Question.objects.get(question_id=question_id),
+                user_answer=submitted_answers.get(question.question_id) if submitted_answers is not None else None,
+                question_id=question,
                 test_history_id=test_history,
-                user_writing_answer=user_writing_answers.get(question_id) if user_writing_answers is not None else None,
+                user_writing_answer=user_writing_answers.get(
+                    question.question_id) if user_writing_answers is not None else None,
+                suggested_writing_answer=grade_writing_task(question, user_writing_answers.get(
+                    question.question_id) if user_writing_answers is not None else None) if question.format in [23,
+                                                                                                                24] else None
             )
-            for question_id in question_ids
+            for question in all_questions
         ]
 
         UserTestResult.objects.bulk_create(user_test_results)
@@ -355,9 +359,9 @@ def get_test_history(request, test_history_id):
 
     user_choices = UserTestResult.objects.filter(test_history_id=test_history_id)
     user_writing_answers = {result.question_id_id: result.user_writing_answer for result in user_choices}
+    suggested_writing_answers = {result.question_id_id: markdown(result.suggested_writing_answer) for result in
+                                 user_choices}
     user_choices = {result.question_id_id: result.user_answer for result in user_choices}
-
-
 
     # Dictionary to store correct options for each question
     correct_answers = {question.question_id: question.correct_option for question in all_questions}
@@ -378,7 +382,8 @@ def get_test_history(request, test_history_id):
         "user_choices": user_choices,
         "correct_answers": correct_answers,
         "format_statistics": format_statistics,
-        "user_writing_answers": user_writing_answers
+        "user_writing_answers": user_writing_answers,
+        "suggested_writing_answers": suggested_writing_answers,
         # Convert default dictionary to a regular dictionary for template usage
     }
     return render(request, 'final_grade_result.html', context)
@@ -490,7 +495,8 @@ def flashcard_set_detail(request, pk):
         random_flashcard_sets = all_flashcard_sets
 
     return render(request, 'flashcard_set_detail.html', {'flashcard_set': flashcard_set, 'flashcards': flashcards,
-                                                         "page_name": "Flashcards", 'random_flashcard_sets': random_flashcard_sets,})
+                                                         "page_name": "Flashcards",
+                                                         'random_flashcard_sets': random_flashcard_sets, })
 
 
 @login_required()
