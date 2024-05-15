@@ -2,3 +2,4 @@
 .idea/
 hanjahero.iml
 .env
+*.pyc
