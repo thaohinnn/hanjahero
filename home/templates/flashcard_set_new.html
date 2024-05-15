@@ -1,0 +1,60 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Create New Flashcard Set</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_title">Title:</label>
+                <input type="text" class="form-control" id="id_title" name="title">
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="id_is_public" name="is_public">
+                <label class="form-check-label" for="id_is_public">Public</label>
+            </div>
+
+            <!-- Flashcard input fields -->
+            <hr>
+            <h2>Add Flashcards</h2>
+            <div id="flashcards-container">
+                <div class="form-group">
+                    <label for="flashcard_front_1">Front:</label>
+                    <textarea class="form-control" id="flashcard_front" name="flashcard_front_1" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="flashcard_back_1">Back:</label>
+                    <textarea class="form-control" id="flashcard_back" name="flashcard_back_1" rows="3"></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="add-flashcard">Add Flashcard</button>
+            <hr>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+
+    <!-- JavaScript for adding dynamic flashcard fields -->
+    <script>
+        var flashcardCounter = 1;
+        document.getElementById('add-flashcard').addEventListener('click', function() {
+            flashcardCounter++;
+            var container = document.getElementById('flashcards-container');
+            var div = document.createElement('div');
+            div.innerHTML = `
+                <div class="form-group">
+                    <label for="flashcard_front_${flashcardCounter}">Front:</label>
+                    <textarea class="form-control" id="flashcard_front_${flashcardCounter}" name="flashcard_front_${flashcardCounter}" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="flashcard_back_${flashcardCounter}">Back:</label>
+                    <textarea class="form-control" id="flashcard_back_${flashcardCounter}" name="flashcard_back_${flashcardCounter}" rows="3"></textarea>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    </script>
+
+{% endblock %}

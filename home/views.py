@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from collections import defaultdict
 from django.contrib.auth.decorators import login_required
 from home.models.user import User
+from home.models.flashcards import FlashcardSet, Flashcard
 from .serializers import QuestionSerializer
 from django.http import HttpResponseBadRequest
 from django.db import IntegrityError
@@ -19,7 +20,8 @@ from .models.question import Question
 from .models.user_test_result import UserTestResult
 from .models.test_history import TestHistory
 from .models.user_post import Post
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, FlashcardSetForm, FlashcardFormSet
+from random import sample
 
 
 def home(request):
@@ -462,7 +464,54 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_detail', pk=post.pk, context={'page_name': "New Post"})
+            return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'post_edit.html', {'form': form, 'page_name': "Edit Post"})
+
+
+def flashcard_set_list(request):
+    # Retrieve all flashcard sets from the database
+    flashcard_sets = FlashcardSet.objects.all()
+
+    # Pass the flashcard sets to the template for rendering
+    return render(request, 'flashcard_set_list.html', {'flashcard_sets': flashcard_sets,
+                                                       "page_name": "Flashcards"})
+
+
+def flashcard_set_detail(request, pk):
+    flashcard_set = get_object_or_404(FlashcardSet, pk=pk)
+    flashcards = Flashcard.objects.filter(set_id=pk)
+    all_flashcard_sets = FlashcardSet.objects.all()
+    if len(all_flashcard_sets) >= 3:
+        # Select 3 random flashcard sets
+        random_flashcard_sets = sample(list(all_flashcard_sets), 3)
+    else:
+        random_flashcard_sets = all_flashcard_sets
+
+    return render(request, 'flashcard_set_detail.html', {'flashcard_set': flashcard_set, 'flashcards': flashcards,
+                                                         "page_name": "Flashcards", 'random_flashcard_sets': random_flashcard_sets,})
+
+
+@login_required()
+def flashcard_set_new(request):
+    if request.method == 'POST':
+        set_form = FlashcardSetForm(request.POST)
+        flashcard_formset = FlashcardFormSet(request.POST)
+        if set_form.is_valid() and flashcard_formset.is_valid():
+            # Save the flashcard set
+            flashcard_set = set_form.save(commit=False)
+            flashcard_set.user = request.user
+            flashcard_set.save()
+
+            # Save the flashcards associated with the flashcard set
+            for form in flashcard_formset:
+                flashcard = form.save(commit=False)
+                flashcard.set = flashcard_set
+                flashcard.save()
+
+            return redirect('flashcard_set_detail.html', set_id=flashcard_set.id)
+    else:
+        set_form = FlashcardSetForm()
+        flashcard_formset = FlashcardFormSet()
+    return render(request, 'flashcard_set_new.html', {'set_form': set_form, 'flashcard_formset': flashcard_formset})

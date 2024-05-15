@@ -1,5 +1,8 @@
 from django import forms
+
+from .models.flashcards import FlashcardSet, Flashcard
 from .models.user_post import Post, Comment
+from django.forms import modelformset_factory
 
 
 class PostForm(forms.ModelForm):
@@ -25,3 +28,17 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'class': 'form-control custom-textarea', 'rows': 2,
                                              'placeholder': 'Add a comment...'}),
         }
+
+
+class FlashcardSetForm(forms.ModelForm):
+    class Meta:
+        model = FlashcardSet
+        fields = ['title', 'is_public']
+
+
+FlashcardFormSet = modelformset_factory(
+    Flashcard,
+    fields=('front', 'back'),
+    extra=1,  # Number of extra empty forms to display
+    can_delete=True  # Allow deletion of existing flashcards
+)

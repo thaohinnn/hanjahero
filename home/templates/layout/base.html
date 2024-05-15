@@ -24,6 +24,7 @@
     <!-- =============== APP STYLES ===============-->
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
     <link rel="stylesheet" href="{% static 'css/grade-radial.css' %}" id= "radialcss">
+    <link rel="stylesheet" href="{% static 'css/custom/flashcard.css' %}" id= "flashcard">
 
     <title>{{ page_name }}</title>
 </head>
@@ -81,6 +82,18 @@
                     </div>
                 </li>
 
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link dropdown-toggle" href="#" id="practiceTests"
+                       onclick="location.href='/'" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Study Tools
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
+                        <a class="dropdown-item" href="/flashcard-set/">Flashcards</a>
+                        <!-- Add more dropdown items as needed -->
+                    </div>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" onclick="location.href='/forum/'"  id="aboutUs" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -131,7 +144,7 @@
     </header><!-- sidebar-->
     <section class="section-container" style="margin-left: 0">
         <!-- Page content-->
-        <div class="content-wrapper">
+        <div class="content-wrapper homepage-specific-animation" style="background-color: transparent; border: none">
             {% block content %}
 
             {% endblock %}
@@ -161,6 +174,7 @@
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/link-generation.js' %}"></script>
 <script src="{% static 'js/save-test-info.js' %}"></script>
+<script src="{% static 'js/flashcard.js' %}"></script>
 
 
 

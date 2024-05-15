@@ -51,6 +51,10 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
 
+    path('flashcard-set/', views.flashcard_set_list, name='flashcard_set_list'),
+    path('flashcard-set/<int:pk>', views.flashcard_set_detail, name='flashcard_set_detail'),
+    path('flashcard-set/new/', views.flashcard_set_new, name='flashcard_set_new'),
+
     path('api/', include('home.urls')),
 
     path(r'__debug__/', include(debug_toolbar.urls)),
