@@ -1,0 +1,20 @@
+.custom-carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(128, 126, 126, 0.65); /* Gray round background color */
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rounded-card {
+    background-color: #f8f9fa; /* Background color */
+    border: 1px solid #dee2e6; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    margin-bottom: 20px; /* Bottom margin */
+}
