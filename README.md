@@ -26,3 +26,9 @@ python3 manage.py runserver
 python3 manage.py test
 ```
 
+* Deploy Django on Production
+- Set `DEBUG=False`
+```shell
+python manage.py collectstatic
+
+```

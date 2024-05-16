@@ -316,8 +316,7 @@ def grade_test_view(request):
                 user_writing_answer=user_writing_answers.get(
                     question.question_id) if user_writing_answers is not None else None,
                 suggested_writing_answer=grade_writing_task(question, user_writing_answers.get(
-                    question.question_id) if user_writing_answers is not None else None) if question.format in [23,
-                                                                                                                24] else None
+                    question.question_id) if user_writing_answers is not None else None) if question.format in [24] else None
             )
             for question in all_questions
         ]

@@ -3,3 +3,4 @@
 hanjahero.iml
 .env
 *.pyc
+build/

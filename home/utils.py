@@ -39,7 +39,7 @@ def get_description_by_key(key, format_names):
 def grade_writing_task(question, user_writing_answer):
     model = genai.GenerativeModel('gemini-1.5-pro-latest')
     if question.format == 23:
-        return ''# model.generate_content(basic_53_prompt + user_writing_answer).candidates[0].content.parts[0].text
+        return model.generate_content(basic_53_prompt + user_writing_answer).candidates[0].content.parts[0].text
     else:
         topic = QuestionMetaData.objects.get(question=question).question_meta_text
         return model.generate_content(basic_54_prompt.replace('$topic', topic) + user_writing_answer).candidates[0].content.parts[0].text
