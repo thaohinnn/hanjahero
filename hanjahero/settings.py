@@ -174,3 +174,4 @@ REST_FRAMEWORK = {
 }
 
 GEMINI_SK = os.getenv('GEMINI_SK')
+LOGIN_URL = 'login'

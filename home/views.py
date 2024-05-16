@@ -167,6 +167,7 @@ class SingleQuestionView(generics.RetrieveUpdateDestroyAPIView):
         return queryset
 
 
+@login_required
 def get_test(request):
     # Get query string parameters from the request
     skill = request.GET.get('skill')
@@ -316,7 +317,8 @@ def grade_test_view(request):
                 user_writing_answer=user_writing_answers.get(
                     question.question_id) if user_writing_answers is not None else None,
                 suggested_writing_answer=grade_writing_task(question, user_writing_answers.get(
-                    question.question_id) if user_writing_answers is not None else None) if question.format in [24] else None
+                    question.question_id) if user_writing_answers is not None else None) if question.format in [
+                    24] else None
             )
             for question in all_questions
         ]
@@ -325,6 +327,7 @@ def grade_test_view(request):
         return HttpResponseRedirect(f'/test-history/{test_history.test_history_id}')
 
 
+@login_required
 def get_test_history(request, test_history_id):
     test_history = get_object_or_404(TestHistory, test_history_id=test_history_id)
     format_names_list = format
@@ -358,8 +361,9 @@ def get_test_history(request, test_history_id):
 
     user_choices = UserTestResult.objects.filter(test_history_id=test_history_id)
     user_writing_answers = {result.question_id_id: result.user_writing_answer for result in user_choices}
-    suggested_writing_answers = {result.question_id_id: markdown(result.suggested_writing_answer) for result in
-                                 user_choices}
+    suggested_writing_answers = {result.question_id_id: markdown(result.suggested_writing_answer if
+                                                                 result.suggested_writing_answer is not None else '')
+                                 for result in user_choices}
     user_choices = {result.question_id_id: result.user_answer for result in user_choices}
 
     # Dictionary to store correct options for each question
