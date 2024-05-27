@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - laradock_backend
+
+networks:
+  laradock_backend:
+    external: true
