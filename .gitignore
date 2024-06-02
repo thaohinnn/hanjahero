@@ -4,4 +4,4 @@ hanjahero.iml
 .env
 *.pyc
 build/
-error.log
+/error.log

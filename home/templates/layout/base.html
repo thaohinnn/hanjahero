@@ -43,7 +43,7 @@
             <!-- START Left navbar-->
             <ul class="navbar-nav mr-auto flex-row">
 
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link dropdown-toggle" onclick="location.href='/home'" id="aboutUsDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Home
@@ -56,7 +56,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link dropdown-toggle" onclick="location.href='/mocktestslibrary/'"
                        id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
@@ -69,7 +69,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link dropdown-toggle" href="#" id="practiceTests"
                        onclick="location.href='/practicetestslibrary/'" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -82,7 +82,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link dropdown-toggle" href="#" id="practiceTests"
                        onclick="location.href='/'" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -94,7 +94,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link" onclick="location.href='/forum/'"  id="aboutUs" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Forum
@@ -109,7 +109,7 @@
                 <li class="navbar-nav ml-auto">
                     <!-- Conditionally render user icon or log in link -->
                     {% if user.is_authenticated %}
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown d-md-block">
                     <a class="nav-link dropdown-toggle" href="#" id="user-block-toggle logged in"
                        onclick="location.href='{% url 'user_profile' user_id=user.pk %}'" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -126,7 +126,7 @@
                     </div>
                 </li>
                 {% else %}
-                <li class="nav-item d-none d-md-block logged-in">
+                <li class="nav-item d-md-block logged-in">
                     <a class="nav-link" id="user-block-toggle" onclick="location.href='/login/'" data-toggle="collapse">
                         <em class="icon-user user-icon"></em> <!-- User Icon -->
                         <span class="login-link">Log in</span> <!-- Log in Link -->
@@ -134,13 +134,12 @@
                 </li>
                 {% endif %}
 
-                <li class="nav-item d-none d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
+                <li class="nav-item d-md-block"><a class="nav-link" href="#" data-toggle-fullscreen=""><em
                         class="fas fa-expand"></em></a></li><!-- START Alert menu-->
 
             </ul><!-- END Left navbar-->
-
-            <button class="d-none" type="submit">Submit</button>
         </nav><!-- END Top Navbar-->
+
     </header><!-- sidebar-->
     <section class="section-container" style="margin-left: 0">
         <!-- Page content-->
