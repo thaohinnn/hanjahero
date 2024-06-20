@@ -1,6 +1,42 @@
 {% load static %}
 <div class="card" style="width: 90%; border: None; padding: 0; border-radius: 40px">
     <div class="card-header" style="text-align: center; font-size: 30px; font-weight: bold; padding-top: 32px">Integrated Testing and Grading Suite</div>
-<img class="img fluid" src="{% static 'img/home-features.png' %}"
-     fetchpriority="high" decoding="async" alt="Features">
+    <div class="flex-container features">
+        <div class="flex-item-left">
+            <h6>Practice Tests</h6>
+            <ul style="text-align: left; font-size: 12px">
+                <li>Varied Task Selection: Choose from a range of tasks for focused practice.</li>
+                <li>Flexible Time Settings: Set time limits to simulate exam conditions.</li>
+            </ul>
+        </div>
+        <div class="flex-item-right"><img class="img-fluid" src="{% static 'img/feature-1.png' %}"
+                                         fetchpriority="lazy" decoding="async" alt="Features"></div>
+    </div>
+
+    <div class="flex-container features">
+        <div class="flex-item-left">
+            <img class="img-fluid" src="{% static 'img/feature-2.png' %}"
+                 fetchpriority="lazy" decoding="async" alt="Features">
+        </div>
+        <div class="flex-item-right">
+            <h6>Mock Tests</h6>
+            <ul style="text-align: left; font-size: 12px">
+                <li>Full Exam Simulation: Mimic the structure and timing of the actual exam.</li>
+                <li>Realistic Experience: Gain familiarity with the exam format and difficulty.</li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="flex-container features">
+        <div class="flex-item-left">
+            <h6>Automated AI Writing Grading</h6>
+            <ul style="text-align: left; font-size: 12px">
+                <li>Instant Feedback: Receive immediate scores and feedback after completing Writing tests.</li>
+                <li>Objective Evaluation: Grading done impartially by AI algorithms.</li>
+            </ul>
+        </div>
+        <div class="flex-item-right"><img class="img-fluid" src="{% static 'img/feature-3.png' %}"
+                                          fetchpriority="lazy" decoding="async" alt="Features"></div>
+    </div>
 </div>

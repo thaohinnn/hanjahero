@@ -76,7 +76,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.52857;
-  color: #656565;
+  color: #000000;
   text-align: left;
   background-color: #f5f7fa; }
 
@@ -3070,7 +3070,19 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem; }
+  -webkit-backface-visibility: hidden;
+  /* fixes chrome jump */
+  margin-bottom: 0;
+  border-radius: 0;
+  z-index: 1050;
+  border: 0;
+  padding: 10px;
+  min-height: 70px;
+  background-color: #fff;
+  background-image: linear-gradient(to right, #fff 0%, #fff 100%);
+  background-repeat: repeat-x;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
   .navbar .container,
   .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
     display: flex;
@@ -3128,7 +3140,8 @@ input[type="button"].btn-block {
   height: 1.5em;
   vertical-align: middle;
   content: "";
-  background: 50% / 100% 100% no-repeat; }
+  background: 50% / 100% 100% no-repeat;
+}
 
 .navbar-nav-scroll {
   max-height: 75vh;
@@ -3343,8 +3356,8 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem; }
+  border: none;
+  border-radius: 20px; }
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3387,7 +3400,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
   .card-header:first-child {
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
@@ -5761,7 +5774,7 @@ button.bg-dark:focus {
   padding-left: 0.25rem !important; }
 
 .p-2 {
-  padding: 0.5rem !important; }
+  padding: 0.25rem !important; }
 
 .pt-2,
 .py-2 {
@@ -7204,3 +7217,124 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #eee; } }
+
+
+.navbar-collapse {
+  background-color: #fff;
+}
+
+.navbar-nav .nav-link {
+  color: #000; /* Change this to your desired text color */
+}
+.navbar-nav .nav-link:hover {
+  color: #0056b3; /* Change this to your desired hover color */
+}
+.navbar-toggler {
+  border: none; /* Remove border from the toggler button */
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-brand-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-collapse {
+  margin-top: 10px; /* Adjust this value to move the collapsed navbar below the logo */
+}
+
+@media (min-width: 768px) {
+  .navbar-brand-center {
+    position: static;
+    transform: none;
+  }
+  body {
+    font-size: 14px; /* Example smaller font size for smaller screens */
+  }
+  .dropdown-menu {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Further adjust font sizes for even smaller screens */
+  body {
+    font-size: 12px; /* Example smaller font size for extra small screens */
+  }
+  .dropdown-menu {
+    font-size: 12px;
+  }
+  /* Adjust button size and padding for smaller screens */
+  .ct-tui__bottoms .btn {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+/* Ensure 'Montserrat' font is applied globally */
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Example: Applying 'Montserrat' to card headers */
+.card {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Example: Applying 'Montserrat' to buttons */
+.btn {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ct-tui__bottoms .btn {
+  margin: 5px;
+  min-width: 150px; /* Ensure buttons have a minimum width */
+}
+
+/* Custom Styles */
+.navbar-brand-center .brand-logo img {
+  max-height: 50px;
+}
+
+/* Hide the brand logo on smaller screens */
+@media (max-width: 767.98px) {
+  .navbar-header.d-none.d-md-block {
+    display: none;
+  }
+}
+
+/* Adjust padding between buttons */
+.p-2 > .col-auto {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.flex-item-left {
+  background-color: transparent;
+  padding: 10px;
+  flex: 50%;
+}
+
+.flex-item-right {
+  background-color: transparent;
+  padding: 10px;
+  flex: 50%;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-item-right, .flex-item-left {
+    flex: 100%;
+  }
+}

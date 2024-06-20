@@ -10,7 +10,7 @@
                 <div class="container position-relative">
                     <div class="fadeInUp row m-0 p-0 justify-content-center">
                         <!-- Text and Description Column -->
-                        <div class="col-12 col-lg-6">
+                        <div class="col-12 col-lg-6" style="padding-top: 10px">
                             <h1 class="h1 ct-tui__title" style="padding-bottom: 20px">
                                 <strong>Hanja Hero</strong>
                             </h1>
@@ -33,37 +33,33 @@
                         </div>
 
                         <!-- Image Column -->
-                        <div class="col-12 col-lg-6">
+                        <div class="col-12 col-lg-6 d-none d-lg-block">
                             <img fetchpriority="high" decoding="async" width="500"
                                  src="{% static 'img/home-header.png' %}"
-                                 class="thumbnail-component ct-tui__image object-fit-contain is-not-lazyload" alt=""
+                                 class="thumbnail-component ct-tui__image object-fit-contain is-not-lazyload img-fluid" alt=""
                                  loading="eager">
                         </div>
                         <!-- Buttons -->
-                        <div class="row m-0 pt-4 pb-5 ct-tui__bottoms"
-                             style="align-content: start; padding-bottom: 0 !important">
-                            <div class="col-auto">
-                                <a href="/aboutus/" class="btn-oval btn-lg rounded-pill ct-tui__button btn"
-                                   title="About Us" style="background-color: rgb(0, 51, 153); color: #fff" target="_blank">
-                                    About Us
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <a href="/abouttheTOPIKexam/"
-                                   class="btn-oval btn-secondary btn-lg rounded-pill ct-tui__button btn"
-                                   title="About the TOPIK exam"
-                                   style="border-color: rgb(0, 51, 153);"
-                                   target="_blank">
-                                    About the TOPIK exam
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <a href="/examdates/"
-                                   class="btn-oval btn-primary btn-lg rounded-pill ct-tui__button btn"
-                                   style="background-color: rgb(0, 51, 153); color: #fff"
-                                   title="About the TOPIK exam" target="_blank">
-                                    TOPIK Exam dates
-                                </a>
+                        <div class="row m-0 pt-4 pb-5 ct-tui__bottoms" style="align-content: start; padding-bottom: 0 !important">
+                            <div class="col-12 d-flex flex-wrap justify-content-center">
+                                <div class="p-2">
+                                    <a href="/aboutus/" class="btn-oval btn-lg rounded-pill ct-tui__button btn"
+                                       title="About Us" style="background-color: rgb(0, 51, 153); color: #fff" target="_blank">
+                                        About Us
+                                    </a>
+                                </div>
+                                <div class="p-2">
+                                    <a href="/abouttheTOPIKexam/" class="btn-oval btn-secondary btn-lg rounded-pill ct-tui__button btn"
+                                       title="About the TOPIK exam" style="border-color: rgb(0, 51, 153);" target="_blank">
+                                        About the TOPIK exam
+                                    </a>
+                                </div>
+                                <div class="p-2">
+                                    <a href="/examdates/" class="btn-oval btn-primary btn-lg rounded-pill ct-tui__button btn"
+                                       style="background-color: rgb(0, 51, 153); color: #fff" title="About the TOPIK exam" target="_blank">
+                                        TOPIK Exam dates
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
