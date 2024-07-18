@@ -1,6 +1,7 @@
 # custom_filters.py
 
 from django import template
+import re
 
 register = template.Library()
 
@@ -48,13 +49,13 @@ def get_format_description(format_list, key):
 @register.filter(name='convert_exam_name')
 def convert_exam_name(value):
     exam_names = {1: '기출 35회',
-    2: '기출 36회',
-    3: '기출 37회',
-    4: '기출 41회',
-    5: '기출 47회',
-    6: '기출 52회',
-    7: '기출 60회',
-    8: '기출 64회'
+                  2: '기출 36회',
+                  3: '기출 37회',
+                  4: '기출 41회',
+                  5: '기출 47회',
+                  6: '기출 52회',
+                  7: '기출 60회',
+                  8: '기출 64회'
                   }
     return exam_names.get(value, "Unknown Exam")
 
@@ -64,3 +65,18 @@ def convert_skill_name(value):
     skill_names = {1: '듣기', 2: '쓰기', 3: '읽기'}
 
     return skill_names.get(value, "Unknown Skill")
+
+
+# myapp/templatetags/custom_filters.py
+
+register = template.Library()
+
+
+@register.filter(name='highlight_query')
+def highlight_query(text, query):
+    if not query:
+        return text
+
+    pattern = re.compile(re.escape(query), re.IGNORECASE)
+    highlighted_text = pattern.sub(r'<span class="highlight">\g<0></span>', text)
+    return highlighted_text

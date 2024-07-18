@@ -24,6 +24,7 @@ from .models.test_history import TestHistory
 from .models.user_post import Post
 from .forms import PostForm, CommentForm, FlashcardSetForm, FlashcardFormSet
 from random import sample
+from django.shortcuts import render
 
 
 def home(request):
@@ -524,3 +525,23 @@ def flashcard_set_new(request):
         set_form = FlashcardSetForm()
         flashcard_formset = FlashcardFormSet()
     return render(request, 'flashcard_set_new.html', {'set_form': set_form, 'flashcard_formset': flashcard_formset})
+
+
+def search(request):
+    query = request.GET.get('query', '')  # Get the search query from the GET parameters
+    results = []
+
+    if query:
+        # Perform a search query
+        results = Question.objects.filter(question_text__icontains=query)  # Adjust according to your model's fields
+
+    return render(request, 'search_results.html', {'query': query, 'results': results})
+
+
+def test_detail(request, test_id):
+    exam = int(test_id)
+    exam_name = exam_list[int(exam) - 1][int(exam)]
+
+    return render(request, 'test_view.html', {
+        'test': exam_name,
+    })
