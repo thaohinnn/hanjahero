@@ -1,0 +1,66 @@
+{% extends './layout/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container" style="display: flex; padding: 30px;
+            flex-direction: column; align-items: center; justify-content: center;">
+        <h1>Search Results</h1>
+        <p>"{{ query }}" appears in the following tests: </p>
+    </div>
+    
+    {% if results %}
+        <div id="examCardContainerResults">
+            {% for result in results %}
+                <div class="card">
+                    <div class="card-header">
+                        <!-- Apply the custom filter to highlight the query -->
+                        {{ result.question_text|highlight_query:query|safe }}
+                    </div>
+                    <div class="card-body">
+                        <button class="btn-oval" data-question-id="{{ result.id }}">View Details</button>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .card-header {
+            background-color: #f5f5f5;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .card img {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+            border-radius: 50%;
+        }
+        .btn-oval {
+            border-radius: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-oval:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}

@@ -50,5 +50,8 @@ urlpatterns = [
     path('flashcard-set/<int:pk>', views.flashcard_set_detail, name='flashcard_set_detail'),
     path('flashcard-set/new/', views.flashcard_set_new, name='flashcard_set_new'),
 
+    path('search/', views.search, name='search'),
+    path('test/<int:test_id>/', views.test_detail, name='test_detail'),
+
     path('api/', include('home.urls')),
 ]

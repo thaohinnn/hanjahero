@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}" id="maincss">
     <link rel="stylesheet" href="{% static 'css/grade-radial.css' %}" id= "radialcss">
     <link rel="stylesheet" href="{% static 'css/custom/flashcard.css' %}" id= "flashcard">
+    <link rel="stylesheet" href="{% static 'css/custom/search-nav.css' %}" id= "search-nav">
 
     <title>{{ page_name }}</title>
 </head>
@@ -32,102 +33,7 @@
 <body style="background-color: #fff">
 <div class="wrapper">
     <!-- Top Navbar -->
-    <header class="topnavbar-wrapper">
-        <nav class="navbar navbar-expand-md navbar-light bg-white topnavbar">
-            <!-- Navbar Header -->
-            <div class="navbar-header d-md-none w-100 text-center">
-                <a class="navbar-brand navbar-brand-center" href="#/">
-                    <div class="brand-logo">
-                        <img class="logo" src="{% static 'img/logo.png' %}" alt="App Logo" onclick="location.href='/home/'">
-                    </div>
-                </a>
-            </div>
-            <div class="navbar-header d-none d-md-block">
-                <a class="navbar-brand" href="#/">
-                    <div class="brand-logo">
-                        <img class="logo" src="{% static 'img/logo.png' %}" alt="App Logo" onclick="location.href='/home/'">
-                    </div>
-                </a>
-            </div>
-            <!-- Navbar Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Navbar Content -->
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- Left Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/home" id="aboutUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Home
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="aboutUsDropdown">
-                            <a class="dropdown-item" href="/aboutus/">About Us</a>
-                            <a class="dropdown-item" href="/abouttheTOPIKexam/">About the TOPIK exam</a>
-                            <a class="dropdown-item" href="/examdates/">TOPIK Exam dates</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/mocktestslibrary/" id="practiceTestsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mock Tests Library
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="practiceTestsDropdown">
-                            <a class="dropdown-item" href="/mocktestslibrary/topik1/">TOPIK I</a>
-                            <a class="dropdown-item" href="/mocktestslibrary/topik2/">TOPIK II</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/practicetestslibrary/" id="practiceTests" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Practice Tests Library
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="practiceTests">
-                            <a class="dropdown-item" href="/practicetestslibrary/topik1">TOPIK I</a>
-                            <a class="dropdown-item" href="/practicetestslibrary/topik2">TOPIK II</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/" id="studyToolsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Study Tools
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="studyToolsDropdown">
-                            <a class="dropdown-item" href="/flashcard-set/">Flashcards</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/forum/" id="forumLink">
-                            Forum
-                        </a>
-                    </li>
-                </ul>
-                <!-- Right Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="user-block-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="login-link mr-2">{{ user.first_name }} {{ user.last_name }}</span>
-                                <em class="icon-user user-icon"></em>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="user-block-toggle">
-                                <a class="dropdown-item" href="{% url 'user_profile' user_id=user.pk %}">Profile</a>
-                                <a class="dropdown-item" href="{% url 'user_test_history' user_id=user.pk %}">My Test History</a>
-                                <a class="dropdown-item" href="/logout/">Sign out</a>
-                            </div>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login/" id="loginLink">
-                                <em class="icon-user user-icon"></em>
-                                <span class="login-link">Log in</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle-fullscreen=""><em class="fas fa-expand"></em></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    {% include 'layout/../block/top-navbar.html' %}
 
     <section class="section-container" style="margin-left: 0">
         <!-- Page content -->
@@ -163,6 +69,7 @@
 <script src="{% static 'js/link-generation.js' %}"></script>
 <script src="{% static 'js/save-test-info.js' %}"></script>
 <script src="{% static 'js/flashcard.js' %}"></script>
+<script src="{% static 'js/search-nav.js' %}"></script>
 <script src="{% static 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %}"></script>
 <script src="{% static 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js' %}"></script>
 <script src="{% static 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %}"></script>
